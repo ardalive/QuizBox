@@ -38,12 +38,12 @@ class LoginController extends AbstractController
     }
 
     /**
-     * @Route("/q", name="some_route")
+     * @Route("/", name="some_route")
      * @return Response
      */
     public function home():Response
     {
-        return new Response("Index");
+        return new Response("Index123");
     }
 
 }
