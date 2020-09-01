@@ -38,7 +38,7 @@ class LoginController extends AbstractController
     }
 
     /**
-     * @Route("/", name="some_route")
+     * @Route("/q", name="some_route")
      * @return Response
      */
     public function home():Response
