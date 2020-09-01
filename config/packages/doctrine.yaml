@@ -1,5 +1,6 @@
 doctrine:
     dbal:
+        password: '%env(DB_PASS)%'
         url: '%env(resolve:DATABASE_URL)%'
 
         # IMPORTANT: You MUST configure your server version,
