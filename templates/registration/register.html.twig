@@ -2,7 +2,7 @@
 
 {% block title %}Register{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -23,5 +23,5 @@
     <h1 class="h6 mb-3 font-weight-normal">Alredy have an account?</h1>
     <a href="{{ path('app_login') }}" class="button">Sign in</a>
     {{ form_end(registrationForm) }}
-    <script src="/register.js" language='javascript' type='text/javascript'></script>
+    <script src="/js/register.js" language='javascript' type='text/javascript'></script>
 {% endblock %}
