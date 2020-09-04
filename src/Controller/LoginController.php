@@ -43,7 +43,7 @@ class LoginController extends AbstractController
      */
     public function home():Response
     {
-        return new Response("Index123");
+        return new Response("Index");
     }
 
 }
