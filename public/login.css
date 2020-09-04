@@ -12,6 +12,10 @@ body {
     padding-bottom: 40px;
     background-color: #f5f5f5;
 }
+input:valid{
+    box-shadow: 0 0 0 0.1rem rgba(50,220,50,.4);
+    border-color: #58ea77;
+}
 .form-signin, .form-signup {
     width: 100%;
     max-width: 330px;
@@ -44,13 +48,13 @@ body {
 .form-signup input[type="email"]{
     margin-bottom: 5px;
 }
-.form-signup input[type="text"] {
-    margin-bottom: 5px;
-    /*border-bottom-right-radius: 0;*/
-    /*border-bottom-left-radius: 0;*/
+#form_password_first {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
-.form-signup input[type="password"] {
+#form_password_second {
     margin-bottom: 10px;
-    /*border-top-left-radius: 0;*/
-    /*border-top-right-radius: 0;*/
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
