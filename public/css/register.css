@@ -34,12 +34,12 @@ body {
 .form-signup input[type="email"], .form-signup input[type="text"]{
     margin-bottom: 5px;
 }
-#form_password_first {
+#registration_form_password_first {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
-#form_password_second {
+#registration_form_password_second {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
