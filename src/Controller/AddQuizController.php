@@ -21,7 +21,7 @@ class AddQuizController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $quiz->setIsActive(false);
+
             $quiz->setDateOfCreation(new \DateTime('today'));
 
             $entityManager = $this->getDoctrine()->getManager();
