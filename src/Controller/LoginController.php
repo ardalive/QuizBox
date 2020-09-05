@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,17 +18,23 @@ class LoginController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+
          //if ($this->getUser()) {
          //    return $this->redirectToRoute('some_route');
          //}
+        $user = new User();
+        $loginForm = $this->createForm(LoginType::class, $user);
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
-        //return $this->render('profile/index.html.twig');
+        return $this->render('security/login.html.twig', [
+            'loginForm' => $loginForm->createView(),
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 
     /**

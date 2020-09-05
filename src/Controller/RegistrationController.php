@@ -40,8 +40,6 @@ class RegistrationController extends AbstractController
                 'required' => true,
                 'attr'=>[
                     'class'=>'form-control',
-                    'data-toggle'=>'popover',
-                    'data-content'=>'4-15 letters and numbers. Special symbols not allowed.',
                     'pattern'=>"[A-Za-z0-9`-]{4,15}"
                     ]
             ])
