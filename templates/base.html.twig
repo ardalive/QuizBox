@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="yandex-verification" content="d00a9ba6068869a8" />
+        {# meta tag yandex-verification is required for mailing #}
         <title>{% block title %}QuizBox{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/footer.css') }}">
@@ -29,7 +31,7 @@
                             {% if app.user %}
                                 <a class="nav-item nav-link" href="{{ path('app_logout') }}">{{ app.user.username }}</a>
                             {% endif %}
-                            <a class="nav-item nav-link" href="{{ path('some_route') }}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="{{ path('homepage') }}">Home <span class="sr-only">(current)</span></a>
                             <a class="nav-item nav-link" href="{{ path('app_login') }}">Login</a>
                             <a class="nav-item nav-link" href="{{ path('app_register') }}">Register</a>
                         </div>
@@ -43,7 +45,7 @@
             <footer class="footer">
                 <div class="container">
                     <span class="text-muted">
-                        <a class="nav-item nav-link" href="https://github.com/ardalive/QuizBox">QuizBox repo</a>
+                        Training project <a class="" href="https://github.com/ardalive/QuizBox">QuizBox</a>
                     </span>
                 </div>
             </footer>
