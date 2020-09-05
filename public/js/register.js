@@ -1,4 +1,5 @@
-let first = document.getElementById('form_password_first'), second = document.getElementById('form_password_second');
+let first = document.getElementById('registration_form_password_first'),
+    second = document.getElementById('registration_form_password_second');
 console.log(first.type);
 function check(input) {
     if (first.value != second.value) {
