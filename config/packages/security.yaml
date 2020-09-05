@@ -20,10 +20,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-                default_target_path: after_login_route_name
                 provider: app_user_provider
-                always_use_default_target_path: true
-
             # configure the form authentication as the entry point for unauthenticated users
             entry_point: form_login
             guard:

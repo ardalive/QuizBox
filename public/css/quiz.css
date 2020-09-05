@@ -1,0 +1,15 @@
+#quiz_form_isActive_1{
+    margin-left: 25px;
+}
+.addQuizForm{
+    width: 50%;
+    margin: auto;
+}
+#quiz_form_name{
+    margin-bottom: 10px;
+}
+#quiz_form_Description{
+    margin-bottom: 20px;
+    height: 100px;
+    resize: none;
+}
