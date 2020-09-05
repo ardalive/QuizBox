@@ -1,54 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block title %}QB login{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 {% endblock %}
 {% block content %}
 <div class="container">
-    {{ form_start(loginForm) }}
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+    {% if not app.user %}
+<form method="post" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-    {{ form_row(loginForm.email, {'attr': {
-        'placeholder': 'Email',
-        'value': last_username
-    }}) }}
-    {{ form_row(loginForm.password, {'attr':{'placeholder':'Password'}}) }}
-    {{ form_row(loginForm.submit) }}
-    <hr>
-    <h1 class="h6 mb-3 font-weight-normal">Don`t have an account?</h1>
-    <a href="{{ path('app_register') }}" class="button">Sign up</a>
-{#        <input type="hidden" name="_csrf_token"#}
-{#               value="{{ csrf_token('authenticate') }}"#}
-{#        >#}
-    {{ form_end(loginForm) }}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-
-
-{#<form method="post" class="form-signin">#}
-{#    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>#}
-{#    {% if error %}#}
-{#        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
-{#    {% endif %}#}
-
-{#    {% if app.user %}#}
-{#        <div class="mb-3">#}
-{#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
-{#        </div>#}
-{#    {% endif %}#}
-
-{#    <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>#}
-{#    <input placeholder="Password" type="password" name="password" id="inputPassword" class="form-control" required>#}
-{#    <input type="hidden" name="_csrf_token"#}
-{#           value="{{ csrf_token('authenticate') }}"#}
-{#    >#}
+    <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+    <input placeholder="Password" type="password" name="password" id="inputPassword" class="form-control" required>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 {#        <div class="checkbox">#}
 {#            <label>#}
@@ -56,12 +23,15 @@
 {#            </label>#}
 {#        </div>#}
 
-{#    <button class="btn btn-lg btn-primary" type="submit">#}
-{#        Sign in#}
-{#    </button>#}
-{#    <hr>#}
-{#    <h1 class="h6 mb-3 font-weight-normal">Don`t have an account?</h1>#}
-{#    <a href="{{ path('app_register') }}" class="button">Sign up</a>#}
-{#</form>#}
+    <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+    <hr>
+    <h1 class="h6 mb-3 font-weight-normal">Don`t have an account?</h1>
+    <a href="{{ path('app_register') }}" class="button">Sign up</a>
+</form>
+    {% elseif app.user %}
+        <div class="mb-3">
+            You are logged as {{ app.user.username }} <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

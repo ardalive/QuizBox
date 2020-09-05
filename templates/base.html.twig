@@ -25,6 +25,9 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
+                            {% if app.user %}
+                                <a class="nav-item nav-link" href="{{ path('app_logout') }}">{{ app.user.username }}</a>
+                            {% endif %}
                             <a class="nav-item nav-link" href="{{ path('some_route') }}">Home <span class="sr-only">(current)</span></a>
                             <a class="nav-item nav-link" href="{{ path('app_login') }}">Login</a>
                             <a class="nav-item nav-link" href="{{ path('app_register') }}">Register</a>

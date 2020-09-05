@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}QB signup{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="/css/register.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -36,6 +36,6 @@
     <h1 class="h6 mb-3 font-weight-normal">Alredy have an account?</h1>
     <a href="{{ path('app_login') }}" class="button">Sign in</a>
     {{ form_end(registrationForm) }}
-    <script src="/js/register.js" language='javascript' type='text/javascript'></script>
-    <script src="/js/popover.js" language='javascript' type='text/javascript'></script>
+    <script src="{{ asset('js/register.js') }}" language='javascript' type='text/javascript'></script>
+    <script src="{{ asset('js/popover.js') }}" language='javascript' type='text/javascript'></script>
 {% endblock %}
