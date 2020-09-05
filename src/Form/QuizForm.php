@@ -38,7 +38,6 @@ class QuizForm extends AbstractType
                 ],
                 'attr'=>['class'=>'radioBtns'],
                 'expanded' => true])
-            ->add('')
             ->add('save', SubmitType::class, [
                 'attr'=>['class'=>'btn btn-lg btn-primary']
             ]);
