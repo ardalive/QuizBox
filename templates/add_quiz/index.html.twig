@@ -1,22 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Create quiz{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/quiz.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
 
 {% block content %}
-
     {{ form_start(form) }}
     <h1 class="h3 mb-3 font-weight-normal">Create new quiz!</h1>
 
     {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'}}) }}
-    {{ form_row(form.Description, {'attr': {'placeholder': 'Input quiz description'}}) }}
+    {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'}}) }}
     <div>
         <label>Is quiz active for users?</label>
     </div>
+
     {{ form_row(form.isActive) }}
-    {{ form_row(form.save) }}
-
     <hr>
-
+    {{ form_row(form.save) }}
     {{ form_end(form) }}
 
 {% endblock %}

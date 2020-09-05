@@ -16,7 +16,7 @@ class AddQuizController extends AbstractController
     public function index(Request $request)
     {
         $quiz = new Quiz();
-        $form = $this->createForm(QuizForm::class, $quiz);
+        $form = $this->createForm(QuizForm::class, $quiz, ['attr'=>['class'=>'addQuizForm']]);
 
         $form->handleRequest($request);
 
