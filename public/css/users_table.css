@@ -1,0 +1,18 @@
+#id-col{
+    width: 10%;
+}
+#email-col{
+    width: 40%;
+}
+#name-col{
+    width: 30%;
+}
+#role-col{
+    width: 20%;
+}
+.dropdown-menu input, button[type='submit']{
+    margin-top: 6px;
+}
+.dropdown{
+    margin: 10px 0;
+}

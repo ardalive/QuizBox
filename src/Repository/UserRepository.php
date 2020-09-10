@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Query\Expr;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -36,32 +37,27 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?User
+    /**
+     * @return User[] Returns an array of User objects
+     */
+
+    public function findByFilters(array $filters)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+
+        $qb = $this->createQueryBuilder('u')
+            ->where('u.email like :email')
+            ->andWhere('u.name like :name')
+            ->andWhere('u.id like :id')
+            ->andWhere('u.roles like :roles')
+            ->setParameter('email', '%'.$filters['email'].'%')
+            ->setParameter('name', '%'.$filters['name'].'%')
+            ->setParameter('id', '%'.$filters['id'].'%')
+            ->setParameter('roles', '%'.(isset($filters['admin'])?'ROLE_ADMIN':'').'%')
+            ->orderBy('u.id', 'ASC');
+//        TODO add status filter (active/blocked)
+        $query = $qb->getQuery();
+        return $query->execute();
     }
-    */
+
 }
