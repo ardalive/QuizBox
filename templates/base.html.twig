@@ -7,6 +7,7 @@
         {# meta tag yandex-verification is required for mailing #}
         <title>{% block title %}QuizBox{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/header.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/footer.css') }}">
         {% block stylesheets %}
 
@@ -34,6 +35,7 @@
                             <a class="nav-item nav-link" href="{{ path('homepage') }}">Home <span class="sr-only">(current)</span></a>
                             <a class="nav-item nav-link" href="{{ path('app_login') }}">Login</a>
                             <a class="nav-item nav-link" href="{{ path('app_register') }}">Register</a>
+                            <a class="nav-item nav-link" href="{{ path('users_table') }}">Users</a>
                         </div>
                     </div>
                 </nav>

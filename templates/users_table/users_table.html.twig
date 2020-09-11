@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UsersTableController!{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/users_table.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+
+
+        <h1 class="h3 mb-3 font-weight-normal">Users table</h1>
+
+                <div class="col-4">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter users by
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <form class="mx-4 my-2"  method="post">
+                                <input placeholder="ID" type="text" name="id" class="form-control">
+                                <input placeholder="email" type="text" name="email" class="form-control">
+                                <input placeholder="name" type="text" name="name" class="form-control">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="admin">
+                                    <label class="form-check-label" for="exampleCheck1">Is admin?</label>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Filter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8"></div>
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th id="id-col" scope="col">ID</th>
+                <th id="email-col" scope="col">Email</th>
+                <th id="name-col" scope="col">Name</th>
+    {#            <th scope="col">Status</th>#}
+                <th id="role-col" scope="col"></th>
+            </tr>
+            </thead>
+            {% if users|length > 0 %}
+            <tbody>
+            {% for user in users %}
+            <tr>
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+    {#            <td>{{ user.status }}</td>#}
+    {#            TODO add status field to Users entity #}
+                <td>
+                    {% if user.roles|length < 2 %}
+                        <a class="" href="#Admin">Promote</a>
+                        {% else %}
+                        Admin
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            {% else %}
+
+                <div class="alert alert-primary" role="alert">
+                    <h1 class="h3 mb-3 font-weight-normal">No matches</h1>
+                    Try to change filtering options
+                </div>
+            {% endif %}
+        </table>
+
+
+    </div></div></div>
+
+{% endblock %}
