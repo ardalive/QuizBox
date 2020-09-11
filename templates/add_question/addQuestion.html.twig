@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create quiz{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/css/question.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <h1 class="h3 mb-3 font-weight-normal">Create new question!</h1>
+
+    {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'}}) }}
+
+    <h3>Answers</h3>
+    <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
+        {% for answer in form.answers %}
+            <li>
+                {{ form_row(answer) }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+    <script src="/js/questionCreation.js"></script>
+{% endblock %}

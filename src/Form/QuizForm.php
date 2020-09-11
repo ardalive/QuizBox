@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Form;
 
-
 use App\Entity\Quiz;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -38,6 +35,12 @@ class QuizForm extends AbstractType
                 ],
                 'attr'=>['class'=>'radioBtns'],
                 'expanded' => true])
+            ->add('questionID', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('save', SubmitType::class, [
                 'attr'=>['class'=>'btn btn-lg btn-primary']
             ]);

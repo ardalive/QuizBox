@@ -29,9 +29,15 @@ class Questions
      */
     private $quizID;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Answers::class, mappedBy="questionId",  cascade={"persist"})
+     */
+    private $answers;
+
     public function __construct()
     {
         $this->quizID = new ArrayCollection();
+        $this->answers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -72,6 +78,37 @@ class Questions
     {
         if ($this->quizID->contains($quizID)) {
             $this->quizID->removeElement($quizID);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Answers[]
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Answers $answer): self
+    {
+        if (!$this->answers->contains($answer)) {
+            $this->answers[] = $answer;
+            $answer->setQuestionId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Answers $answer): self
+    {
+        if ($this->answers->contains($answer)) {
+            $this->answers->removeElement($answer);
+            // set the owning side to null (unless already changed)
+            if ($answer->getQuestionId() === $this) {
+                $answer->setQuestionId(null);
+            }
         }
 
         return $this;

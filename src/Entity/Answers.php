@@ -27,11 +27,24 @@ class Answers
      */
     private $isTrue;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity=Questions::class)
+     * @ORM\ManyToOne(targetEntity=Questions::class, inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $questionID;
+    private $questionId;
+
+    public function getQuestionId(): ?Questions
+    {
+        return $this->questionId;
+    }
+
+    public function setQuestionId(?Questions $questions): self
+    {
+        $this->questionId = $questions;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -62,15 +75,4 @@ class Answers
         return $this;
     }
 
-    public function getQuestionID(): ?Questions
-    {
-        return $this->questionID;
-    }
-
-    public function setQuestionID(?Questions $questionID): self
-    {
-        $this->questionID = $questionID;
-
-        return $this;
-    }
 }
