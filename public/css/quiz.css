@@ -1,6 +1,9 @@
 #quiz_form_isActive_1{
     margin-left: 25px;
 }
+input[type=radio]{
+    margin-right: 10px;
+}
 .addQuizForm{
     width: 50%;
     margin: auto;
@@ -14,4 +17,8 @@
     margin-bottom: 20px;
     height: 100px;
     resize: none;
+}
+.h1 {
+    margin: 0 auto;
+    width: 30%;
 }

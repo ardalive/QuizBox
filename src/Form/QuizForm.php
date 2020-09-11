@@ -33,7 +33,9 @@ class QuizForm extends AbstractType
                     'yes' => true,
                     'no' => false,
                 ],
-                'attr'=>['class'=>'radioBtns'],
+                'attr'=>[
+                    'class'=>'radioBtns',
+                ],
                 'expanded' => true])
             ->add('questionID', TextType::class, [
                 'label' => false,

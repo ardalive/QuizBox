@@ -10,9 +10,14 @@
 {% endblock %}
 
 {% block content %}
-    {{ form_start(form) }}
     <h1 class="h3 mb-3 font-weight-normal">Create new quiz!</h1>
-
+    <hr>
+    <select class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 500px">
+        {% for question in questionsArr %}
+            <option id = "{{ question.QuestionBody }}"> {{ question.QuestionBody }} </option>
+        {% endfor %}
+    </select>
+    {{ form_start(form) }}
     {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'}}) }}
     {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'}}) }}
 
@@ -25,5 +30,9 @@
     <hr>
     {{ form_row(form.save) }}
     {{ form_end(form) }}
-
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
 {% endblock %}
