@@ -1,0 +1,24 @@
+.addQuestionForm{
+    width: 80%;
+    margin: auto;
+}
+
+.description{
+    height: 100px;
+    resize: none;
+    font-size: 20px;
+}
+li {
+    list-style-type: none;
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+.answerBody {
+    width: 70%;
+}
+
+.radioBtn {
+    width: 30%;
+}

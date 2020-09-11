@@ -21,6 +21,7 @@
     </div>
 
     {{ form_row(form.isActive) }}
+    {{ form_row(form.questionID, {'attr': {'placeholder': 'Start typing a question'}}) }}
     <hr>
     {{ form_row(form.save) }}
     {{ form_end(form) }}
