@@ -18,9 +18,7 @@ class AddQuizController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager)
     {
         $quiz = new Quiz();
-        $form = $this->createForm(QuizForm::class, $quiz, ['attr'=>['class'=>'addQuizForm']]);
-        $repository = $entityManager->getRepository(Questions::class);
-        $questionsArr = $repository->findAll();
+        $form = $this->createForm(QuizForm::class, $quiz);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -33,9 +31,8 @@ class AddQuizController extends AbstractController
             return $this->redirectToRoute('admin');
         }
 
-        return $this->render('add_quiz/index.html.twig', [
+        return $this->render('add_quiz/addQuiz.html.twig', [
             'form' => $form->createView(),
-            'questionsArr' => $questionsArr,
         ]);
     }
 }

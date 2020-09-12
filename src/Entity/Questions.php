@@ -25,7 +25,7 @@ class Questions
     private $QuestionBody;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Quiz::class, inversedBy="questionID")
+     * @ORM\ManyToMany(targetEntity=Quiz::class, inversedBy="questionID", cascade={"persist"})
      */
     private $quizID;
 
@@ -113,4 +113,8 @@ class Questions
 
         return $this;
     }
+    public function __toString(){
+        return $this->getQuestionBody();
+    }
+
 }

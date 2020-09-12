@@ -2,9 +2,15 @@
 
 namespace App\Form;
 
+use App\Entity\Questions;
 use App\Entity\Quiz;
+use App\Service\choicegenerator;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -37,11 +43,9 @@ class QuizForm extends AbstractType
                     'class'=>'radioBtns',
                 ],
                 'expanded' => true])
-            ->add('questionID', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+            ->add('questionID', EntityType::class, [
+                'class' => Questions::class,
+                'multiple' => true,
             ])
             ->add('save', SubmitType::class, [
                 'attr'=>['class'=>'btn btn-lg btn-primary']
@@ -54,4 +58,6 @@ class QuizForm extends AbstractType
             'data_class' => Quiz::class,
         ));
     }
+
+
 }

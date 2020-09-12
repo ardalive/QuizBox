@@ -22,7 +22,7 @@ class AddQuestionController extends AbstractController
     {
         $question = new Questions();
 
-        $form = $this->createForm(QuestionForm::class, $question, ['attr'=>['class'=>'addQuestionForm']]);
+        $form = $this->createForm(QuestionForm::class, $question);
 
         $form->handleRequest($request);
 
