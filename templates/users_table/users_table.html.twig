@@ -54,7 +54,10 @@
         <table class="table">
             <thead>
             <tr>
-                <th onclick="numberTableSort(this,true)" id="id-col" scope="col">ID</th>
+                <th onclick="numberTableSort(this,true)" id="id-col" scope="col">
+                    <img class="rounded float-left" src="{{ asset('sortable.png') }}" alt="">
+                    ID
+                </th>
                 <th onclick="tableSort(this)" id="email-col" scope="col">Email</th>
                 <th onclick="tableSort(this)" id="name-col" scope="col">Name</th>
     {#            <th scope="col">Status</th>#}
