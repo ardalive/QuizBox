@@ -11,7 +11,7 @@
 
 
         <h1 class="h3 mb-3 font-weight-normal">Users table</h1>
-
+                <div class="row">
                 <div class="col-4">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,17 +31,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-8"></div>
+                    <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Promote player by ID
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <h6 class="dropdown-header">Set user role as Admin</h6>
+                            <form class="mx-4 my-2" action="{{ path('promote') }}" method="post">
+                                <input placeholder="Player ID" type="text" name="id" pattern="[0-9]{0,6}" class="form-control" data-toggle="popover"
+                                    data-content="Please input ID, numbers only"
+                                >
+                                <button class="btn btn-primary" type="submit">Promote</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
+                </div>
 
         <table class="table">
             <thead>
             <tr>
-                <th id="id-col" scope="col">ID</th>
-                <th id="email-col" scope="col">Email</th>
-                <th id="name-col" scope="col">Name</th>
+                <th onclick="numberTableSort(this,true)" id="id-col" scope="col">ID</th>
+                <th onclick="tableSort(this)" id="email-col" scope="col">Email</th>
+                <th onclick="tableSort(this)" id="name-col" scope="col">Name</th>
     {#            <th scope="col">Status</th>#}
-                <th id="role-col" scope="col"></th>
+                <th onclick="tableSort(this)" id="role-col" scope="col"></th>
             </tr>
             </thead>
             {% if users|length > 0 %}
@@ -55,9 +72,10 @@
     {#            TODO add status field to Users entity #}
                 <td>
                     {% if user.roles|length < 2 %}
-                        <a class="" href="#Admin">Promote</a>
+{#                        <a class="" href="#Admin">Promote</a>#}
+                        Player
                         {% else %}
-                        Admin
+                        <b>Admin</b>
                     {% endif %}
                 </td>
             </tr>
@@ -70,9 +88,16 @@
                     Try to change filtering options
                 </div>
             {% endif %}
+            {% if error|length > 0 %}
+            <div class="alert alert-primary" role="alert">
+                {{ error }}
+            </div>
+            {% endif %}
         </table>
 
 
     </div></div></div>
-
+    <script src="{{ asset('js/popover.js') }}" language='javascript' type='text/javascript'></script>
+    <script src="{{ asset('js/IntlTableSort.js') }}" language='javascript' type='text/javascript'></script>
+    <script src="{{ asset('js/IntlTableSort.Number.js') }}" language='javascript' type='text/javascript'></script>
 {% endblock %}
