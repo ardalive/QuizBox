@@ -1,13 +1,15 @@
-let first = document.getElementById('registration_form_password_first'),
-    second = document.getElementById('registration_form_password_second');
+let inputs = [  document.getElementById('registration_form_password_first'),
+                document.getElementById('registration_form_password_second')];
 console.log(first.type);
 function check(input) {
-    if (first.value != second.value) {
-        first.setCustomValidity('Password Must be Matching.');
-        second.setCustomValidity('Password Must be Matching.');
+    if (inputs[0].value != inputs[1].value) {
+        inputs.forEach(inp => {
+            inp.setCustomValidity('Password Must be Matching.')
+        });
         input.reportValidity();
     } else {
-        first.setCustomValidity('');
-        second.setCustomValidity('');
+        inputs.forEach(inp => {
+            inp.setCustomValidity('')
+        });
     }
 }
