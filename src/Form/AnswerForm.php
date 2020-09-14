@@ -22,12 +22,21 @@ class AnswerForm extends  AbstractType
                 'attr' => [
                     'placeholder' => 'input answer ...',
                     'class' => 'form-control answerBody'
-                ]])
+                ],
+                'row_attr' => [
+                    'style' => 'width : 70%; display : inline-block'
+                ],
+
+            ])
             ->add('isTrue', RadioType::class, [
-                'label' => false,
+                'label' => 'right',
                 'required' => false,
                 'attr' => [
                     'class' => 'radioBtn',
+                    'style' => 'margin-left : 10px;'
+                ],
+                'row_attr' => [
+                    'style' => 'width : 30%; display : inline-block'
                 ],
                 'data' => false,
             ])

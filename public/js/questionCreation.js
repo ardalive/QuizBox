@@ -8,6 +8,10 @@ jQuery(document).ready(function() {
     $collectionHolder = $('ul.answers');
     $collectionHolder.append($newLinkLi);
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
+    addAnswerForm($collectionHolder, $newLinkLi);
+    addAnswerForm($collectionHolder, $newLinkLi);
+    checkedFirst();
+    changeRadio();
     $addTagLink.on('click', function(e) {
         e.preventDefault();
         addAnswerForm($collectionHolder, $newLinkLi);
@@ -35,4 +39,9 @@ function changeRadio() {
             }
         })
     }
+}
+
+function checkedFirst() {
+    let radioBtn = document.getElementById('question_form_answers_0_isTrue');
+    radioBtn.setAttribute('checked', true );
 }

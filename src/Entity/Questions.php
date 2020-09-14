@@ -25,7 +25,8 @@ class Questions
     private $QuestionBody;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Quiz::class, inversedBy="questionID")
+     * @ORM\ManyToMany(targetEntity=Quiz::class, inversedBy="questionID", cascade={"persist"})
+     * @ORM\JoinTable(name="questions_quiz")
      */
     private $quizID;
 
@@ -113,4 +114,5 @@ class Questions
 
         return $this;
     }
+
 }

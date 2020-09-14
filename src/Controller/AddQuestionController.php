@@ -22,7 +22,7 @@ class AddQuestionController extends AbstractController
     {
         $question = new Questions();
 
-        $form = $this->createForm(QuestionForm::class, $question, ['attr'=>['class'=>'addQuestionForm']]);
+        $form = $this->createForm(QuestionForm::class, $question);
 
         $form->handleRequest($request);
 
@@ -31,7 +31,7 @@ class AddQuestionController extends AbstractController
             $entityManager->persist($question);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('add_question');
         }
 
         return $this->render('add_question/addQuestion.html.twig', [

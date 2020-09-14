@@ -3,17 +3,12 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block content %}
-    <style >
-        .h1 {
-            margin: 0 auto;
-            width: 30%;
-        }
-    </style>
     <h1>admin page</h1>
+    <hr>
     <div>
-        <a href="{{ path('add_quiz') }}">Создать викторину</a>
+        <a href="{{ path('add_quiz') }}">Create quiz</a>
     </div>
     <div>
-        <a href="{{ path('add_question') }}">Создать вопрос</a>
+        <a href="{{ path('add_question') }}">Create question</a>
     </div>
 {% endblock %}

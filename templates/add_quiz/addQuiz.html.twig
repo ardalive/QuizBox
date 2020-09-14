@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create quiz{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/css/quiz.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="form_box">
+        <h1 class="h3 mb-3 font-weight-normal">Create new quiz!</h1>
+        <hr>
+
+        {{ form_start(form) }}
+        {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'}}) }}
+        {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'}}) }}
+
+
+        <a>Is quiz active for users?</a>
+        {{ form_row(form.isActive) }}
+
+        <hr>
+
+        {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label' : 'Choose and add some questions: '}) }}
+        <div class="createQuestion">
+            <a href="{{path('add_question')}}">You can create a new question</a>
+        </div>
+        <hr>
+
+        {{ form_row(form.save) }}
+        {{ form_end(form) }}
+    </div>
+    <script src="/js/select2.js"></script>
+{% endblock %}

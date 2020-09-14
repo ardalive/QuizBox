@@ -15,10 +15,13 @@ ul {
     padding: 0;
     margin: 0;
 }
-.answerBody {
+
+.form_box {
     width: 70%;
+    margin: 0 auto;
 }
 
-.radioBtn {
-    width: 30%;
+.addQuiz{
+    font-size: 20px;
+    font-weight: bold;
 }

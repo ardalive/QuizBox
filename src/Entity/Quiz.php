@@ -40,7 +40,7 @@ class Quiz
     private $dateOfCreation;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Questions::class, mappedBy="quizID")
+     * @ORM\ManyToMany(targetEntity=Questions::class, mappedBy="quizID", cascade={"persist"})
      */
     private $questionID;
 
