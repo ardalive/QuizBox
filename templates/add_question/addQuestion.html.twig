@@ -10,22 +10,24 @@
 {% endblock %}
 
 {% block content %}
-    {{ form_start(form) }}
-    <h1 class="h3 mb-3 font-weight-normal">Create new question!</h1>
+    <div class="form_box">
+        {{ form_start(form) }}
+        <h1 class="h3 mb-3 font-weight-normal">Create new question!</h1>
+        <hr>
+        {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'}}) }}
 
-    {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'}}) }}
+        <h3>Answers</h3>
+        <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
+            {% for answer in form.answers %}
+                <li>
+                    {{ form_row(answer) }}
+                </li>
+            {% endfor %}
+        </ul>
 
-    <h3>Answers</h3>
-    <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
-        {% for answer in form.answers %}
-            <li>
-                {{ form_row(answer) }}
-            </li>
-        {% endfor %}
-    </ul>
-
-    <hr>
-    {{ form_row(form.save) }}
-    {{ form_end(form) }}
+        <hr>
+        {{ form_row(form.save) }}
+        {{ form_end(form) }}
+    </div>
     <script src="/js/questionCreation.js"></script>
 {% endblock %}

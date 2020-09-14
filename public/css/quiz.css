@@ -22,3 +22,8 @@ input[type=radio]{
     margin: 0 auto;
     width: 30%;
 }
+
+.form_box{
+    width: 70%;
+    margin: 0 auto;
+}
