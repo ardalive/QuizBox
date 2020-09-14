@@ -20,6 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class QuizForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder,array $options){
+        $em = $options['entityManager'];
         $builder
             ->add('name', TextType::class, [
                 'label'=> false,
@@ -44,8 +45,10 @@ class QuizForm extends AbstractType
                 ],
                 'expanded' => true])
             ->add('questionID', EntityType::class, [
-                'class' => Questions::class,
                 'multiple' => true,
+                'class' => Questions::class,
+                'choice_label' => 'QuestionBody',
+                'choices' => $this->choicesGenerator($em),
             ])
             ->add('save', SubmitType::class, [
                 'attr'=>['class'=>'btn btn-lg btn-primary']
@@ -57,7 +60,12 @@ class QuizForm extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Quiz::class,
         ));
+        $resolver->setRequired('entityManager');
     }
 
+    public function choicesGenerator($em){
+        $questionsRepository = $em->getRepository(Questions::class);
+        return $questionsRepository->findAll();
+    }
 
 }

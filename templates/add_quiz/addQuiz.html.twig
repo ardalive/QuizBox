@@ -22,13 +22,16 @@
         {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'}}) }}
         {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'}}) }}
 
-        <div>
-            <label>Is quiz active for users?</label>
-        </div>
 
+        <a>Is quiz active for users?</a>
         {{ form_row(form.isActive) }}
-        {{ form_row(form.questionID, {'attr': {'placeholder': 'Start typing a question', 'class' : 'js-example-basic-multiple'}, 'label' : false}) }}
+
         <hr>
+
+        {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label' : 'Choose and add some questions: '}) }}
+
+        <hr>
+
         {{ form_row(form.save) }}
         {{ form_end(form) }}
     </div>

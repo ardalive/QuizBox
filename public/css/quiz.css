@@ -27,3 +27,6 @@ input[type=radio]{
     width: 70%;
     margin: 0 auto;
 }
+.required{
+    margin-right: 10px;
+}
