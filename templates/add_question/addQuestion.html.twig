@@ -28,6 +28,11 @@
         <hr>
         {{ form_row(form.save) }}
         {{ form_end(form) }}
+        <hr>
+    </div>
+
+    <div class="addQuiz">
+        <a href="{{ path('add_quiz') }}">You can create a quiz!</a>
     </div>
     <script src="/js/questionCreation.js"></script>
 {% endblock %}

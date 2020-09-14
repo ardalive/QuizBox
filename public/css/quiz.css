@@ -30,3 +30,11 @@ input[type=radio]{
 .required{
     margin-right: 10px;
 }
+.createQuestion{
+    margin-top: 15px;
+    font-weight: bold;
+}
+.select2, .select2-container,
+.select2-container--default, .select2-container--below{
+    max-width: 60%;
+}

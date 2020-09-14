@@ -31,7 +31,7 @@ class AddQuestionController extends AbstractController
             $entityManager->persist($question);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('add_question');
         }
 
         return $this->render('add_question/addQuestion.html.twig', [
