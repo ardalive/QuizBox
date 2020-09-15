@@ -26,7 +26,7 @@ class QuestionForm extends AbstractType
                 ]])
             ->add('answers', CollectionType::class, [
                 'entry_type' => AnswerForm::class,
-                'entry_options' => ['label' => true],
+                'entry_options' => ['label' => false],
                 'label'=> false,
                 'allow_add' => true,
                 'by_reference' => false,

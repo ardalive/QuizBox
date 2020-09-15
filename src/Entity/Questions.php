@@ -6,6 +6,7 @@ use App\Repository\QuestionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionsRepository::class)
@@ -21,6 +22,9 @@ class Questions
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
+     * @Assert\Length(max=200)
      */
     private $QuestionBody;
 
@@ -32,6 +36,10 @@ class Questions
 
     /**
      * @ORM\OneToMany(targetEntity=Answers::class, mappedBy="questionId",  cascade={"persist"})
+     * @Assert\Count(
+     *     min = 2,
+     *     max = 6
+     * )
      */
     private $answers;
 

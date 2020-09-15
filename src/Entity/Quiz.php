@@ -6,6 +6,7 @@ use App\Repository\QuizRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=QuizRepository::class)
@@ -21,11 +22,17 @@ class Quiz
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2)
+     * @Assert\Length(max=50)
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
+     * @Assert\Length(max=150)
      */
     private $Description;
 
@@ -36,11 +43,16 @@ class Quiz
 
     /**
      * @ORM\Column(type="date")
+     *
      */
     private $dateOfCreation;
 
     /**
      * @ORM\ManyToMany(targetEntity=Questions::class, mappedBy="quizID", cascade={"persist"})
+     * @Assert\Count(
+     *     min = 5,
+     *     max = 60
+     * )
      */
     private $questionID;
 

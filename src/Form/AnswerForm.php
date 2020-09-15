@@ -33,7 +33,7 @@ class AnswerForm extends  AbstractType
                 'required' => false,
                 'attr' => [
                     'class' => 'radioBtn',
-                    'style' => 'margin-left : 10px;'
+                    'style' => 'margin-left : 50px;'
                 ],
                 'row_attr' => [
                     'style' => 'width : 30%; display : inline-block'

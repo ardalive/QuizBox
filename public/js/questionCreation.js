@@ -8,14 +8,21 @@ jQuery(document).ready(function() {
     $collectionHolder = $('ul.answers');
     $collectionHolder.append($newLinkLi);
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
-    addAnswerForm($collectionHolder, $newLinkLi);
-    addAnswerForm($collectionHolder, $newLinkLi);
+    if (countAnswerForms()){
+        addAnswerForm($collectionHolder, $newLinkLi);
+        addAnswerForm($collectionHolder, $newLinkLi);
+    }
     checkedFirst();
     changeRadio();
     $addTagLink.on('click', function(e) {
         e.preventDefault();
-        addAnswerForm($collectionHolder, $newLinkLi);
-        changeRadio();
+        if(countAnswers()){
+            addAnswerForm($collectionHolder, $newLinkLi);
+            changeRadio();
+        } else {
+            $addTagLink.remove();
+            $collectionHolder.append('<a>Possible number of answers - 6</a>')
+        }
     });
 });
 
@@ -45,3 +52,14 @@ function checkedFirst() {
     let radioBtn = document.getElementById('question_form_answers_0_isTrue');
     radioBtn.setAttribute('checked', true );
 }
+
+function countAnswers() {
+    let liArr = document.getElementsByTagName('li');
+    return liArr.length < 7;
+}
+
+function countAnswerForms() {
+    let liArr = document.getElementsByTagName('li');
+    return liArr.length === 1;
+}
+

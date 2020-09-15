@@ -16,7 +16,7 @@ class AddQuizController extends AbstractController
     /**
      * @Route("/admin/quizadd", name="add_quiz")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, choicegenerator $choicegenerator)
+    public function index(Request $request, EntityManagerInterface $entityManager)
     {
         $quiz = new Quiz();
         $form = $this->createForm(QuizForm::class, $quiz, ['entityManager' => $this->getDoctrine()->getManager()]);
