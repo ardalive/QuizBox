@@ -22,10 +22,10 @@ body{
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-th:hover{
+thead th:hover{
     background-color: #efefef;
 }
-th{
+thead th{
     cursor: pointer;
 }
 th img{
