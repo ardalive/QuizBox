@@ -3,6 +3,7 @@
 {% block title %}QB Edit Quiz{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/quiz.css">
+    <link rel="stylesheet" type="text/css" href="/css/editQuiz.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
 {% endblock %}
 {% block content %}
@@ -28,6 +29,11 @@
 
         {{ form_row(form.save) }}
         {{ form_end(form) }}
+        <div class="deleteBtn">
+            <a id="deleteBtnLink" class="deleteBtnLink" href="{{path('delete_quiz', {'id': id })}}" >You can delete this quiz</a>
+        </div>
     </div>
+
     <script src="/js/select2.js"></script>
+    <script src="/js/deleteBtn.js"></script>
 {% endblock %}
