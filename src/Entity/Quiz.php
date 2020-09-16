@@ -23,16 +23,16 @@ class Quiz
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(min=2)
-     * @Assert\Length(max=50)
+     * @Assert\Length(min=2, minMessage = "This value is too short. The name of the quiz should have 2 characters or more.")
+     * @Assert\Length(max=50, maxMessage = "This value is too lond. The name of the quiz should have 50 characters or less.")
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
-     * @Assert\Length(min=3)
-     * @Assert\Length(max=150)
+     * @Assert\Length(min=3, minMessage = "This value is too short. Description of the quiz should have 3 characters or more.")
+     * @Assert\Length(max=150, maxMessage = "This value is too long. Description of the quiz should have 150 characters or less.")
      */
     private $Description;
 
@@ -51,7 +51,9 @@ class Quiz
      * @ORM\ManyToMany(targetEntity=Questions::class, mappedBy="quizID", cascade={"persist"})
      * @Assert\Count(
      *     min = 5,
-     *     max = 60
+     *     minMessage="The number of questions must be more than 5",
+     *     max = 60,
+     *     maxMessage="The number of questions must be less than 60"
      * )
      */
     private $questionID;
@@ -141,4 +143,5 @@ class Quiz
 
         return $this;
     }
+
 }

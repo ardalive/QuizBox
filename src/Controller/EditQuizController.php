@@ -2,41 +2,43 @@
 
 namespace App\Controller;
 
-use App\Entity\Questions;
 use App\Entity\Quiz;
 use App\Form\QuizForm;
-use App\Service\choicegenerator;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AddQuizController extends AbstractController
+class EditQuizController extends AbstractController
 {
     /**
-     * @Route("/admin/quiz/quizadd", name="add_quiz")
+     * @Route("admin/quiz/edit/{id}", name="edit_quiz", requirements={"id"="\d+"})
      */
-    public function index(Request $request, EntityManagerInterface $entityManager)
+    public function index(int $id, EntityManagerInterface $entityManager, Request $request)
     {
-        $quiz = new Quiz();
+        $quiz = $entityManager->getRepository(Quiz::class)->find($id);
+
         $form = $this->createForm(QuizForm::class, $quiz, ['entityManager' => $this->getDoctrine()->getManager()]);
+
         $form->handleRequest($request);
+
         $a = $form->get('questionID')->getData();
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() ) {
             foreach($a as $val){
                 $quiz->addQuestionID($val);
                 $val->addQuizID($quiz);
             }
-            $quiz->setDateOfCreation(new \DateTime('today'));
-
-            $entityManager->persist($quiz);
+            $quiz = $form->getData();
             $entityManager->flush();
 
             return $this->redirectToRoute('admin');
+
         }
 
-        return $this->render('add_quiz/addQuiz.html.twig', [
+        return $this->render('edit_quiz/index.html.twig', [
             'form' => $form->createView(),
+            'id' => $id,
         ]);
     }
 }

@@ -23,8 +23,9 @@ class Questions
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
-     * @Assert\Length(min=3)
-     * @Assert\Length(max=200)
+     * @Assert\Length(min=3, minMessage = "This value is too short. The body of the question should have 3 characters or more.",)
+     *
+     * @Assert\Length(max=200, maxMessage="This value is too long. The body of the question should have 200 characters or less.")
      */
     private $QuestionBody;
 
