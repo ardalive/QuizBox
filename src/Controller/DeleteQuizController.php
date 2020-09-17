@@ -25,9 +25,6 @@ class DeleteQuizController extends AbstractController
         $entityManager->remove($oneQuiz);
         $entityManager->flush();
 
-        return $this->render('delete_quiz/index.html.twig', [
-            'controller_name' => 'DeleteQuizController',
-            'id' => $id,
-        ]);
+        return $this->redirectToRoute('quiz_page');
     }
 }

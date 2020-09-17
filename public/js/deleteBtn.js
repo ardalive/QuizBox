@@ -8,7 +8,7 @@ deleteBtn.addEventListener('click', function () {
     header.style.position = 'absolute';
 
     let footer = document.getElementsByTagName('footer')[0];
-    footer.style.opacity = 0.1;
+    //footer.style.opacity = 0.1;
 
     let window_box = document.getElementById('window');
     window_box.style.display = 'block';
