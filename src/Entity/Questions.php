@@ -123,5 +123,18 @@ class Questions
 
         return $this;
     }
+    public function getAnswerBodys(): string
+    {
+        $arrAnswers = [];
+        $collAnswers = $this->answers;
+        foreach ($collAnswers as $answer){
+            array_push($arrAnswers, $answer);
+        }
+        $str = '';
+        for($i = 0; $i < count($arrAnswers); $i++){
+            $str .=  $arrAnswers[$i]->getAnswerBody() . '   ';
+        }
+        return $str;
+    }
 
 }

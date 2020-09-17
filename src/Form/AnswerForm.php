@@ -24,7 +24,7 @@ class AnswerForm extends  AbstractType
                     'class' => 'form-control answerBody'
                 ],
                 'row_attr' => [
-                    'style' => 'width : 70%; display : inline-block'
+                    'style' => 'width : 80%; display : inline-block'
                 ],
 
             ])
@@ -36,7 +36,7 @@ class AnswerForm extends  AbstractType
                     'style' => 'margin-left : 50px;'
                 ],
                 'row_attr' => [
-                    'style' => 'width : 30%; display : inline-block'
+                    'style' => 'width : 20%; display : inline-block'
                 ],
                 'data' => false,
             ])

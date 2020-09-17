@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QB Question{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/css/questionTable.css">
+{% endblock %}
+
+{% block content %}
+    <h1>Table of existing questions</h1>
+
+    {% for oneQuestion in allQuestion %}
+        <div style="display: flex">
+            <div style="width: 50%">{{ oneQuestion.QuestionBody }}</div>
+            <div style="width: 50%">{{ oneQuestion.getAnswerBodys() }}</div>
+        </div>
+    {% endfor %}
+{% endblock %}
