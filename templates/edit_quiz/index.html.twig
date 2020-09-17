@@ -7,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css">
 {% endblock %}
 {% block content %}
+    <div id = "blackSquare">
+
+    </div>
+<div id="content" class="content">
     <div class="form_box">
         <h1 class="h3 mb-3 font-weight-normal">Edit Quiz</h1>
         <hr>
@@ -30,10 +34,27 @@
         {{ form_row(form.save) }}
         {{ form_end(form) }}
         <div class="deleteBtn">
-            <a id="deleteBtnLink" class="deleteBtnLink" href="{{path('delete_quiz', {'id': id })}}" >You can delete this quiz</a>
+            <a id="deleteBtnLink" class="deleteBtnLink" href="#" >You can delete this quiz</a>
         </div>
     </div>
 
+
+
     <script src="/js/select2.js"></script>
     <script src="/js/deleteBtn.js"></script>
+</div>
+    <div id = "window_box" class="window_box">
+        <div class="window" id = "window">
+            <div class="text_container">
+                <a class="tittle_text">Are you shure to delete this quiz?</a>
+            </div>
+            <div class="button_container" >
+                <div style="width: 50%; margin: 0 auto"><a href="{{path('delete_quiz', {'id': id })}}" ><button class="btn btn-lg btn-primary">Yes</button></a></div>
+                <div style="width: 50%; margin: 0 auto"><a href="{{path('edit_quiz', {'id': id })}}" ><button class="btn btn-lg btn-primary red">No</button></a></div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
+
+
