@@ -8,35 +8,35 @@
 {% endblock %}
 {% block content %}
     <div id = "blackSquare"></div>
-<div id="content" class="content">
-    <div class="form_box">
-        <h1 class="h3 mb-3 font-weight-normal">Edit Quiz</h1>
-        <hr>
+    <div id="content" class="content">
+        <div class="form_box">
+            <h1 class="h3 mb-3 font-weight-normal">Edit Quiz</h1>
+            <hr>
 
-        {{ form_start(form) }}
-        {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'}}) }}
-        {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'}}) }}
+            {{ form_start(form) }}
+            {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'}}) }}
+            {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'}}) }}
 
 
-        <a>Is quiz active for users?</a>
-        {{ form_row(form.isActive) }}
+            <a>Is quiz active for users?</a>
+            {{ form_row(form.isActive) }}
 
-        <hr>
+            <hr>
 
-        {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label' : 'Choose and add some questions: '}) }}
-        <div class="createQuestion">
-            <a href="{{path('add_question')}}">You can create a new question</a>
+            {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label' : 'Choose and add some questions: '}) }}
+            <div class="createQuestion">
+                <a href="{{path('add_question')}}">You can create a new question</a>
+            </div>
+            <hr>
+
+            {{ form_row(form.save) }}
+            {{ form_end(form) }}
+            <div class="deleteBtn">
+                <a id="deleteBtnLink" class="deleteBtnLink" href="#" >You can delete this quiz</a>
+            </div>
         </div>
-        <hr>
 
-        {{ form_row(form.save) }}
-        {{ form_end(form) }}
-        <div class="deleteBtn">
-            <a id="deleteBtnLink" class="deleteBtnLink" href="#" >You can delete this quiz</a>
-        </div>
     </div>
-
-</div>
     <div id = "window_box" class="window_box">
         <div class="window" id = "window">
             <div class="text_container">

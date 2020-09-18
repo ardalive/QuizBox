@@ -123,6 +123,8 @@ class Questions
 
         return $this;
     }
+
+
     public function getAnswerBodys(): string
     {
         $arrAnswers = [];
@@ -132,7 +134,7 @@ class Questions
         }
         $str = '';
         for($i = 0; $i < count($arrAnswers); $i++){
-            $str .=  $arrAnswers[$i]->getAnswerBody() . '   ';
+            $str .=  $arrAnswers[$i]->getAnswerBody() . ', ';
         }
         return $str;
     }

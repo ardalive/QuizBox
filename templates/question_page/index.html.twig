@@ -7,11 +7,16 @@
 
 {% block content %}
     <h1>Table of existing questions</h1>
-
+    <div style="display: flex; width: 90%; margin: 0 auto">
+        <div style="width: 50%; border: 1px solid black; font-weight: bold">Questions</div>
+        <div style="width: 50%; border: 1px solid black; font-weight: bold">Answers</div>
+        <div style="width: 10%;"></div>
+    </div>
     {% for oneQuestion in allQuestion %}
-        <div style="display: flex">
-            <div style="width: 50%">{{ oneQuestion.QuestionBody }}</div>
-            <div style="width: 50%">{{ oneQuestion.getAnswerBodys() }}</div>
+        <div style="display: flex;width: 90%; margin: 0 auto">
+            <div style="width: 50%; border: 1px solid gray">{{ oneQuestion.QuestionBody }}</div>
+            <div style="width: 50%; border: 1px solid gray">{{ oneQuestion.getAnswerBodys() }}</div>
+            <div style="width: 10%; margin: auto;"><a href="{{ path('edit_question', {'id': oneQuestion.id }) }}">Update</a></div>
         </div>
     {% endfor %}
 {% endblock %}

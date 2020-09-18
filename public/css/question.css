@@ -28,13 +28,12 @@ ul {
 .radioBtn{
     margin-left: 50px;
 }
-#question_form_answers_0, #question_form_answers_1,
-#question_form_answers_2, #question_form_answers_4,
-#question_form_answers_3, #question_form_answers_5,
-#question_form_answers_7, #question_form_answers_6,
-#question_form_answers_8, #question_form_answers_9,
-#question_form_answers_10, #question_form_answers_11,
-#question_form_answers_12, #question_form_answers_13
-{
-    width: 80%;
+.btnDel{
+    border: 0;
+    background: red !important;
+}
+.btn-group-lg>.btn, .btnDel{
+    font-size: 0.9rem;
+    padding: 4px 7px;
+
 }

@@ -32,8 +32,9 @@ class Answers
 
 
     /**
-     * @ORM\ManyToOne(targetEntity=Questions::class, inversedBy="answers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Questions::class, inversedBy="answers", cascade={"persist"})
+     * @ORM\JoinColumn(name="question_id_id", referencedColumnName="id",
+     * nullable = false, onDelete="CASCADE")
      */
     private $questionId;
 

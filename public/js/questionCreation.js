@@ -34,15 +34,8 @@ function addAnswerForm($collectionHolder, $newLinkLi) {
     let newForm = prototype;
     newForm = newForm.replace(/__name__/g, index);
     $collectionHolder.data('index', index +1);
-    let $newFormLi = $('<li class="liElements" style="display: flex; width: 100%; "><a class="deleteBtn"  style="width: 15%; color: #C82829" href="#">Delete</a></li>').append(newForm);
+    let $newFormLi = $('<li> </li>').append(newForm);
     $newLinkLi.before($newFormLi);
-    let ul = document.getElementsByClassName('answers');
-    let li = ul[0].childNodes;
-    li[index+1].setAttribute('id', index);
-    let a = li[index+1].firstChild;
-    a.addEventListener('click', function () {
-        li[index+1].remove();
-    })
 }
 
 function changeRadio() {
