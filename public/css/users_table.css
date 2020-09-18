@@ -1,3 +1,6 @@
+body{
+    background-color: #f5f5f5;
+}
 #id-col{
     width: 10%;
 }
@@ -15,4 +18,16 @@
 }
 .dropdown{
     margin: 10px 0;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+thead th:hover{
+    background-color: #efefef;
+}
+thead th{
+    cursor: pointer;
+}
+th img{
+    margin-right: -24px;
 }
