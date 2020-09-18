@@ -7,3 +7,7 @@ header{
 body{
     /*position: relative;*/
 }
+.logged{
+    position: absolute;
+    right: 10px;
+}
