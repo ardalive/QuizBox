@@ -6,6 +6,7 @@ use App\Repository\QuestionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionsRepository::class)
@@ -21,6 +22,10 @@ class Questions
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3, minMessage = "This value is too short. The body of the question should have 3 characters or more.",)
+     *
+     * @Assert\Length(max=200, maxMessage="This value is too long. The body of the question should have 200 characters or less.")
      */
     private $QuestionBody;
 
@@ -32,6 +37,10 @@ class Questions
 
     /**
      * @ORM\OneToMany(targetEntity=Answers::class, mappedBy="questionId",  cascade={"persist"})
+     * @Assert\Count(
+     *     min = 2,
+     *     max = 6
+     * )
      */
     private $answers;
 
@@ -113,6 +122,21 @@ class Questions
         }
 
         return $this;
+    }
+
+
+    public function getAnswerBodys(): string
+    {
+        $arrAnswers = [];
+        $collAnswers = $this->answers;
+        foreach ($collAnswers as $answer){
+            array_push($arrAnswers, $answer);
+        }
+        $str = '';
+        for($i = 0; $i < count($arrAnswers); $i++){
+            $str .=  $arrAnswers[$i]->getAnswerBody() . ', ';
+        }
+        return $str;
     }
 
 }

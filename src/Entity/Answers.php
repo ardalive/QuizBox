@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AnswersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnswersRepository::class)
@@ -19,6 +20,8 @@ class Answers
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=100, min=1)
      */
     private $AnswerBody;
 
@@ -29,8 +32,9 @@ class Answers
 
 
     /**
-     * @ORM\ManyToOne(targetEntity=Questions::class, inversedBy="answers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Questions::class, inversedBy="answers", cascade={"persist"})
+     * @ORM\JoinColumn(name="question_id_id", referencedColumnName="id",
+     * nullable = false, onDelete="CASCADE")
      */
     private $questionId;
 

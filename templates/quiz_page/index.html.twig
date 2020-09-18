@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QB Quiz{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/css/quizTable.css">
+{% endblock %}
+{% block content %}
+    <h1>Table of existing quizzes</h1>
+
+    <div class="container">
+        <hr>
+        <div class="tableHeader">
+            <div>Quiz name</div>
+            <div>Quiz description</div>
+            <div>Status</div>
+            <div>Date of creation</div>
+            <div></div>
+        </div>
+            {% for oneQuiz in allQuiz %}
+                <hr>
+                <div id = "grid">
+                    <div>{{ oneQuiz.name }}</div>
+                    <div>{{ oneQuiz.Description }}</div>
+                    {% if oneQuiz.isActive == true %}
+                        <div><a>active</a></div>
+                    {% else %}
+                        <div><a>not active</a></div>
+                    {% endif %}
+                    <div>{{ oneQuiz.dateOfCreation|date("m.d.Y") }}</div>
+                    <div class="gridin">
+                        <a href="{{ path('edit_quiz', {'id': oneQuiz.id }) }}">Update</a>
+                    </div>
+                </div>
+            {% endfor %}
+        <hr>
+    </div>
+
+    <div>
+        <a href="{{ path('add_quiz') }}"> Create a new quiz</a>
+    </div>
+{% endblock %}

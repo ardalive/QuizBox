@@ -19,9 +19,7 @@
         <h3>Answers</h3>
         <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
             {% for answer in form.answers %}
-                <li>
                     {{ form_row(answer) }}
-                </li>
             {% endfor %}
         </ul>
 

@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class QuizForm extends AbstractType
 {
@@ -49,6 +50,7 @@ class QuizForm extends AbstractType
                 'class' => Questions::class,
                 'choice_label' => 'QuestionBody',
                 'choices' => $this->choicesGenerator($em),
+                'constraints' => array(new Length(array('min' => 5)))
             ])
             ->add('save', SubmitType::class, [
                 'attr'=>['class'=>'btn btn-lg btn-primary']

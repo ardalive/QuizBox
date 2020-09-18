@@ -25,3 +25,15 @@ ul {
     font-size: 20px;
     font-weight: bold;
 }
+.radioBtn{
+    margin-left: 50px;
+}
+.btnDel{
+    border: 0;
+    background: red !important;
+}
+.btn-group-lg>.btn, .btnDel{
+    font-size: 0.9rem;
+    padding: 4px 7px;
+
+}
