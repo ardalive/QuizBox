@@ -20,7 +20,9 @@ class AnswerForm extends  AbstractType
         $builder
             ->add('btnDelete', ButtonType::class, [
                 'label' => 'Delete',
-                'attr'=>['class'=>'btn btn-lg btn-primary btnDel'],
+                'attr'=>[
+                    'class'=>'btn btn-lg btn-primary btnDel',
+                    ],
                 'row_attr' => [
                     'style' => 'display : inline-block; width : 20%;'
                 ],

@@ -8,21 +8,14 @@ jQuery(document).ready(function() {
     $collectionHolder = $('ul.answers');
     $collectionHolder.append($newLinkLi);
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
-    if (countAnswerForms()){
-        addAnswerForm($collectionHolder, $newLinkLi);
-        addAnswerForm($collectionHolder, $newLinkLi);
-    }
+    addAnswerForm($collectionHolder, $newLinkLi);
+    addAnswerForm($collectionHolder, $newLinkLi);
     checkedFirst();
     changeRadio();
+
     $addTagLink.on('click', function(e) {
         e.preventDefault();
-        if(countAnswers()){
-            addAnswerForm($collectionHolder, $newLinkLi);
-            changeRadio();
-        } else {
-            $addTagLink.remove();
-            $collectionHolder.append('<a>Possible number of answers - 6</a>')
-        }
+        addAnswerForm($collectionHolder, $newLinkLi);
     });
     checkedFirst();
 });
@@ -34,8 +27,12 @@ function addAnswerForm($collectionHolder, $newLinkLi) {
     let newForm = prototype;
     newForm = newForm.replace(/__name__/g, index);
     $collectionHolder.data('index', index +1);
-    let $newFormLi = $('<li> </li>').append(newForm);
+    let $newFormLi = $('<div class="allAnswerForm"> </div>').append(newForm);
     $newLinkLi.before($newFormLi);
+    let a = document.getElementById('question_form_answers_' + (index) + '_btnDelete');
+    a.addEventListener('click', function () {
+        document.getElementById('question_form_answers_' + (index)).closest('.allAnswerForm').remove();
+    })
 }
 
 function changeRadio() {
@@ -60,14 +57,6 @@ function checkedFirst() {
     radioBtn.setAttribute('checked', true );
 }
 
-function countAnswers() {
-    let liArr = document.getElementsByTagName('li');
-    return liArr.length < 7;
-}
 
-function countAnswerForms() {
-    let liArr = document.getElementsByTagName('li');
-    return liArr.length === 1;
-}
 
 
