@@ -8,12 +8,12 @@ jQuery(document).ready(function() {
     $collectionHolder = $('ul.answers');
     $collectionHolder.append($newLinkLi);
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
-    addAnswerForm($collectionHolder, $newLinkLi);
-    addAnswerForm($collectionHolder, $newLinkLi);
+    if(document.getElementsByTagName('fieldset').length < 2){
+        addAnswerForm($collectionHolder, $newLinkLi);
+        addAnswerForm($collectionHolder, $newLinkLi);
+    }
     checkedFirst();
-    changeRadio();
-
-    $addTagLink.on('click', function(e) {
+        $addTagLink.on('click', function(e) {
         if(document.getElementsByClassName('allAnswerForm').length < 6){
             e.preventDefault();
             addAnswerForm($collectionHolder, $newLinkLi);
@@ -22,11 +22,10 @@ jQuery(document).ready(function() {
             document.getElementsByClassName('add_tag_link')[0].innerHTML = 'maximum is 6 answers'
         }
     });
-    checkedFirst();
+
 });
 
 function addAnswerForm($collectionHolder, $newLinkLi) {
-
     let prototype = $collectionHolder.data('prototype');
     let index = $collectionHolder.data('index');
     let newForm = prototype;
@@ -34,8 +33,8 @@ function addAnswerForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index +1);
     let $newFormLi = $('<div class="allAnswerForm"> </div>').append(newForm);
     $newLinkLi.before($newFormLi);
-    let a = document.getElementById('question_form_answers_' + (index) + '_btnDelete');
-    a.addEventListener('click', function () {
+    let btnDelete = document.getElementById('question_form_answers_' + (index) + '_btnDelete');
+    btnDelete.addEventListener('click', function () {
         if(document.getElementsByClassName('allAnswerForm').length <= 6){
             document.getElementsByClassName('add_tag_link')[0].innerHTML = 'Add answer'
         }
@@ -45,17 +44,13 @@ function addAnswerForm($collectionHolder, $newLinkLi) {
             document.getElementById('question_form_answers_' + (index)).closest('.allAnswerForm').remove();
         }
     })
-}
-
-function changeRadio() {
-    let radioBtns = document.getElementsByClassName('radioBtn');
-    for (let i = 0; i < radioBtns.length; i++){
-        radioBtns[i].addEventListener('click', function () {
-            for (let j = 0; j < radioBtns.length; j++){
-                radioBtns[j].name = 'question_form[answers][' + i + '][isTrue]';
-            }
-        })
-    }
+    let btnRadio = document.getElementById('question_form_answers_' + (index) + '_isTrue');
+    btnRadio.addEventListener('click', function () {
+        let radioBtns = document.getElementsByClassName('radioBtn');
+        for (let i = 0; i < radioBtns.length; i++){
+            radioBtns[i].name = 'question_form[answers][' + index + '][isTrue]';
+        }
+    })
 }
 
 function checkedFirst() {

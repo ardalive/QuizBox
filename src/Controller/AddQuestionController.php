@@ -26,7 +26,7 @@ class AddQuestionController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() ) {
 
             $entityManager->persist($question);
             $entityManager->flush();

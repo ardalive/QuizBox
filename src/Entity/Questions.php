@@ -128,8 +128,8 @@ class Questions
     public function getAnswerBodys(): string
     {
         $arrAnswers = [];
-        $collAnswers = $this->answers;
-        foreach ($collAnswers as $answer){
+        $numberAnswers = $this->answers;
+        foreach ($numberAnswers as $answer){
             array_push($arrAnswers, $answer);
         }
         $str = '';
