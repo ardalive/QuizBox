@@ -14,8 +14,13 @@ jQuery(document).ready(function() {
     changeRadio();
 
     $addTagLink.on('click', function(e) {
-        e.preventDefault();
-        addAnswerForm($collectionHolder, $newLinkLi);
+        if(document.getElementsByClassName('allAnswerForm').length < 6){
+            e.preventDefault();
+            addAnswerForm($collectionHolder, $newLinkLi);
+            document.getElementsByClassName('add_tag_link')[0].innerHTML = 'Add answer';
+        } else {
+            document.getElementsByClassName('add_tag_link')[0].innerHTML = 'maximum is 6 answers'
+        }
     });
     checkedFirst();
 });
@@ -31,7 +36,14 @@ function addAnswerForm($collectionHolder, $newLinkLi) {
     $newLinkLi.before($newFormLi);
     let a = document.getElementById('question_form_answers_' + (index) + '_btnDelete');
     a.addEventListener('click', function () {
-        document.getElementById('question_form_answers_' + (index)).closest('.allAnswerForm').remove();
+        if(document.getElementsByClassName('allAnswerForm').length <= 6){
+            document.getElementsByClassName('add_tag_link')[0].innerHTML = 'Add answer'
+        }
+        if(document.getElementsByClassName('allAnswerForm').length <= 2){
+            document.getElementsByClassName('add_tag_link')[0].innerHTML = 'minimum is 2 answers'
+        } else {
+            document.getElementById('question_form_answers_' + (index)).closest('.allAnswerForm').remove();
+        }
     })
 }
 
