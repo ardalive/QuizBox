@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/request.css') }}">
+{% endblock %}
+{% block content %}
+
+        {{ form_start(resetForm) }}
+        <h1 class="h3 mb-3 font-weight-normal">Set a new password</h1>
+            {{ form_row(resetForm.password.first, {'attr':
+                {
+                    'placeholder':'Password',
+                    'data-toggle':'popover',
+                    'data-content':'6-25 letters and numbers. Passwords must match.'
+                }}) }}
+            {{ form_row(resetForm.password.second, {'attr':
+                {
+                    'placeholder': 'Confirm password',
+                }}) }}
+            {{ form_row(resetForm.submit) }}
+        {{ form_end(resetForm) }}
+
+    <script src="{{ asset('js/popover.js') }}" language='javascript' type='text/javascript'></script>
+    <script src="{{ asset('js/resetPasswordForm.js') }}" language='javascript' type='text/javascript'></script>
+{% endblock %}
