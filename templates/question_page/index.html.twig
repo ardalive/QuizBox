@@ -19,4 +19,7 @@
             <div style="width: 10%; margin: auto;"><a href="{{ path('edit_question', {'id': oneQuestion.id }) }}">Update</a></div>
         </div>
     {% endfor %}
+    <div style="margin: 0 auto;margin-top: 20px; display: flex; width: 90%">
+        <a href="{{path('add_question')}}" style="font-weight: bold">You can create a new question</a>
+    </div>
 {% endblock %}

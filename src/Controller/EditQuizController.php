@@ -29,13 +29,15 @@ class EditQuizController extends AbstractController
         $newQuestions = $form->get('questionID')->getData();
 
 
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted()) {
 
             foreach($newQuestions as $val){
+                $quiz->addQuestionID($val);
                 $val->addQuizID($quiz);
             }
 
             $quiz = $form->getData();
+
             $entityManager->flush();
 
             return $this->redirectToRoute('quiz_page');

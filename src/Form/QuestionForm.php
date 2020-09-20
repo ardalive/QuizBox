@@ -33,6 +33,7 @@ class QuestionForm extends AbstractType
                 'attr' => [
                     'class' => 'radioBtn',
                 ],
+                'allow_delete' => true,
             ])
             ->add('save', SubmitType::class, [
                 'attr'=>['class'=>'btn btn-lg btn-primary'],
