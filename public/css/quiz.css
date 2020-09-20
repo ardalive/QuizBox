@@ -38,9 +38,7 @@ input[type=radio]{
 .select2-container--default, .select2-container--below{
     max-width: 60%;
 }
-
 #quiz_form_isActive{
-    display: flex;
     margin: 0 auto;
 }
 
@@ -51,3 +49,5 @@ input[type=radio]{
 .form-check{
     width: 50%;
 }
+
+

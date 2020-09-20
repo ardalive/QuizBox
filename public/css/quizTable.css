@@ -16,3 +16,13 @@
 .tableHeader{
     font-weight: bold;
 }
+.filterBtn{
+    width: 50px;
+    height: 35px;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+.containerFilterBtn{
+    text-align: left;
+}

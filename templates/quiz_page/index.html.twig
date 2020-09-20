@@ -8,15 +8,22 @@
     <h1>Table of existing quizzes</h1>
 
     <div class="container">
+        <div class="containerFilterBtn">
+            <form action="" method="get">
+                <label for="filter">Filter by name: </label>
+                <input name="filter" type="text">
+                <button type="submit" class="btn btn-lg btn-primary filterBtn">Filter</button>
+            </form>
+        </div>
         <hr>
         <div class="tableHeader">
-            <div>Quiz name</div>
+            <div>{{ knp_pagination_sortable(pagination, 'Quiz name', 'b.name') }}</div>
             <div>Quiz description</div>
             <div>Status</div>
-            <div>Date of creation</div>
+            <div>{{ knp_pagination_sortable(pagination, 'Date of creation', 'b.dateOfCreation') }}</div>
             <div></div>
         </div>
-            {% for oneQuiz in allQuiz %}
+            {% for oneQuiz in pagination %}
                 <hr>
                 <div id = "grid">
                     <div>{{ oneQuiz.name }}</div>
@@ -34,7 +41,9 @@
             {% endfor %}
         <hr>
     </div>
-
+    <div class="navigation text-center" id="navigationMenu">
+        {{ knp_pagination_render(pagination) }}
+    </div>
     <div>
         <a href="{{ path('add_quiz') }}"> Create a new quiz</a>
     </div>
