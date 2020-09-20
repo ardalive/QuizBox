@@ -79,4 +79,11 @@ class Answers
         return $this;
     }
 
+    public function addQuestionForm(Questions $question)
+    {
+        if (!$this->questionId->contains($question)) {
+            $this->questionId->add($question);
+        }
+    }
+
 }

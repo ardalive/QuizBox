@@ -128,8 +128,8 @@ class Questions
     public function getAnswerBodys(): string
     {
         $arrAnswers = [];
-        $collAnswers = $this->answers;
-        foreach ($collAnswers as $answer){
+        $numberAnswers = $this->answers;
+        foreach ($numberAnswers as $answer){
             array_push($arrAnswers, $answer);
         }
         $str = '';
@@ -137,6 +137,17 @@ class Questions
             $str .=  $arrAnswers[$i]->getAnswerBody() . ', ';
         }
         return $str;
+    }
+
+    public function addAnswerForm(Answers $answer)
+    {
+        $answer->addQuestionForm($this);
+        $this->answers->add($answer);
+    }
+
+    public function removeAnswerForm(Answers $answer)
+    {
+        $this->answers->removeElement($answer);
     }
 
 }

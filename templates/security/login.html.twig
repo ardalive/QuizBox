@@ -16,17 +16,16 @@
     <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
     <input placeholder="Password" type="password" name="password" id="inputPassword" class="form-control" required>
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-{#        <div class="checkbox">#}
-{#            <label>#}
-{#                <input type="checkbox" name="_remember_me"> Remember me#}
-{#            </label>#}
-{#        </div>#}
-
     <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+    <br>
     <hr>
-    <h1 class="h6 mb-3 font-weight-normal">New around here?</h1>
-    <a href="{{ path('app_register') }}" class="button">Sign up</a>
+    <p>
+        <a href="{{ path('app_forgot_password_request') }}" class="button">Reset password</a>
+        <br>
+        New around here?
+        <a href="{{ path('app_register') }}" class="button">Sign up</a>
+    </p>
+
 </form>
     {% elseif app.user %}
         <div class="mb-3">

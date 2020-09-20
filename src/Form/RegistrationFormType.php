@@ -39,10 +39,12 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options'  => [],
                 'second_options' => [],
-                'options' => ['label' => false,'attr' => [
-                    'class' => 'form-control',
-                    'pattern'=>"[A-Za-z0-9]{6,25}",
-                    'oninput'=>"check(this)"
+                'options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'form-control',
+                        'pattern'=>"[A-Za-z0-9]{6,25}",
+                        'oninput'=>"check(this)"
                 ]],
             ])
             ->add('submit', SubmitType::class, [
