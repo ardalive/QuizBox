@@ -49,7 +49,7 @@ class AnswerForm extends  AbstractType
                 'row_attr' => [
                     'style' => 'width : 20%; display : inline-block'
                 ],
-                'data' => false,
+
             ])
         ;
     }

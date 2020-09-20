@@ -139,4 +139,15 @@ class Questions
         return $str;
     }
 
+    public function addAnswerForm(Answers $answer)
+    {
+        $answer->addQuestionForm($this);
+        $this->answers->add($answer);
+    }
+
+    public function removeAnswerForm(Answers $answer)
+    {
+        $this->answers->removeElement($answer);
+    }
+
 }
