@@ -24,13 +24,16 @@ class QuestionPageController extends AbstractController
 //            );
 //        }
 
-        $dql   = "SELECT a FROM App:Questions a";
-        $query = $entityManager->createQuery($dql);
+        $queryBuilder = $entityManager->getRepository(Questions::class)->createQueryBuilder('question');
+        if($request->query->getAlnum('filter')){
+            $queryBuilder->where('question.QuestionBody LIKE :body')->setParameter('body', '%'. $request->query->getAlnum('filter') .'%');
+        }
+        $query = $queryBuilder->getQuery();
 
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            5
+            10
         );
 
         return $this->render('question_page/index.html.twig', [

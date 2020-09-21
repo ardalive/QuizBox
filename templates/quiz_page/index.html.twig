@@ -16,29 +16,30 @@
             </form>
         </div>
         <hr>
-        <div class="tableHeader">
-            <div>{{ knp_pagination_sortable(pagination, 'Quiz name', 'b.name') }}</div>
-            <div>Quiz description</div>
-            <div>Status</div>
-            <div>{{ knp_pagination_sortable(pagination, 'Date of creation', 'b.dateOfCreation') }}</div>
-            <div></div>
-        </div>
-            {% for oneQuiz in pagination %}
-                <hr>
-                <div id = "grid">
-                    <div>{{ oneQuiz.name }}</div>
-                    <div>{{ oneQuiz.Description }}</div>
-                    {% if oneQuiz.isActive == true %}
-                        <div><a>active</a></div>
-                    {% else %}
-                        <div><a>not active</a></div>
-                    {% endif %}
-                    <div>{{ oneQuiz.dateOfCreation|date("m.d.Y") }}</div>
-                    <div class="gridin">
-                        <a href="{{ path('edit_quiz', {'id': oneQuiz.id }) }}">Update</a>
-                    </div>
-                </div>
-            {% endfor %}
+        <table class="quizzesTable">
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Quiz name', 'quiz.name') }}</th>
+                <th>Quiz description</th>
+                <th>Status</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Date of creation', 'quiz.dateOfCreation') }}</th>
+                <th></th>
+            </tr>
+                {% for oneQuiz in pagination %}
+                    <tr>
+                        <td class="ceilForName">{{ oneQuiz.name }}</td>
+                        <td class="ceilForDescription">{{ oneQuiz.Description }}</td>
+                        {% if oneQuiz.isActive == true %}
+                            <td><a>active</a></td>
+                        {% else %}
+                            <td><a>not active</a></td>
+                        {% endif %}
+                        <td>{{ oneQuiz.dateOfCreation|date("m.d.Y") }}</td>
+                        <td class="gridin">
+                            <a href="{{ path('edit_quiz', {'id': oneQuiz.id }) }}">Update</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+        </table>
         <hr>
     </div>
     <div class="navigation text-center" id="navigationMenu">
@@ -47,4 +48,5 @@
     <div>
         <a href="{{ path('add_quiz') }}"> Create a new quiz</a>
     </div>
+    <script src="/js/shortenString.js"></script>
 {% endblock %}
