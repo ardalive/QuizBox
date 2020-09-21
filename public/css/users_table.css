@@ -16,7 +16,7 @@ body{
 .dropdown-menu input, button[type='submit']{
     margin-top: 6px;
 }
-.dropdown{
+.dropd{
     margin: 10px 0;
 }
 tr:nth-child(even) {
