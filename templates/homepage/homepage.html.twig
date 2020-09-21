@@ -1,9 +1,60 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}QB{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/homepage.css') }}">
+{% endblock %}
 {% block content %}
+{#            <div>{{ knp_pagination_sortable(pagination, 'Quiz name', 'b.name') }}</div>#}
+{#            <div>{{ knp_pagination_sortable(pagination, 'Date of creation', 'b.dateOfCreation') }}</div>#}
 
-    <p>Homepage</p>
+    <h1 class="font-weight-normal">Let`s play Quiz!</h1>
+    <hr>
 
+    <div class = "grid">
+        {% for quiz in pagination %}
+            <div class="quiz">
+                <div class="quiz-content">
+
+                    <h5>{{ quiz.name }}</h5>
+                    <p>{{ quiz.Description }}</p>
+{#                    <div class="gridin">#}
+{#                        <a href="{{ path('edit_quiz', {'id': quiz.id }) }}">Update</a>#}
+{#                    </div>#}
+
+                    <div class="append">
+                        <small>Quiz status: </small>
+                        {% if quiz.isActive == 1 %}
+                            <span class="badge badge-primary">Active</span>
+                        {% else %}
+                            <span class="badge badge-danger">Closed</span>
+                        {% endif %}
+                        <br>
+                        <small>Started {{ quiz.dateOfCreation|date("d.m.Y") }}</small>
+                    </div>
+
+                </div>
+
+                <div class="start">
+                    {% if quiz.isActive == 1 %}
+                        {# TODO set action path to correct route #}
+                        <form action="{{ path('homepage') ~ quiz.id }}">
+                            <button type="submit" class="btn btn-primary">Let`s GO!</button>
+                        </form>
+                    {% else %}
+                    <h5 class="font-weight-normal">
+                        Closed
+                    </h5>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <hr>
+    <div class="navigation text-center" id="navigationMenu">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{#        <a href="{{ path('add_quiz') }}"> Create a new quiz</a>#}
 {% endblock %}
