@@ -23,9 +23,7 @@ class HomepageController extends AbstractController
 //            );
 //        }
         $queryBuilder = $entityManager->getRepository(Quiz::class)->createQueryBuilder('quiz');
-        if($request->query->getAlnum('filter')){
-            $queryBuilder->where('quiz.name LIKE :name')->setParameter('name', '%'. $request->query->getAlnum('filter') .'%');
-        }
+
         $query = $queryBuilder->getQuery();
 
         $pagination = $paginator->paginate(
@@ -35,7 +33,6 @@ class HomepageController extends AbstractController
         );
 
         return $this->render('homepage/homepage.html.twig', [
-            //'allQuiz' => $allQuiz,
             'pagination' => $pagination,
         ]);
     }

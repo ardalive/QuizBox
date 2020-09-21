@@ -16,19 +16,18 @@ class QuestionPageController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request)
     {
-//        $allQuestion = $entityManager->getRepository(Questions::class)->findAll();
-//
-//        if (!$allQuestion) {
-//            throw $this->createNotFoundException(
-//                'Not found :('
-//            );
-//        }
 
-        $queryBuilder = $entityManager->getRepository(Questions::class)->createQueryBuilder('question');
+
+        $queryBuilder = $entityManager->getRepository(Questions::class)
+            ->createQueryBuilder('question')
+            ->join('question.answers', 'answer')
+            ->addSelect('answer');
         if($request->query->getAlnum('filter')){
             $queryBuilder->where('question.QuestionBody LIKE :body')->setParameter('body', '%'. $request->query->getAlnum('filter') .'%');
         }
-        $query = $queryBuilder->getQuery();
+        $query = $queryBuilder->getQuery()->getResult();
+
+
 
         $pagination = $paginator->paginate(
             $query,
@@ -39,6 +38,7 @@ class QuestionPageController extends AbstractController
         return $this->render('question_page/index.html.twig', [
            // 'allQuestion' => $allQuestion,
             'pagination' => $pagination,
+
         ]);
     }
 }
