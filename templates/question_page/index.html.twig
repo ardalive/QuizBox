@@ -7,19 +7,31 @@
 
 {% block content %}
     <h1>Table of existing questions</h1>
-    <div style="display: flex; width: 90%; margin: 0 auto">
-        <div style="width: 50%; border: 1px solid black; font-weight: bold">Questions</div>
-        <div style="width: 50%; border: 1px solid black; font-weight: bold">Answers</div>
-        <div style="width: 10%;"></div>
+    <div class="containerFilterBtn">
+        <form action="" method="get">
+            <label for="filter">Search by name: </label>
+            <input name="filter" type="text">
+            <button type="submit" class="btn btn-lg btn-primary filterBtn">Filter</button>
+        </form>
     </div>
-    {% for oneQuestion in pagination %}
-        <div style="display: flex;width: 90%; margin: 0 auto">
-            <div style="width: 50%; border: 1px solid gray">{{ oneQuestion.QuestionBody }}</div>
-            <div style="width: 50%; border: 1px solid gray">{{ oneQuestion.getAnswerBodys() }}</div>
-            <div style="width: 10%; margin: auto;"><a href="{{ path('edit_question', {'id': oneQuestion.id }) }}">Update</a></div>
-        </div>
-    {% endfor %}
+    <table style=" width: 100%">
+        <tr >
+            <th>{{  knp_pagination_sortable(pagination, 'Questions', 'question.id') }}</th>
+            <th>Answers</th>
+            <th></th>
+        </tr>
+        {% for oneQuestion in pagination %}
+            <tr >
+                <td class="questionBodyCeil">{{ oneQuestion.QuestionBody }}</td>
+                <td class="answerBodyCeil">{{ oneQuestion.getAnswerBodys() }}</td>
+                <td class="updateBtnCeil"><a href="{{ path('edit_question', {'id': oneQuestion.id }) }}">Update</a></td>
+            </tr>
+        {% endfor %}
+    </table>
     <div class="navigation">
         {{ knp_pagination_render(pagination) }}
+    </div>
+    <div>
+        <a href="{{path('add_question')}}">You can add a new question</a>
     </div>
 {% endblock %}

@@ -32,7 +32,7 @@ class Quiz
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      * @Assert\Length(min=3, minMessage = "This value is too short. Description of the quiz should have 3 characters or more.")
-     * @Assert\Length(max=150, maxMessage = "This value is too long. Description of the quiz should have 150 characters or less.")
+     * @Assert\Length(max=350, maxMessage = "This value is too long. Description of the quiz should have 350 characters or less.")
      */
     private $Description;
 

@@ -1,0 +1,26 @@
+th, td {
+    border: 1px solid gray;
+}
+.navigation{
+    margin-top: 15px;
+}
+.questionBodyCeil{
+    width: 55%;
+}
+.answerBodyCeil{
+    width: 35%;
+}
+.updateBtnCeil{
+    width: 10%;
+}
+.filterBtn{
+    width: 50px;
+    height: 35px;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+.containerFilterBtn{
+    text-align: left;
+    margin-bottom: 15px;
+}

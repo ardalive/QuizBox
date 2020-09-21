@@ -7,15 +7,7 @@
 .container{
     width: 90%;
 }
-.gridin{
-    display: grid;
-    grid-template-rows: 100%;
-    grid-template-columns: 100%;
-    grid-gap: 0;
-}
-.tableHeader{
-    font-weight: bold;
-}
+
 .filterBtn{
     width: 50px;
     height: 35px;
@@ -25,4 +17,21 @@
 }
 .containerFilterBtn{
     text-align: left;
+}
+
+td, th {
+    padding: 4px;
+    border: 1px solid gray;
+}
+
+.ceilForDescription{
+ max-width: 500px;
+}
+
+.quizzesTable{
+    margin: 0 auto;
+    width: 100%;
+}
+.ceilForName{
+    max-width: 200px;
 }
