@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UsersTableController extends AbstractController
 {
     /**
-     * @Route("/users/table", name="users_table")
+     * @Route("/admin/users", name="users_table")
      */
     public function usersTable(UserRepository $userRepository, Request $request) :Response
     {
