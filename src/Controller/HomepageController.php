@@ -16,15 +16,9 @@ class HomepageController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager,PaginatorInterface $paginator, Request $request)
     {
-//        $allQuiz = $entityManager->getRepository(Quiz::class)->findAll();
-//        if (!$allQuiz) {
-//            throw $this->createNotFoundException(
-//                'Not found :('
-//            );
-//        }
         $queryBuilder = $entityManager->getRepository(Quiz::class)->createQueryBuilder('quiz');
 
-        $query = $queryBuilder->getQuery();
+        $query = $queryBuilder->getQuery()->getResult();
 
         $pagination = $paginator->paginate(
             $query,

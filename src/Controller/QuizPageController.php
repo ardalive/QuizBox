@@ -16,17 +16,11 @@ class QuizPageController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager,PaginatorInterface $paginator, Request $request)
     {
-//        $allQuiz = $entityManager->getRepository(Quiz::class)->findAll();
-//        if (!$allQuiz) {
-//            throw $this->createNotFoundException(
-//                'Not found :('
-//            );
-//        }
         $queryBuilder = $entityManager->getRepository(Quiz::class)->createQueryBuilder('quiz');
         if($request->query->getAlnum('filter')){
             $queryBuilder->where('quiz.name LIKE :name')->setParameter('name', '%'. $request->query->getAlnum('filter') .'%');
         }
-        $query = $queryBuilder->getQuery();
+        $query = $queryBuilder->getQuery()->getResult();
 
 
         $pagination = $paginator->paginate(
@@ -36,7 +30,6 @@ class QuizPageController extends AbstractController
         );
 
         return $this->render('quiz_page/index.html.twig', [
-            //'allQuiz' => $allQuiz,
             'pagination' => $pagination,
         ]);
     }
