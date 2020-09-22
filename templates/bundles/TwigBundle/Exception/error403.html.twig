@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>403 Forbidden</h1>
+    <hr>
+    <p>
+        Access denied. <br>
+        Make sure that: <br>
+        -You have <a href="{{ path('app_login') }}">logged in</a> <br>
+        -Your email is verified <br>
+        -Your account isn`t blocked <br>
+        -You are authorized to access requested resource <br>
+        or return to the <a href="{{ path('homepage') }}">homepage</a>
+    </p>
+{% endblock %}
