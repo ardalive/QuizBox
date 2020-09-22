@@ -28,16 +28,39 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            {% if app.user %}
-                                <a class="nav-item nav-link logged" href="{{ path('app_logout') }}">{{ app.user.username }}</a>
-                            {% endif %}
-                            <a class="nav-item nav-link" href="{{ path('homepage') }}">Home <span class="sr-only">(current)</span></a>
-                            <a class="nav-item nav-link" href="{{ path('app_login') }}">Login</a>
-                            <a class="nav-item nav-link" href="{{ path('app_register') }}">Register</a>
-                            <a class="nav-item nav-link" href="{{ path('users_table') }}">Users</a>
-                            <a class="nav-item nav-link" href="{{ path('admin') }}">AdminPage</a>
-                        </div>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" href="{{ path('homepage') }}">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                                {% if app.user and app.user.roles|length > 1 %}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Administration
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="{{ path('users_table') }}">Users</a>
+                                            <a class="dropdown-item" href="{{ path('quiz_page') }}">Quizzes</a>
+                                            <a class="dropdown-item" href="{{ path('question_page') }}">Questions</a>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                        </ul>
+                        <span class="navbar-text">
+                            <ul class="navbar-nav mr-auto">
+                                {% if app.user %}
+                                    <li class="nav-item">
+                                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">{{ app.user.username }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-item nav-link " href="{{ path('app_login') }}">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-item nav-link " href="{{ path('app_register') }}">Register</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </span>
                     </div>
                 </nav>
         {% endblock %}
