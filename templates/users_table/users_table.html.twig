@@ -8,50 +8,46 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-
-
         <h1 class="h3 mb-3 font-weight-normal">Table of users</h1>
                 <div class="row">
-                <div class="col-4">
-                    <div class="dropd">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Filter users by
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <form class="mx-4 my-2"  method="post">
-                                <input placeholder="ID" type="text" name="id" class="form-control">
-                                <input placeholder="email" type="text" name="email" class="form-control">
-                                <input placeholder="name" type="text" name="name" class="form-control">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="admin">
-                                    <label class="form-check-label" for="exampleCheck1">Is admin?</label>
-                                </div>
-                                <button class="btn btn-primary" type="submit">Filter</button>
-                            </form>
+                    <div class="col-4">
+                        <div class="dropd">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Filter users by
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <form class="mx-4 my-2"  method="post">
+                                    <input placeholder="ID" type="text" name="id" class="form-control">
+                                    <input placeholder="email" type="text" name="email" class="form-control">
+                                    <input placeholder="name" type="text" name="name" class="form-control">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="admin">
+                                        <label class="form-check-label" for="exampleCheck1">Is admin?</label>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Filter</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-4"></div>
+                    <div class="col-4">
+                        <div class="dropd">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Promote player by ID
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <h6 class="dropdown-header">Set user role as Admin</h6>
+                                <form class="mx-4 my-2" action="{{ path('promote') }}" method="post">
+                                    <input placeholder="Player ID" type="text" name="id" pattern="[0-9]{0,6}" class="form-control" data-toggle="popover"
+                                        data-content="Please input ID, numbers only"
+                                    >
+                                    <button class="btn btn-primary" type="submit">Promote</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                    <div class="col-4"></div>
-                <div class="col-4">
-                    <div class="dropd">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Promote player by ID
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <h6 class="dropdown-header">Set user role as Admin</h6>
-                            <form class="mx-4 my-2" action="{{ path('promote') }}" method="post">
-                                <input placeholder="Player ID" type="text" name="id" pattern="[0-9]{0,6}" class="form-control" data-toggle="popover"
-                                    data-content="Please input ID, numbers only"
-                                >
-                                <button class="btn btn-primary" type="submit">Promote</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-
-        <table class="table">
+        <table class="table user-table">
             <thead>
             <tr>
                 <th onclick="numberTableSort(this,true)" id="id-col" scope="col">
@@ -60,8 +56,8 @@
                 </th>
                 <th onclick="tableSort(this)" id="email-col" scope="col">Email</th>
                 <th onclick="tableSort(this)" id="name-col" scope="col">Name</th>
-    {#            <th scope="col">Status</th>#}
-                <th onclick="tableSort(this)" id="role-col" scope="col"></th>
+                <th onclick="tableSort(this)" id="status-col" scope="col">Status</th>
+                <th onclick="tableSort(this)" id="role-col" scope="col">Role</th>
             </tr>
             </thead>
             {% if users|length > 0 %}
@@ -71,21 +67,24 @@
                 <th scope="row">{{ user.id }}</th>
                 <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
-    {#            <td>{{ user.status }}</td>#}
-    {#            TODO add status field to Users entity #}
                 <td>
-                    {% if user.roles|length < 2 %}
-{#                        <a class="" href="#Admin">Promote</a>#}
-                        Player
-                        {% else %}
-                        <b>Admin</b>
+                    {% if user.isActive %}
+                        <span class="badge badge-primary">Active</span>
+                    {% else %}
+                        <span class="badge badge-danger">Blocked</span>
                     {% endif %}
+                </td>
+                <td>
+                    {% for role in user.roles %}
+                        {% if role == 'ROLE_ADMIN' %}
+                            <span class="badge badge-dark">Admin</span>
+                        {% endif %}
+                    {% endfor %}
                 </td>
             </tr>
             {% endfor %}
             </tbody>
             {% else %}
-
                 <div class="alert alert-primary" role="alert">
                     <h1 class="h3 mb-3 font-weight-normal">No matches</h1>
                     Try to change filtering options
@@ -97,9 +96,9 @@
             </div>
             {% endif %}
         </table>
-
-
-    </div></div></div>
+            </div>
+        </div>
+    </div>
     <script src="{{ asset('js/popover.js') }}" language='javascript' type='text/javascript'></script>
     <script src="{{ asset('js/IntlTableSort.js') }}" language='javascript' type='text/javascript'></script>
     <script src="{{ asset('js/IntlTableSort.Number.js') }}" language='javascript' type='text/javascript'></script>

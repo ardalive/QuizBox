@@ -10,8 +10,20 @@ body{
 #name-col{
     width: 30%;
 }
+#status-col{
+    width: 10%;
+}
 #role-col{
-    width: 20%;
+    width: 10%;
+}
+.user-table{
+    text-align: left;
+}
+.user-table img{
+    margin-right: 10px;
+}
+.user-table tbody tr th{
+    padding-left: 50px;
 }
 .dropdown-menu input, button[type='submit']{
     margin-top: 6px;
