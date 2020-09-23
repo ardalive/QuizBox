@@ -37,7 +37,7 @@
                 <div class="start">
                     {% if quiz.isActive == 1 %}
                         {# TODO set action path to correct route #}
-                        <form action="{{ path('homepage') ~ quiz.id }}">
+                        <form action="{{ path('play') ~ quiz.id }}">
                             <button type="submit" class="btn btn-primary">Let`s GO!</button>
                         </form>
                     {% else %}

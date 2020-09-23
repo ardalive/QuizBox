@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QB {{ questions|first.quizID|first.name }}{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/play_quiz.css') }}">
+{% endblock %}
+{% block content %}
+
+    {% if questions|first.quizID|first.isActive %}
+
+        {% set question = questions[questionNumber-1] %}
+        {% set quizID = question.quizID|first.id %}
+        {% if questionNumber == questions|length %}
+            {% set nextPage = path('champoins') %}
+        {% else %}
+            {% set nextPage = "#{path('play')}#{quizID}/#{questionNumber+1}" %}
+        {% endif %}
+        <div class="alert alert-light" role="alert">
+            <h3>{{ questions|first.quizID|first.name }}</h3>
+            {{ questions|first.quizID|first.description }} <br>
+            Question {{ questionNumber }} out of {{ questions|length }}:
+            <hr>
+            {{ question.questionBody }}
+            <hr>
+            <div class="answers">
+                {% for answer in question.answers %}
+                    <button name="{{ answer.id }}" onclick="checkAnswer(this)" class="btn btn-outline-primary">{{ answer.answerBody }}</button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <br>
+        <form action="{{ nextPage }}">
+            <button class="btn btn-primary" type="submit">Next Question</button>
+        </form>
+
+        <script>
+            function checkAnswer(button){
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('check') }}",
+                    data: {
+                        id: button.name
+                    },
+                    success: function(response){
+                        if(response){
+                            button.classList.remove('btn-outline-primary');
+                            button.classList.add('btn-success');
+                        } else{
+                            button.classList.remove('btn-outline-primary');
+                            button.classList.add('btn-danger');
+                        }
+                    }
+                });
+
+            }
+        </script>
+
+    {% else %}
+        <h1>Quiz you are trying to access is closed</h1>
+    {% endif %}
+{% endblock %}

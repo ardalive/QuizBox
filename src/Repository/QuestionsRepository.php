@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Questions;
+use App\Entity\Quiz;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,22 +20,42 @@ class QuestionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Questions::class);
     }
 
-    // /**
-    //  * @return Questions[] Returns an array of Questions objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Questions[] Returns an array of Quiz objects
+     */
+
+    public function findQuestionsByQuizID(int $quizID)
     {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('q.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $qb = $this->createQueryBuilder('questions')
+            ->join('questions.quizID', 'quiz')
+            ->addSelect('quiz')
+            ->andWhere('quiz.id like :id')
+            ->setParameter('id', '%'.$quizID.'%')
         ;
+        $query = $qb->getQuery();
+        return $query->execute();
     }
-    */
+
+    /**
+     * @return Questions[] Returns Questions array
+     */
+
+    public function findQuestionByIdAndQuizId(int $quizID, int $questionID)
+    {
+        $qb = $this->createQueryBuilder('questions')
+            ->join('questions.quizID', 'quiz')
+            ->join('questions.answers', 'answer')
+            ->addSelect('quiz')
+            ->addSelect('answer')
+            ->andWhere('quiz.id like :quizID')
+            ->andWhere('questions.id like :questionID')
+            ->setParameter('quizID', '%'.$quizID.'%')
+            ->setParameter('questionID', '%'.$questionID.'%')
+        ;
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Questions
