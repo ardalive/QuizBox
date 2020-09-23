@@ -75,6 +75,7 @@ class Questions
         return $this->quizID;
     }
 
+
     public function addQuizID(Quiz $quizID): self
     {
         if (!$this->quizID->contains($quizID)) {
@@ -91,6 +92,15 @@ class Questions
         }
 
         return $this;
+    }
+
+    public function getQuizArr(): array
+    {
+        $arrQuiz = [];
+        foreach ($this->quizID as $quiz){
+            array_push($arrQuiz, $quiz->getName());
+        }
+        return $arrQuiz;
     }
 
     /**
@@ -125,19 +135,15 @@ class Questions
     }
 
 
-    public function getAnswerBodys(): string
+    public function getAnswerBodysArr(): array
     {
         $arrAnswers = [];
-        $numberAnswers = $this->answers;
-        foreach ($numberAnswers as $answer){
-            array_push($arrAnswers, $answer);
+        foreach ($this->answers as $answer){
+            array_push($arrAnswers, $answer->getAnswerBody());
         }
-        $str = '';
-        for($i = 0; $i < count($arrAnswers); $i++){
-            $str .=  $arrAnswers[$i]->getAnswerBody() . ', ';
-        }
-        return $str;
+        return $arrAnswers;
     }
+
 
     public function addAnswerForm(Answers $answer)
     {
