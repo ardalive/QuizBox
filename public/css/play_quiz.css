@@ -1,0 +1,9 @@
+.answers{
+    display: grid;
+    grid-template-columns:  50% 50%;
+    /*grid-template-rows: 100%;*/
+}
+.answers button{
+    margin: 5px;
+    overflow: hidden;
+}

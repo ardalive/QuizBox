@@ -29,7 +29,7 @@ class UsersTableController extends AbstractController
     /**
      * @Route ("/promote", name="promote")
      */
-    public function promoteById(UserRepository $userRepository, Request $request)
+    public function promoteById(UserRepository $userRepository, Request $request) :Response
     {
         $error = '';
         $user=$userRepository->findOneBy($request->request->all());
