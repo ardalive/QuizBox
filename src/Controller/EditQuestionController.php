@@ -29,7 +29,7 @@ class EditQuestionController extends AbstractController
         $form = $this->createForm(QuestionForm::class, $question);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             foreach ($originalAnswers as $answer) {
                 if (false === $question->getAnswers()->contains($answer)) {

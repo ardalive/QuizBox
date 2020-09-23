@@ -15,6 +15,7 @@
     <div id = "blackSquare"></div>
     <div id="content" class="content">
         <div class="form_box">
+            {% form_theme form 'bootstrap_4_layout.html.twig' %}
             {{ form_start(form) }}
             <h1 class="h3 mb-3 font-weight-normal">Create new question!</h1>
             <hr>
@@ -23,10 +24,12 @@
             <h3>Answers</h3>
             <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
                 {% for answer in form.answers %}
+                    <div class="allTagForAnswer">
                         {{ form_row(answer) }}
+                    </div>
                 {% endfor %}
             </ul>
-
+            {{ form_errors(form) }}
             <hr>
             {{ form_row(form.save) }}
             {{ form_end(form) }}

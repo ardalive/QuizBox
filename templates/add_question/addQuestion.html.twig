@@ -23,7 +23,7 @@
                     {{ form_row(answer) }}
             {% endfor %}
         </ul>
-
+        {{ form_errors(form) }}
         <hr>
         {{ form_row(form.save) }}
         {{ form_end(form) }}

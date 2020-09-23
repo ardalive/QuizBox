@@ -7,11 +7,6 @@ jQuery(document).ready(function() {
     $collectionHolder = $('ul.answers');
     $collectionHolder.append($newLinkLi);
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
-    if(document.getElementsByClassName('radioBtn').length < 2){
-        addAnswerForm($collectionHolder, $newLinkLi);
-        addAnswerForm($collectionHolder, $newLinkLi);
-    }
-
     $addAnswerLink.on('click', function(e) {
         e.preventDefault();
         addAnswerForm($collectionHolder, $newLinkLi);

@@ -71,26 +71,24 @@ jQuery(document).ready(function() {
         addAnswerForm($collectionHolder, $newLinkLi);
     });
 
-    $collectionHolder.find('li').each(function() {
-       let deleteBtns = document.getElementsByClassName('btnDel');
-       let forms = document.getElementsByTagName('fieldset');
-       for (let i = 0; i < deleteBtns.length ; i++){
-           deleteBtns[i].addEventListener('click', function () {
-                forms[i].remove();
-           })
-       }
-    });
-    $collectionHolder.find('.radioBtn').each(function () {
-        let radioBtns = document.getElementsByClassName('radioBtn');
-        for (let i = 0; i < radioBtns.length; i++){
+    let deleteBtns = document.getElementsByClassName('btnDel');
+    for (let i = 0; i < deleteBtns.length ; i++){
+       deleteBtns[i].addEventListener('click', function () {
+            document.getElementById('question_form_answers_' + i ).remove();
+       })
+    }
+
+     let radioBtns = document.getElementsByClassName('radioBtn');
+     for (let i = 0; i < radioBtns.length; i++){
             radioBtns[i].addEventListener('click', function () {
                 for (let j = 0; j < radioBtns.length; j++){
                     radioBtns[j].name = 'question_form[answers][' + i + '][isTrue]';
                 }
             })
-        }
-    });
+     }
+
     checkedFirst();
+
 });
 
 function addAnswerForm($collectionHolder, $newLinkLi) {
