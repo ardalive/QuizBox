@@ -22,13 +22,15 @@ class PlayQuizController extends AbstractController
      */
     public function check(Request $request, AnswersRepository $answersRepository) :Response
     {
-//        $request->request->get('id')
         if($request->isXmlHttpRequest()){
             $answer = $answersRepository->findOneBy(['id'=>$request->request->get('id')]);
-            $jsonResponse = $answer->getIsTrue();
+            $answerIsTrue = $answer->getIsTrue();
+
         }
-        return new JsonResponse($jsonResponse);
-//        return $this->redirectToRoute('homepage', $jsonData);
+        return new JsonResponse([
+            'answer' => $answerIsTrue ,
+
+            ]);
     }
 
     /**

@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AddQuestionController extends AbstractController
 {
     /**
-     * @Route("/admin/quiz/questionadd", name="add_question")
+     * @Route("/admin/quiz/questionadd", name=" ")
      */
     public function index(Request $request, EntityManagerInterface $entityManager)
     {
