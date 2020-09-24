@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Questions;
 use App\Entity\Quiz;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,22 +21,25 @@ class QuizRepository extends ServiceEntityRepository
     }
 
 
-    // /**
-    //  * @return Quiz[] Returns an array of Quiz objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Quiz[] Returns Quiz
+     */
+
+    public function findCustom()
     {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('q.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $qb = $this->createQueryBuilder('quiz')
+            ->join('quiz.questionID', 'question')
+            ->join('questions.answers', 'answer')
+            ->addSelect('question')
+            ->addSelect('answer')
+            ->andWhere('quiz.id like :quizID')
+            ->andWhere('questions.id like :questionID')
+            ->setParameter('quizID', '%'.$quizID.'%')
+            ->setParameter('questionID', '%'.$questionID.'%')
         ;
+        $query = $qb->getQuery();
+        return $query->execute();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Quiz
