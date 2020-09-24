@@ -5,19 +5,23 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/play_quiz.css') }}">
 {% endblock %}
 {% block content %}
+    <p>
+        User id: {{ app.user.id }}
+    </p>
 
     {% if questions|first.quizID|first.isActive %}
 
         {% set question = questions[questionNumber-1] %}
-        {% set quizID = question.quizID|first.id %}
+        {% set quiz = question.quizID|first %}
         {% if questionNumber == questions|length %}
             {% set nextPage = path('champoins') %}
         {% else %}
-            {% set nextPage = "#{path('play')}#{quizID}/#{questionNumber+1}" %}
+            {% set nextPage = "#{path('play')}#{quiz.id}/#{questionNumber+1}" %}
         {% endif %}
+        {{ dump(quiz.id) }}
         <div class="alert alert-light" role="alert">
-            <h3>{{ questions|first.quizID|first.name }}</h3>
-            {{ questions|first.quizID|first.description }} <br>
+            <h3>{{ quiz.name }}</h3>
+            {{ quiz.description }} <br>
             Question {{ questionNumber }} out of {{ questions|length }}:
             <hr>
             {{ question.questionBody }}
@@ -30,6 +34,14 @@
         </div>
 
         <br>
+        <form action="{{ path('check') }}" method="post">
+            <input type="text" name="ans_id" value="99">
+            <input type="text" name="quest_id" value="{{ question.id }}">
+            <input type="text" name="quiz_id" value="{{ quiz.id }}">
+            <input type="text" name="user_id" value="{{ app.user.id }}">
+            <button class="btn btn-primary" type="submit">Test check page</button>
+        </form>
+        <br>
         <form action="{{ nextPage }}">
             <button class="btn btn-primary" type="submit">Next Question</button>
         </form>
@@ -40,7 +52,10 @@
                     type: "POST",
                     url: "{{ path('check') }}",
                     data: {
-                        id: button.name
+                        ans_id: button.name,
+                        quest_id: {{ question.id }},
+                        quiz_id: {{ quiz.id }},
+                        user_id: {{ user.id }}
                     },
                     success: function(response){
                         if(response){

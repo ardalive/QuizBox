@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,6 +52,16 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $isActive = true;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PlayerAnswers::class, mappedBy="users", orphanRemoval=true)
+     */
+    private $playerAnswers;
+
+    public function __construct()
+    {
+        $this->playerAnswers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -161,6 +173,37 @@ class User implements UserInterface
     public function setIsActive(bool $isActive): self
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PlayerAnswers[]
+     */
+    public function getPlayerAnswers(): Collection
+    {
+        return $this->playerAnswers;
+    }
+
+    public function addPlayerAnswer(PlayerAnswers $playerAnswer): self
+    {
+        if (!$this->playerAnswers->contains($playerAnswer)) {
+            $this->playerAnswers[] = $playerAnswer;
+            $playerAnswer->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayerAnswer(PlayerAnswers $playerAnswer): self
+    {
+        if ($this->playerAnswers->contains($playerAnswer)) {
+            $this->playerAnswers->removeElement($playerAnswer);
+            // set the owning side to null (unless already changed)
+            if ($playerAnswer->getUsers() === $this) {
+                $playerAnswer->setUsers(null);
+            }
+        }
 
         return $this;
     }

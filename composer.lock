@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "290f7b1fc4ea6dd5d0f115c6ea239fde",
+    "content-hash": "7a3f6ad2f9b2c2e3001cf0514c66f361",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2297,72 +2297,6 @@
                 }
             ],
             "time": "2020-09-14T14:23:00+00:00"
-        },
-        {
-            "name": "mmucklo/grid-bundle",
-            "version": "7.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mmucklo/DtcGridBundle.git",
-                "reference": "7b371dd4410efe994ba0ddccb0e4aa61944ed083"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mmucklo/DtcGridBundle/zipball/7b371dd4410efe994ba0ddccb0e4aa61944ed083",
-                "reference": "7b371dd4410efe994ba0ddccb0e4aa61944ed083",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6.0",
-                "sensio/framework-extra-bundle": "2.*|3.*|4.*|5.*|6.*",
-                "symfony/framework-bundle": "2.*|3.*|4.*|5.*",
-                "symfony/templating": "2.*|3.*|4.*|5.*",
-                "symfony/translation": "2.*|3.*|4.*|5.*",
-                "symfony/twig-bundle": "2.*|3.*|4.*|5.*",
-                "twig/twig": "^1.0||^2.0|^3.0"
-            },
-            "require-dev": {
-                "doctrine/annotations": "<1.5",
-                "doctrine/cache": "<1.7",
-                "doctrine/collections": "<1.5",
-                "doctrine/common": "<2.8",
-                "doctrine/dbal": "<2.6",
-                "doctrine/instantiator": "<1.1",
-                "doctrine/mongodb-odm": "^1.1",
-                "doctrine/orm": "^2.4",
-                "friendsofphp/php-cs-fixer": "dev-master",
-                "phpunit/php-code-coverage": "^4.0",
-                "phpunit/phpunit": "^5.7.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Dtc\\GridBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David Tee"
-                },
-                {
-                    "name": "Matthew J Mucklo",
-                    "email": "mmucklo@gmail.com"
-                }
-            ],
-            "description": "Datagrid for symfony2 or symfony3 or symfony4 or symfony5",
-            "keywords": [
-                "grid",
-                "jqgrid",
-                "table"
-            ],
-            "time": "2020-09-10T06:39:58+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7764,76 +7698,6 @@
                 }
             ],
             "time": "2020-08-17T07:48:54+00:00"
-        },
-        {
-            "name": "symfony/templating",
-            "version": "v5.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/templating.git",
-                "reference": "e999847b7584a8d3f364eecd444615604b0d831c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/templating/zipball/e999847b7584a8d3f364eecd444615604b0d831c",
-                "reference": "e999847b7584a8d3f364eecd444615604b0d831c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.5",
-                "symfony/polyfill-ctype": "~1.8"
-            },
-            "require-dev": {
-                "psr/log": "~1.0"
-            },
-            "suggest": {
-                "psr/log-implementation": "For using debug logging in loaders"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Templating\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Templating Component",
-            "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-07-23T08:36:24+00:00"
         },
         {
             "name": "symfony/translation",
