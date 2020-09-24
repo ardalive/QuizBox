@@ -37,6 +37,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    /**
+     * @return User
+     */
+
+    public function findByCustom(array $filters)
+    {
+        $qb = $this->createQueryBuilder('user')
+            ->join('user.playerAnswers', 'playerAnswers')
+            ->join('playerAnswers.quizRelation', 'quiz')
+            ->addSelect('playerAnswers')
+            ->addSelect('quiz')
+            ->andwhere('user.id like :user_id')
+            ->andWhere('quiz.id like :quiz_id')
+            ->setParameter('user_id', '%'.$filters['user_id'].'%')
+            ->setParameter('quiz_id', '%'.$filters['quiz_id'].'%')
+        ;
+        $query = $qb->getFirstResult();
+        return $query->execute();
+    }
 
     /**
      * @return User[] Returns an array of User objects
@@ -44,7 +63,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     public function findByFilters(array $filters)
     {
-
         $qb = $this->createQueryBuilder('u')
             ->where('u.email like :email')
             ->andWhere('u.name like :name')
