@@ -27,33 +27,28 @@ class PlayQuizController extends AbstractController
      */
     public function check(Request $request, QuizRepository $quizRepository, UserRepository $userRepository, PlayerAnswersRepository $playerAnswersRepository, AnswersRepository $answersRepository, UserInterface $user) :Response
     {
-//        if($request->isXmlHttpRequest()){}
-            $existingPlayerAnswers = $playerAnswersRepository->findByUserQuizId($request->request->all());
-//        $existingPlayerAnswers = $playerAnswersRepository->findOneBy([]);
+//        if($request->isXmlHttpRequest()){        }
+            $playerAnswers = $playerAnswersRepository->findByUserQuizId($request->request->all());
             $date = new DateTime();
             $answer = $answersRepository->findOneBy(['id'=>$request->request->get('ans_id')]);
-            $checkAnswer = $answer->getIsTrue();
+            $iscorrect = $answer->getIsTrue();
             $entityManager = $this->getDoctrine()->getManager();
-            if($existingPlayerAnswers === NULL){
+            if(!$playerAnswers->getId()){
                 $playerAnswers = new PlayerAnswers();
                 $playerAnswers->setStartDate($date);
                 $playerAnswers->setQuizRelation($quizRepository->findOneBy(['id'=>$request->request->get('quiz_id')]));
                 $playerAnswers->setUserRelation($userRepository->findOneBy(['email'=>$user->getUsername()]));
-                $playerAnswers->setAnswers(['quest'.$request->request->get('quest_id')=>$checkAnswer]);
-
-
-                $entityManager->persist($playerAnswers);
-                $entityManager->flush();
+                $playerAnswers->setAnswers([$request->request->get('quest_id')=>$request->request->get('ans_id')]);
             }
             else {
-                $answers = $existingPlayerAnswers->getAnswers();
-                $answers['quest'.$request->request->get('quest_id')] = $checkAnswer;
-                $existingPlayerAnswers->setAnswers($answers);
-                $entityManager->persist($existingPlayerAnswers);
-                $entityManager->flush();
+                $answers = $playerAnswers->getAnswers();
+                $answers[$request->request->get('quest_id')] = $request->request->get('ans_id');
+                $playerAnswers->setAnswers($answers);
             }
 
-        return new JsonResponse($checkAnswer);
+        $entityManager->persist($playerAnswers);
+        $entityManager->flush();
+        return new JsonResponse($iscorrect);
 
     }
 

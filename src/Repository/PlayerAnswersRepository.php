@@ -22,6 +22,7 @@ class PlayerAnswersRepository extends ServiceEntityRepository
 
     /**
      * @return PlayerAnswers
+     * @throws
      */
 
     public function findByUserQuizId(array $filters)
@@ -31,16 +32,14 @@ class PlayerAnswersRepository extends ServiceEntityRepository
             ->join('answers.quizRelation', 'quiz')
             ->addSelect('user')
             ->addSelect('quiz')
-            ->andwhere('user.id like :user_id')
             ->andWhere('quiz.id like :quiz_id')
-            ->setParameter('user_id', '%'.'11'.'%')
-            ->setParameter('quiz_id', '%'.'29'.'%')
-//            ->setParameter('user_id', '%'.$filters['user_id'].'%')
-//            ->setParameter('quiz_id', '%'.$filters['quiz_id'].'%')
-//            ->setMaxResults(1)
+            ->andwhere('user.id like :user_id')
+            ->setParameter('quiz_id', '%'.$filters['quiz_id'].'%')
+            ->setParameter('user_id', '%'.$filters['user_id'].'%')
         ;
         $query = $qb->getQuery();
-        return $query->execute();
+        return $query->getOneOrNullResult();
+//        return $query->execute();
     }
 
 

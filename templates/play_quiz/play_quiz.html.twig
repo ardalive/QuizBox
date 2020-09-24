@@ -34,7 +34,7 @@
         </div>
 
         <br>
-        <form action="{{ path('check') }}" method="post">
+        <form action="{{ path('check') }}" method="POST">
             <input type="text" name="ans_id" value="99">
             <input type="text" name="quest_id" value="{{ question.id }}">
             <input type="text" name="quiz_id" value="{{ quiz.id }}">
@@ -55,7 +55,7 @@
                         ans_id: button.name,
                         quest_id: {{ question.id }},
                         quiz_id: {{ quiz.id }},
-                        user_id: {{ user.id }}
+                        user_id: {{ app.user.id }}
                     },
                     success: function(response){
                         if(response.answer){
