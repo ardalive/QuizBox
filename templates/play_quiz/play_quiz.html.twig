@@ -34,14 +34,14 @@
         </div>
 
         <br>
-        <form action="{{ path('check') }}" method="POST">
-            <input type="text" name="ans_id" value="99">
-            <input type="text" name="quest_id" value="{{ question.id }}">
-            <input type="text" name="quiz_id" value="{{ quiz.id }}">
-            <input type="text" name="user_id" value="{{ app.user.id }}">
-            <button class="btn btn-primary" type="submit">Test check page</button>
-        </form>
-        <br>
+{#        <form action="{{ path('check') }}" method="POST">#}
+{#            <input type="text" name="ans_id" value="99">#}
+{#            <input type="text" name="quest_id" value="{{ question.id }}">#}
+{#            <input type="text" name="quiz_id" value="{{ quiz.id }}">#}
+{#            <input type="text" name="user_id" value="{{ app.user.id }}">#}
+{#            <button class="btn btn-primary" type="submit">Test check page</button>#}
+{#        </form>#}
+{#        <br>#}
         <form action="{{ nextPage }}">
             <button class="btn btn-primary" type="submit">Next Question</button>
         </form>

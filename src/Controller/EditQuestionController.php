@@ -7,6 +7,7 @@ use App\Form\QuestionForm;
 use App\Form\QuizForm;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,14 +23,24 @@ class EditQuestionController extends AbstractController
 
         $originalAnswers = new ArrayCollection();
 
-        // Создать ArrayCollection текущих объектов Answer в DB
         foreach ($question->getAnswers() as $answer) {
             $originalAnswers->add($answer);
         }
         $form = $this->createForm(QuestionForm::class, $question);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $allAnswers = $question->getAnswers();
+        $counter = 0;
+        foreach ($allAnswers as $answer){
+            if($answer->getIsTrue() == true){
+                $counter++;
+            }
+        }
+        if($counter != 1 && $form->isSubmitted()){
+            $form->addError(new FormError('there must be 1 correct answer'));
+        }
+
+        if ($form->isSubmitted() && $form->isValid() && $counter === 1) {
 
             foreach ($originalAnswers as $answer) {
                 if (false === $question->getAnswers()->contains($answer)) {
