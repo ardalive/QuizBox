@@ -1,0 +1,6 @@
+.leaderboard{
+    width: 500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 35% 35% 30%;
+}

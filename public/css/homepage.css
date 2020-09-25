@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     grid-template-columns:  33% 34% 33%;
-    grid-template-rows: 200px 200px 200px;
+    grid-template-rows: 210px 210px 210px;
 }
 .quiz{
     background-color: #f8f9fa;
@@ -20,7 +20,7 @@
     right: 100px;
 }
 .start{
-    height: 180px;
+    height: 190px;
     background-color: #dc3545;
     position: relative;
     right: 0;
@@ -50,4 +50,8 @@
 .quiz-content h5{
     height: 24px;
     overflow: hidden;
+}
+.append{
+    display: grid;
+    grid-template-columns: 45% 55%;
 }
