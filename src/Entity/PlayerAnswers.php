@@ -44,6 +44,11 @@ class PlayerAnswers
      */
     private $timeToSolve;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $correctAnswers;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +110,18 @@ class PlayerAnswers
     public function setTimeToSolve(?\DateInterval $timeToSolve): self
     {
         $this->timeToSolve = $timeToSolve;
+
+        return $this;
+    }
+
+    public function getCorrectAnswers(): ?int
+    {
+        return $this->correctAnswers;
+    }
+
+    public function setCorrectAnswers(?int $correctAnswers): self
+    {
+        $this->correctAnswers = $correctAnswers;
 
         return $this;
     }

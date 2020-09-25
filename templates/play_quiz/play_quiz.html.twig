@@ -5,24 +5,19 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/play_quiz.css') }}">
 {% endblock %}
 {% block content %}
-    <p>
-        User id: {{ app.user.id }}
-    </p>
-
     {% if questions|first.quizID|first.isActive %}
 
         {% set question = questions[questionNumber-1] %}
         {% set quiz = question.quizID|first %}
-        {% if questionNumber == questions|length %}
-            {% set nextPage = path('champoins') %}
-        {% else %}
-            {% set nextPage = "#{path('play')}#{quiz.id}/#{questionNumber+1}" %}
-        {% endif %}
-        {{ dump(quiz.id) }}
+        {% set nextPage = "#{path('play')}#{quiz.id}" %}
+
         <div class="alert alert-light" role="alert">
             <h3>{{ quiz.name }}</h3>
             {{ quiz.description }} <br>
-            Question {{ questionNumber }} out of {{ questions|length }}:
+            <p class="question">
+                Question {{ questionNumber }} out of {{ questions|length }}:
+            </p>
+            <p class="response"></p>
             <hr>
             {{ question.questionBody }}
             <hr>
@@ -33,21 +28,30 @@
             </div>
         </div>
 
-        <br>
-        <form action="{{ path('check') }}" method="POST">
-            <input type="text" name="ans_id" value="99">
-            <input type="text" name="quest_id" value="{{ question.id }}">
-            <input type="text" name="quiz_id" value="{{ quiz.id }}">
-            <input type="text" name="user_id" value="{{ app.user.id }}">
-            <button class="btn btn-primary" type="submit">Test check page</button>
-        </form>
-        <br>
+{#        <br>#}
+{#        <form action="{{ path('check') }}" method="POST">#}
+{#            <input type="text" name="ans_id" value="{{ question.answers|first.id }}">#}
+{#            <input type="text" name="quest_id" value="{{ question.id }}">#}
+{#            <input type="text" name="quiz_id" value="{{ quiz.id }}">#}
+{#            <input type="text" name="user_id" value="{{ app.user.id }}">#}
+{#            <button class="btn btn-primary" type="submit">Test check page</button>#}
+{#        </form>#}
+{#        <br>#}
+
+
+
+
         <form action="{{ nextPage }}">
-            <button class="btn btn-primary" type="submit">Next Question</button>
+            <button class="btn btn-primary btn-block" type="submit" disabled>Next >> </button>
         </form>
 
         <script>
             function checkAnswer(button){
+                let answers = document.getElementsByClassName('btn-outline-primary');
+                for(let answer of answers){
+                    answer.setAttribute("disabled", true);
+                }
+                document.querySelector('.btn-block').removeAttribute("disabled");
                 $.ajax({
                     type: "POST",
                     url: "{{ path('check') }}",
@@ -58,12 +62,16 @@
                         user_id: {{ app.user.id }}
                     },
                     success: function(response){
-                        if(response.answer){
-                            button.classList.remove('btn-outline-primary');
+                        button.classList.remove('btn-outline-primary');
+                        if(response === true){
                             button.classList.add('btn-success');
-                        } else{
-                            button.classList.remove('btn-outline-primary');
+                            button.innerHTML = "Correct! :)";
+                        } else if(response === false){
                             button.classList.add('btn-danger');
+                            button.innerHTML = "Wrong :`(";
+                        }
+                        if(response['error']){
+                            document.querySelector('.response').innerHTML = response['error'];
                         }
                         console.log(response.answerId);
                         console.log(response.answerBody);
@@ -75,7 +83,6 @@
                         }
                     }
                 });
-
             }
         </script>
 
