@@ -21,11 +21,11 @@ class AddQuizController extends AbstractController
         $quiz = new Quiz();
         $form = $this->createForm(QuizForm::class, $quiz, ['entityManager' => $this->getDoctrine()->getManager()]);
         $form->handleRequest($request);
-        $a = $form->get('questionID')->getData();
+        $questions = $form->get('questionID')->getData();
         if ($form->isSubmitted() && $form->isValid()) {
-            foreach($a as $val){
-                $quiz->addQuestionID($val);
-                $val->addQuizID($quiz);
+            foreach($questions as $question){
+                $quiz->addQuestionID($question);
+                $question->addQuizID($quiz);
             }
             $quiz->setDateOfCreation(new \DateTime('today'));
 
