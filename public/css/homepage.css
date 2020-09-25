@@ -51,3 +51,7 @@
     height: 24px;
     overflow: hidden;
 }
+.append{
+    display: grid;
+    grid-template-columns: 45% 55%;
+}

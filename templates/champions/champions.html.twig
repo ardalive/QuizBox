@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ChampionsController!{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/leaderboard.css') }}">
+{% endblock %}
+{% block content %}
+    {% if champs|length > 0 %}
+    <h1>Quiz: {{ champs|first.quizRelation.name }}</h1>
+    <h3>Leaderboard</h3>
+    <div class="leaderboard">
+        <b><div>User</div></b>
+        <b><div>Guessed</div></b>
+        <b><div>Time to solve</div></b>
+        {% for champ in champs %}
+            <div>{{ champ.userRelation.email }}</div>
+            <div>{{ champ.correctAnswers }}</div>
+            <div>{{ times[loop.index-1] }}</div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <h1>No leaders in this quiz yet</h1>
+    {% endif %}
+{% endblock %}

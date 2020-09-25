@@ -2,17 +2,13 @@
 declare(strict_types=1);
 namespace App\Controller;
 
-use App\Entity\Answers;
 use App\Entity\PlayerAnswers;
-use App\Entity\Questions;
-use App\Entity\Quiz;
 use App\Repository\AnswersRepository;
 use App\Repository\PlayerAnswersRepository;
 use App\Repository\QuestionsRepository;
 use App\Repository\QuizRepository;
 use App\Repository\UserRepository;
 use DateTime;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -85,7 +81,7 @@ class PlayQuizController extends AbstractController
     /**
      * @Route("/play/{quizID}", name="play_quiz")
      */
-    public function playQuiz(int $quizID, UserRepository $userRepository, PlayerAnswersRepository $playerAnswersRepository, QuizRepository $quizRepository, QuestionsRepository $questionsRepository, UserInterface $user) :Response
+    public function playQuiz(int $quizID, AnswersRepository $answersRepository, UserRepository $userRepository, PlayerAnswersRepository $playerAnswersRepository, QuizRepository $quizRepository, QuestionsRepository $questionsRepository, UserInterface $user) :Response
     {
         $date = new DateTime();
         $entityManager = $this->getDoctrine()->getManager();
@@ -124,7 +120,8 @@ class PlayQuizController extends AbstractController
         // get difference between (question ID`s in passed quiz) and (question ID`s in playerAnswers in DB)
         $difference = array_diff($questionsArray, array_keys($playerAnswersRepository->findByUserQuizId($userIdQuizId)->getAnswers()));
 
-        // if there are questions without answers, return question page Response, if all the questions are answered - goto Champions route
+        // if there are questions without answers, return question page Response, if all the questions are answered -
+        // add time to solve and amount of correct answers and goto Champions route
         if(count($difference)>0){
             $pageNumber = array_search(array_values($difference)[0], $questionsArray) + 1;
             return $this->render('play_quiz/play_quiz.html.twig', [
@@ -134,7 +131,29 @@ class PlayQuizController extends AbstractController
             ]);
         }
         else{
-            return new RedirectResponse('/champions');
+            // after finishing quiz add amount of correct answers and time to solve quiz
+            if($playerAnswers->getCorrectAnswers() === NULL){
+                // difference between quiz start time and now
+                $playerAnswers->setTimeToSolve($playerAnswers->getStartDate()->diff($date));
+
+                // get an array of all the correct answer ID`s
+                $correctAnswers = [];
+                foreach ($answersRepository->findBy(['isTrue'=>true]) as $item){
+                    array_push($correctAnswers, $item->getId());
+                }
+
+                // count correct answers
+                $amountOfCorrectAnswers = 0;
+                foreach ($playerAnswers->getAnswers() as $answer){
+                    if(array_search($answer, $correctAnswers)) $amountOfCorrectAnswers++;
+                }
+                $playerAnswers->setCorrectAnswers($amountOfCorrectAnswers);
+
+                $entityManager->persist($playerAnswers);
+                $entityManager->flush();
+            }
+
+            return new RedirectResponse('/champions/'.$quizID);
         }
     }
 

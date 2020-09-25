@@ -22,9 +22,7 @@ class PlayerAnswersRepository extends ServiceEntityRepository
 
     /**
      * @return PlayerAnswers
-     * @throws
      */
-
     public function findByUserQuizId(array $filters)
     {
         $qb = $this->createQueryBuilder('answers')
@@ -33,17 +31,52 @@ class PlayerAnswersRepository extends ServiceEntityRepository
             ->addSelect('user')
             ->addSelect('quiz')
             ->andWhere('quiz.id like :quiz_id')
-            ->andwhere('user.id like :user_id')
+            ->andwhere('user.id = :user_id')
             ->setParameter('quiz_id', '%'.$filters['quiz_id'].'%')
-            ->setParameter('user_id', '%'.$filters['user_id'].'%')
+            ->setParameter('user_id', $filters['user_id'])
+//            ->setParameter('user_id', '%'.$filters['user_id'].'%')
         ;
         $query = $qb->getQuery();
         return $query->getOneOrNullResult();
-//        return $query->execute();
     }
 
+    /**
+     * @return PlayerAnswers[]
+     */
+    public function findByQuizId(int $quizID)
+    {
+        $qb = $this->createQueryBuilder('answers')
+            ->join('answers.userRelation', 'user')
+            ->join('answers.quizRelation', 'quiz')
+            ->addSelect('user')
+            ->addSelect('quiz')
+            ->andWhere('quiz.id like :quiz_id')
+            ->setParameter('quiz_id', '%'.$quizID.'%')
+        ;
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
 
-
+    /**
+     * @return PlayerAnswers[]
+     */
+    public function findLeadersInQuiz(int $quizID)
+    {
+        $qb = $this->createQueryBuilder('answers')
+            ->join('answers.userRelation', 'user')
+            ->join('answers.quizRelation', 'quiz')
+            ->addSelect('user')
+            ->addSelect('quiz')
+            ->andWhere('quiz.id like :quiz_id')
+            ->andWhere('answers.timeToSolve IS NOT NULL')
+            ->setParameter('quiz_id', '%'.$quizID.'%')
+            ->addOrderBy('answers.correctAnswers', 'DESC')
+            ->addOrderBy('answers.timeToSolve', 'ASC')
+            ->setMaxResults(3)
+        ;
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
 
     // /**
     //  * @return PlayerAnswers[] Returns an array of PlayerAnswers objects

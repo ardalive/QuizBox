@@ -7,9 +7,17 @@
 {#            <div>{{ knp_pagination_sortable(pagination, 'Quiz name', 'b.name') }}</div>#}
 {#            <div>{{ knp_pagination_sortable(pagination, 'Date of creation', 'b.dateOfCreation') }}</div>#}
 
+{#    {{ dump(quizLeaders) }}#}
+{#    {{ dump(pagination) }}#}
+
+{#    {% for leader in quizLeaders %}#}
+{#        {% if leader|length > 0 %}#}
+{#            {{ dump(leader|first.userRelation.email) }}#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+
     <h1 class="font-weight-normal">Let`s play Quiz!</h1>
     <hr>
-
     <div class = "grid">
         {% for quiz in pagination %}
             <div class="quiz">
@@ -22,14 +30,25 @@
 {#                    </div>#}
 
                     <div class="append">
-                        <small>Quiz status: </small>
-                        {% if quiz.isActive == 1 %}
-                            <span class="badge badge-primary">Active</span>
-                        {% else %}
-                            <span class="badge badge-danger">Closed</span>
-                        {% endif %}
-                        <br>
-                        <small>Started {{ quiz.dateOfCreation|date("d.m.Y") }}</small>
+                        <div>
+                            <small>Quiz status: </small>
+                            {% if quiz.isActive == 1 %}
+                                <span class="badge badge-primary">Active</span>
+                            {% else %}
+                                <span class="badge badge-danger">Closed</span>
+                            {% endif %}
+                            <br>
+                            <small>Started {{ quiz.dateOfCreation|date("d.m.Y") }}</small>
+                        </div>
+                        <div>
+                            <small>
+                                {% if quizLeaders[quiz.id]|length > 0 %}
+                                    Leader: {{ quizLeaders[quiz.id]|first.userRelation.email }}
+                                    <br>
+                                    with {{ quizLeaders[quiz.id]|first.correctAnswers }} correct answers
+                                {% endif %}
+                            </small>
+                        </div>
                     </div>
 
                 </div>

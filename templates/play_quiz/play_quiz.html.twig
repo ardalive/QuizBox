@@ -9,12 +9,8 @@
 
         {% set question = questions[questionNumber-1] %}
         {% set quiz = question.quizID|first %}
-        {% if questionNumber == questions|length %}
-            {% set nextPage = path('champions') %}
-        {% else %}
-            {% set nextPage = "#{path('play')}#{quiz.id}" %}
-        {% endif %}
-{#        {{ dump(quiz.id) }}#}
+        {% set nextPage = "#{path('play')}#{quiz.id}" %}
+
         <div class="alert alert-light" role="alert">
             <h3>{{ quiz.name }}</h3>
             {{ quiz.description }} <br>
