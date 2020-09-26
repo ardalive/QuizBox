@@ -9,6 +9,7 @@ use App\Repository\QuestionsRepository;
 use App\Repository\QuizRepository;
 use App\Repository\UserRepository;
 use DateTime;
+use phpDocumentor\Reflection\Types\False_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -59,7 +60,7 @@ class PlayQuizController extends AbstractController
             $answers = $playerAnswers->getAnswers();
 
             // if there is no answer for passed question - push new answer into DB, else return error message
-            if(!array_search($request->request->get('quest_id'), array_keys($answers))){
+            if(array_search($request->request->get('quest_id'), array_keys($answers)) == false){
                 $answers[$request->request->get('quest_id')] = $request->request->get('ans_id');
                 $playerAnswers->setAnswers($answers);
                 $entityManager->persist($playerAnswers);
@@ -71,10 +72,8 @@ class PlayQuizController extends AbstractController
             }
 
         } else{
-//            $response = ['error'=>'Question does not belongs to the quiz. Cheater!'];
-            $response = [$paramsArray['quest_id'], $questionsArray];
+            $response = ['error'=>'Question does not belongs to the quiz. Cheater!'];
         }
-
         return new JsonResponse($response);
     }
 

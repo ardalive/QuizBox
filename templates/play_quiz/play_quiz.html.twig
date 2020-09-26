@@ -28,19 +28,6 @@
             </div>
         </div>
 
-{#        <br>#}
-{#        <form action="{{ path('check') }}" method="POST">#}
-{#            <input type="text" name="ans_id" value="{{ question.answers|first.id }}">#}
-{#            <input type="text" name="quest_id" value="{{ question.id }}">#}
-{#            <input type="text" name="quiz_id" value="{{ quiz.id }}">#}
-{#            <input type="text" name="user_id" value="{{ app.user.id }}">#}
-{#            <button class="btn btn-primary" type="submit">Test check page</button>#}
-{#        </form>#}
-{#        <br>#}
-
-
-
-
         <form action="{{ nextPage }}">
             <button class="btn btn-primary btn-block" type="submit" disabled>Next >> </button>
         </form>
@@ -73,10 +60,6 @@
                         if(response['error']){
                             document.querySelector('.response').innerHTML = response['error'];
                         }
-                        console.log(response.answerId);
-                        console.log(response.answerBody);
-                        console.log(response.answer);
-                        console.log(response.user);
                         let a = document.getElementsByClassName('answerBtn');
                         for (let i = 0 ; i < a.length; i++){
                             a[i].setAttribute("disabled", "disabled");
