@@ -27,19 +27,16 @@
     transition: right 400ms;
     display: grid;
     grid-template-columns:  100%;
-
 }
 .start button{
     width: 100%;
     height: 100%;
+    border-radius: 0;
 }
-
-
 .start h5{
     margin: auto;
     color: #fff;
 }
-
 .quiz-content{
     padding: 10px;
 }
@@ -48,7 +45,7 @@
     overflow: hidden;
 }
 .quiz-content h5{
-    height: 24px;
+    height: 25px;
     overflow: hidden;
 }
 .append{

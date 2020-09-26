@@ -40,7 +40,6 @@ class PlayQuizController extends AbstractController
             array_push( $questionsArray, $question->getId());
         }
 
-
         // if passed question belongs to passed quiz - proceed, else return error message
         if(array_search($paramsArray['quest_id'], $questionsArray) !== FALSE){
 
@@ -87,7 +86,7 @@ class PlayQuizController extends AbstractController
 
         // setting parameters array
         $userIdQuizId = [
-            'user_id' => $userRepository->findOneBy(['email'=>$user->getUsername()])->getId(),
+            'user_id' => $user->getIdForUserInterface(),
             'quiz_id' => $quizID
         ];
 
@@ -103,9 +102,6 @@ class PlayQuizController extends AbstractController
             $entityManager->persist($playerAnswers);
             $entityManager->flush();
         }
-
-
-        $quiz = $quizRepository->findOneBy(['id'=>$quizID]);
 
         // !! similar block in Check controller !!
         // get array with question ID`s for passed quiz ID,
@@ -126,7 +122,6 @@ class PlayQuizController extends AbstractController
             return $this->render('play_quiz/play_quiz.html.twig', [
                 'questions'=>$questions,
                 'questionNumber'=>$pageNumber,
-                'user'=>$quiz,
             ]);
         }
         else{
@@ -137,17 +132,18 @@ class PlayQuizController extends AbstractController
 
                 // get an array of all the correct answer ID`s
                 $correctAnswers = [];
-                foreach ($answersRepository->findBy(['isTrue'=>true]) as $item){
+                foreach ($answersRepository->findBy(['isTrue'=>1]) as $item){
                     array_push($correctAnswers, $item->getId());
                 }
 
                 // count correct answers
                 $amountOfCorrectAnswers = 0;
                 foreach ($playerAnswers->getAnswers() as $answer){
-                    if(array_search($answer, $correctAnswers)) $amountOfCorrectAnswers++;
+                    if(array_search($answer, $correctAnswers)) {
+                        $amountOfCorrectAnswers+=1;
+                    }
                 }
                 $playerAnswers->setCorrectAnswers($amountOfCorrectAnswers);
-
                 $entityManager->persist($playerAnswers);
                 $entityManager->flush();
             }

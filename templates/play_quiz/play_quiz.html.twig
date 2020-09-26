@@ -48,7 +48,7 @@
                         quiz_id: {{ quiz.id }},
                         user_id: {{ app.user.id }}
                     },
-                    success: function(response){pull
+                    success: function(response){
                         button.classList.remove('btn-outline-primary');
                         if(response === true){
                             button.classList.add('btn-success');

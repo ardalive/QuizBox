@@ -21,25 +21,25 @@ class QuizRepository extends ServiceEntityRepository
     }
 
 
-    /**
-     * @return Quiz[] Returns Quiz
-     */
-
-    public function findCustom()
-    {
-        $qb = $this->createQueryBuilder('quiz')
-            ->join('quiz.questionID', 'question')
-            ->join('questions.answers', 'answer')
-            ->addSelect('question')
-            ->addSelect('answer')
-            ->andWhere('quiz.id like :quizID')
-            ->andWhere('questions.id like :questionID')
-            ->setParameter('quizID', '%'.$quizID.'%')
-            ->setParameter('questionID', '%'.$questionID.'%')
-        ;
-        $query = $qb->getQuery();
-        return $query->execute();
-    }
+//    /**
+//     * @return Quiz[] Returns Quiz
+//     */
+//
+//    public function findCustom()
+//    {
+//        $qb = $this->createQueryBuilder('quiz')
+//            ->join('quiz.questionID', 'question')
+//            ->join('questions.answers', 'answer')
+//            ->addSelect('question')
+//            ->addSelect('answer')
+//            ->andWhere('quiz.id like :quizID')
+//            ->andWhere('questions.id like :questionID')
+//            ->setParameter('quizID', '%'.$quizID.'%')
+//            ->setParameter('questionID', '%'.$questionID.'%')
+//        ;
+//        $query = $qb->getQuery();
+//        return $query->execute();
+//    }
 
     /*
     public function findOneBySomeField($value): ?Quiz

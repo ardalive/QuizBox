@@ -34,28 +34,11 @@ class PlayerAnswersRepository extends ServiceEntityRepository
             ->andwhere('user.id = :user_id')
             ->setParameter('quiz_id', '%'.$filters['quiz_id'].'%')
             ->setParameter('user_id', $filters['user_id'])
-//            ->setParameter('user_id', '%'.$filters['user_id'].'%')
         ;
         $query = $qb->getQuery();
         return $query->getOneOrNullResult();
     }
 
-    /**
-     * @return PlayerAnswers[]
-     */
-    public function findByQuizId(int $quizID)
-    {
-        $qb = $this->createQueryBuilder('answers')
-            ->join('answers.userRelation', 'user')
-            ->join('answers.quizRelation', 'quiz')
-            ->addSelect('user')
-            ->addSelect('quiz')
-            ->andWhere('quiz.id like :quiz_id')
-            ->setParameter('quiz_id', '%'.$quizID.'%')
-        ;
-        $query = $qb->getQuery();
-        return $query->execute();
-    }
 
     /**
      * @return PlayerAnswers[]

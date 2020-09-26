@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -24,6 +25,9 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50, unique=true)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 
@@ -40,6 +44,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length (min = 4, minMessage = "Minimal required length for name is 4 symbols")
+     * @Assert\Length (max = 15, maxMessage = "A name must be up to 15 symbols long")
      */
     private $name;
 
@@ -54,7 +60,7 @@ class User implements UserInterface
     private $isActive = true;
 
     /**
-     * @ORM\OneToMany(targetEntity=PlayerAnswers::class, mappedBy="users", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PlayerAnswers::class, mappedBy="userRelation", orphanRemoval=true)
      */
     private $playerAnswers;
 
@@ -115,6 +121,14 @@ class User implements UserInterface
     public function getPassword(): string
     {
         return (string) $this->password;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getIdForUserInterface(): int
+    {
+        return (int) $this->id;
     }
 
     public function setPassword(string $password): self
