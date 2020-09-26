@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Quiz;
 use App\Repository\PlayerAnswersRepository;
-use App\Repository\QuizRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +29,6 @@ class HomepageController extends AbstractController
         foreach ($pagination->getItems() as $item){
             $quizLeaders[$item->getId()] = $playerAnswersRepository->findLeadersInQuiz($item->getId());
         }
-
 
         return $this->render('homepage/homepage.html.twig', [
             'pagination' => $pagination,
