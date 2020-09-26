@@ -38,26 +38,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * @return User
-     */
-
-    public function findByCustom(array $filters)
-    {
-        $qb = $this->createQueryBuilder('user')
-            ->join('user.playerAnswers', 'playerAnswers')
-            ->join('playerAnswers.quizRelation', 'quiz')
-            ->addSelect('playerAnswers')
-            ->addSelect('quiz')
-            ->andwhere('user.id like :user_id')
-            ->andWhere('quiz.id like :quiz_id')
-            ->setParameter('user_id', '%'.$filters['user_id'].'%')
-            ->setParameter('quiz_id', '%'.$filters['quiz_id'].'%')
-        ;
-        $query = $qb->getFirstResult();
-        return $query->execute();
-    }
-
-    /**
      * @return User[] Returns an array of User objects
      */
 
@@ -66,14 +46,30 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $qb = $this->createQueryBuilder('u')
             ->where('u.email like :email')
             ->andWhere('u.name like :name')
+            ->andWhere('u.id = :id')
+//            ->andWhere('u.roles like :roles')
+            ->setParameter('email', '%'.$filters['email'].'%')
+            ->setParameter('name', '%'.$filters['name'].'%')
+            ->setParameter('id', $filters['id'])
+//            ->setParameter('roles', '%'.(isset($filters['admin'])?'ROLE_ADMIN':'').'%')
+            ->orderBy('u.id', 'ASC');
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+    /**
+     * @return User[] Returns an array of User objects
+     */
+
+    public function findBySoftFilters(array $filters)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->where('u.email like :email')
+            ->andWhere('u.name like :name')
             ->andWhere('u.id like :id')
-            ->andWhere('u.roles like :roles')
             ->setParameter('email', '%'.$filters['email'].'%')
             ->setParameter('name', '%'.$filters['name'].'%')
             ->setParameter('id', '%'.$filters['id'].'%')
-            ->setParameter('roles', '%'.(isset($filters['admin'])?'ROLE_ADMIN':'').'%')
             ->orderBy('u.id', 'ASC');
-//        TODO add status filter (active/blocked)
         $query = $qb->getQuery();
         return $query->execute();
     }

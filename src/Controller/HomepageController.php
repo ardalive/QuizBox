@@ -31,7 +31,6 @@ class HomepageController extends AbstractController
             $quizLeaders[$item->getId()] = $playerAnswersRepository->findLeadersInQuiz($item->getId());
         }
 
-
         return $this->render('homepage/homepage.html.twig', [
             'pagination' => $pagination,
             'quizLeaders'=>$quizLeaders

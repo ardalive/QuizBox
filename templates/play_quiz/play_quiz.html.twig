@@ -60,10 +60,6 @@
                         if(response['error']){
                             document.querySelector('.response').innerHTML = response['error'];
                         }
-                        let a = document.getElementsByClassName('answerBtn');
-                        for (let i = 0 ; i < a.length; i++){
-                            a[i].setAttribute("disabled", "disabled");
-                        }
                     }
                 });
             }
