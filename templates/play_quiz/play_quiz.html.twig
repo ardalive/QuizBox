@@ -23,7 +23,7 @@
             <hr>
             <div class="answers">
                 {% for answer in question.answers %}
-                    <button name="{{ answer.id }}" onclick="checkAnswer(this)" class="btn btn-outline-primary">{{ answer.answerBody }}</button>
+                    <button name="{{ answer.id }}" onclick="checkAnswer(this)" class="btn btn-outline-primary answerBtn">{{ answer.answerBody }}</button>
                 {% endfor %}
             </div>
         </div>
@@ -72,6 +72,14 @@
                         }
                         if(response['error']){
                             document.querySelector('.response').innerHTML = response['error'];
+                        }
+                        console.log(response.answerId);
+                        console.log(response.answerBody);
+                        console.log(response.answer);
+                        console.log(response.user);
+                        let a = document.getElementsByClassName('answerBtn');
+                        for (let i = 0 ; i < a.length; i++){
+                            a[i].setAttribute("disabled", "disabled");
                         }
                     }
                 });
