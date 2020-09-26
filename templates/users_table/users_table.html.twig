@@ -5,46 +5,26 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/users_table.css') }}">
 {% endblock %}
 {% block content %}
+
     <div class="container">
         <div class="row">
             <div class="col-sm">
         <h1 class="h3 mb-3 font-weight-normal">Table of users</h1>
                 <div class="row">
-                    <div class="col-4">
-                        <div class="dropd">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Filter users by
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <form class="mx-4 my-2"  method="post">
-                                    <input placeholder="ID" type="text" name="id" class="form-control">
-                                    <input placeholder="email" type="text" name="email" class="form-control">
-                                    <input placeholder="name" type="text" name="name" class="form-control">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="admin">
-                                        <label class="form-check-label" for="exampleCheck1">Is admin?</label>
-                                    </div>
-                                    <button class="btn btn-primary" type="submit">Filter</button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-8 filters">
+                        <form class="mx-4 my-2"  method="post">
+                            <input placeholder="ID" type="text" name="id" class="form-control">
+                            <input placeholder="email" type="text" name="email" class="form-control">
+                            <input placeholder="name" type="text" name="name" class="form-control">
+                            <button class="btn btn-primary" type="submit">Filter</button>
+                        </form>
                     </div>
-                        <div class="col-4"></div>
-                    <div class="col-4">
-                        <div class="dropd">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Promote player by ID
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <h6 class="dropdown-header">Set user role as Admin</h6>
-                                <form class="mx-4 my-2" action="{{ path('promote') }}" method="post">
-                                    <input placeholder="Player ID" type="text" name="id" pattern="[0-9]{0,6}" class="form-control" data-toggle="popover"
-                                        data-content="Please input ID, numbers only"
-                                    >
-                                    <button class="btn btn-primary" type="submit">Promote</button>
-                                </form>
-                            </div>
-                        </div>
+
+                    <div class="col-4 promotion">
+                        <form class="mx-4 my-2" action="{{ path('promote') }}" method="post">
+                            <input placeholder="Player ID" type="text" name="id" pattern="[0-9]{0,6}" class="form-control">
+                            <button class="btn btn-primary" type="submit">Promote to Admin</button>
+                        </form>
                     </div>
                 </div>
         <table class="table user-table">
@@ -58,6 +38,7 @@
                 <th onclick="tableSort(this)" id="name-col" scope="col">Name</th>
                 <th onclick="tableSort(this)" id="status-col" scope="col">Status</th>
                 <th onclick="tableSort(this)" id="role-col" scope="col">Role</th>
+                <th  id="action-col" scope="col"></th>
             </tr>
             </thead>
             {% if users|length > 0 %}
@@ -67,7 +48,7 @@
                 <th scope="row">{{ user.id }}</th>
                 <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
-                <td>
+                <td class="user{{ user.id }}">
                     {% if user.isActive %}
                         <span class="badge badge-primary">Active</span>
                     {% else %}
@@ -80,6 +61,15 @@
                             <span class="badge badge-dark">Admin</span>
                         {% endif %}
                     {% endfor %}
+                </td>
+                <td class="user{{ user.id }}">
+                    <button type="button" onclick="switchStatus(this)" name="{{ user.id }}" class="btn btn-sm
+                    {% if user.isActive %} btn-outline-danger">
+                        <img src="{{ asset('block_user.png') }}" alt="Block">
+                    {% else %} btn-outline-primary">
+                        <img src="{{ asset('unlock_user.png') }}" alt="Unblock">
+                    {% endif %}
+                    </button>
                 </td>
             </tr>
             {% endfor %}
@@ -99,7 +89,39 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/popover.js') }}" language='javascript' type='text/javascript'></script>
+
+    <script>
+        function switchStatus(button){
+            $.ajax({
+                type: "POST",
+                url: "{{ path('status') }}",
+                data: {
+                    user_id: button.name,
+                },
+                success: function(response){
+                    let cells = document.getElementsByClassName('user'+response['user_id']);
+                        if(response['error']){
+                            cells[1].innerHTML = "Error";
+                        }
+                        else{
+                            if(response['status']){
+                                cells[0].innerHTML = "<span class=\"badge badge-primary\">Active</span>";
+                                button.classList.remove('btn-outline-primary');
+                                button.classList.add('btn-outline-danger');
+                                button.innerHTML = "<img src=\'{{ asset('block_user.png') }}\'>";
+                            }
+                            else {
+                                cells[0].innerHTML = "<span class=\"badge badge-danger\">Blocked</span>";
+                                button.classList.remove('btn-outline-danger');
+                                button.classList.add('btn-outline-primary');
+                                button.innerHTML = "<img src=\'{{ asset('unlock_user.png') }}\'>";
+                            }
+                        }
+                }
+            });
+        }
+    </script>
+
     <script src="{{ asset('js/IntlTableSort.js') }}" language='javascript' type='text/javascript'></script>
     <script src="{{ asset('js/IntlTableSort.Number.js') }}" language='javascript' type='text/javascript'></script>
 {% endblock %}

@@ -1,35 +1,49 @@
 body{
     background-color: #f5f5f5;
 }
-#id-col{
+#id-col, #status-col, #role-col, #action-col{
     width: 10%;
 }
 #email-col{
-    width: 40%;
+    width: 35%;
 }
 #name-col{
-    width: 30%;
+    width: 25%;
 }
-#status-col{
-    width: 10%;
+.filters form{
+    display: grid;
+    grid-template-columns: 10% 30% 20% 15%;
 }
-#role-col{
-    width: 10%;
+.filters button, .filters input, .filters select{
+    border-radius: 0;
+}
+.filters input{
+    margin-right: -1px;
+}
+.promotion form{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+.promotion input{
+    /*border-radius: 0.25rem 0 0 0.25rem;*/
+    border-radius: 0;
+}
+.promotion button{
+    /*border-radius: 0 0.25rem 0.25rem 0;*/
+    border-radius: 0;
+    margin-top: 0;
 }
 .user-table{
     text-align: left;
 }
-.user-table img{
+.user-table thead img{
     margin-right: 10px;
+}
+.user-table td button{
+    padding: 0 5px;
 }
 .user-table tbody tr th{
     padding-left: 50px;
-}
-.dropdown-menu input, button[type='submit']{
-    margin-top: 6px;
-}
-.dropd{
-    margin: 10px 0;
 }
 tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -39,7 +53,4 @@ thead th:hover{
 }
 thead th{
     cursor: pointer;
-}
-th img{
-    margin-right: -24px;
 }
