@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Questions;
 use App\Form\QuestionForm;
-use App\Form\QuizForm;
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Service\QuestionInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,32 +16,23 @@ class EditQuestionController extends AbstractController
     /**
      * @Route("/admin/question/edit{id}", name="edit_question")
      */
-    public function index(int $id, EntityManagerInterface $entityManager, Request $request)
+    public function index(int $id, EntityManagerInterface $entityManager, Request $request, QuestionInterface $questionInterface)
     {
         $question = $entityManager->getRepository(Questions::class)->find($id);
-
-        $originalAnswers = new ArrayCollection();
-
-        // Создать ArrayCollection текущих объектов Answer в DB
-        foreach ($question->getAnswers() as $answer) {
-            $originalAnswers->add($answer);
-        }
+        $originalAnswers = $questionInterface->getPreviousAnswers($question);
         $form = $this->createForm(QuestionForm::class, $question);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $correctAnswersCount = $questionInterface->countCorrectAnswers($question->getAnswers());
+        if($correctAnswersCount != 1 && $form->isSubmitted()){
+            $form->addError(new FormError('there must be 1 correct answer'));
+        }
 
-            foreach ($originalAnswers as $answer) {
-                if (false === $question->getAnswers()->contains($answer)) {
-                    $entityManager->remove($answer);
-                }
-            }
-
+        if ($form->isSubmitted() && $form->isValid() && $correctAnswersCount === 1) {
+            $questionInterface->removePreviousAnswers($question, $originalAnswers, $entityManager);
             $entityManager->persist($question);
             $entityManager->flush();
-
             return $this->redirectToRoute('question_page');
-
         }
 
         return $this->render('edit_question/index.html.twig', [

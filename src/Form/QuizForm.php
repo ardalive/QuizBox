@@ -4,13 +4,9 @@ namespace App\Form;
 
 use App\Entity\Questions;
 use App\Entity\Quiz;
-use App\Service\choicegenerator;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -50,7 +46,7 @@ class QuizForm extends AbstractType
                 'class' => Questions::class,
                 'choice_label' => 'QuestionBody',
                 'choices' => $this->choicesGenerator($em),
-                'constraints' => array(new Length(array('min' => 5)))
+
             ])
             ->add('save', SubmitType::class, [
                 'attr'=>['class'=>'btn btn-lg btn-primary']
