@@ -46,7 +46,7 @@ class QuizForm extends AbstractType
                 'class' => Questions::class,
                 'choice_label' => 'QuestionBody',
                 'choices' => $this->choicesGenerator($em),
-                'constraints' => array(new Length(array('min' => 5)))
+
             ])
             ->add('save', SubmitType::class, [
                 'attr'=>['class'=>'btn btn-lg btn-primary']
