@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/{_locale<%app.supported_locales%>}/admin", name="admin")
      */
     public function index()
     {

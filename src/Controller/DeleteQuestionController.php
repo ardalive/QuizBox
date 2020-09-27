@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DeleteQuestionController extends AbstractController
 {
     /**
-     * @Route("admin/question/delete{id}", name="delete_question")
+     * @Route("/admin/question/delete{id}", name="delete_question")
      */
     public function index(int $id, EntityManagerInterface $entityManager)
     {

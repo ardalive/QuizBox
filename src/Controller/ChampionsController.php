@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ChampionsController extends AbstractController
 {
     /**
-     * @Route("/champions/{quizID}", name="champions")
+     * @Route("/{_locale<%app.supported_locales%>}/champions/{quizID}", name="champions")
      */
     public function index(int $quizID, PlayerAnswersRepository $playerAnswersRepository)
     {

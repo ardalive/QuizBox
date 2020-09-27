@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UsersTableController extends AbstractController
 {
     /**
-     * @Route("/admin/users", name="users_table")
+     * @Route("/{_locale<%app.supported_locales%>}/admin/users", name="users_table")
      */
     public function usersTable(TableOfUsers $usersTable, UserRepository $userRepository, Request $request) :Response
     {
