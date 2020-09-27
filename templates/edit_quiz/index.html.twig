@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}QB Edit Quiz{% endblock %}
+{% block title %}QB {{ 'Edit quiz'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/quiz.css">
     <link rel="stylesheet" type="text/css" href="/css/editQuiz.css">
@@ -11,29 +11,29 @@
     <div id="content" class="content">
         <div class="form_box">
             {% form_theme form 'bootstrap_4_layout.html.twig' %}
-            <h1 class="h3 mb-3 font-weight-normal">Edit Quiz</h1>
+            <h1 class="h3 mb-3 font-weight-normal">{{ 'Edit quiz'|trans }}</h1>
             <hr>
 
             {{ form_start(form) }}
-            {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'}}) }}
-            {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'}}) }}
+            {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'|trans }}) }}
+            {{ form_row(form.Description, {'attr': {'placeholder': 'Input quiz description'|trans }}) }}
 
 
-            <a>Is quiz active for users?</a>
+            <a>{{ 'Is quiz active for users?'|trans }}</a>
             {{ form_row(form.isActive) }}
 
             <hr>
 
-            {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label' : 'Choose and add some questions: '}) }}
+            {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label': 'Choose and add some questions: '|trans}) }}
             <div class="createQuestion">
-                <a href="{{path('add_question')}}">You can create a new question</a>
+                <a href="{{path('add_question')}}">{{ 'You can create a new question'|trans }}</a>
             </div>
             <hr>
 
             {{ form_row(form.save) }}
             {{ form_end(form) }}
             <div class="deleteBtn">
-                <a id="deleteBtnLink" class="deleteBtnLink" href="#" >You can delete this quiz</a>
+                <a id="deleteBtnLink" class="deleteBtnLink" href="#" >{{ 'You can delete this quiz'|trans }}</a>
             </div>
         </div>
 
@@ -41,11 +41,11 @@
     <div id = "window_box" class="window_box">
         <div class="window" id = "window">
             <div class="text_container">
-                <a class="tittle_text">Are you shure to delete this quiz?</a>
+                <a class="tittle_text">{{ 'Are you shure to delete this quiz?'|trans }}</a>
             </div>
             <div class="button_container" >
-                <div style="width: 50%; margin: 0 auto"><a href="{{path('delete_quiz', {'id': id })}}" ><button class="btn btn-lg btn-primary">Yes</button></a></div>
-                <div style="width: 50%; margin: 0 auto"><a href="{{path('edit_quiz', {'id': id })}}" ><button class="btn btn-lg btn-primary red">No</button></a></div>
+                <div style="width: 50%; margin: 0 auto"><a href="{{path('delete_quiz', {'id': id })}}" ><button class="btn btn-lg btn-primary">{{ 'Yes'|trans }}</button></a></div>
+                <div style="width: 50%; margin: 0 auto"><a href="{{path('edit_quiz', {'id': id })}}" ><button class="btn btn-lg btn-primary red">{{ 'No'|trans }}</button></a></div>
             </div>
         </div>
     </div>

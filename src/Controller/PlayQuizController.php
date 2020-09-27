@@ -23,7 +23,9 @@ class PlayQuizController extends AbstractController
     /**
      * @Route("/check", name="check", methods={"POST"})
      */
-    public function check(Request $request, QuestionsRepository $questionsRepository, UserRepository $userRepository, PlayerAnswersRepository $playerAnswersRepository, AnswersRepository $answersRepository, UserInterface $user) :Response
+    public function check(Request $request, QuestionsRepository $questionsRepository, UserRepository $userRepository,
+                          PlayerAnswersRepository $playerAnswersRepository,
+                          AnswersRepository $answersRepository, UserInterface $user) :Response
     {
         //check if POST params contain ID`s only (decimal values), filter everything else, push params into paramsArray
         $paramsArray = $request->request->all();
@@ -76,8 +78,10 @@ class PlayQuizController extends AbstractController
         return new JsonResponse($response);
     }
 
+
+
     /**
-     * @Route("/play/{quizID}", name="play_quiz")
+     * @Route("/{_locale<%app.supported_locales%>}/play/{quizID}", name="play_quiz")
      */
     public function playQuiz(int $quizID, AnswersRepository $answersRepository, UserRepository $userRepository, PlayerAnswersRepository $playerAnswersRepository, QuizRepository $quizRepository, QuestionsRepository $questionsRepository, UserInterface $user) :Response
     {
@@ -148,7 +152,7 @@ class PlayQuizController extends AbstractController
                 $entityManager->flush();
             }
 
-            return new RedirectResponse('/champions/'.$quizID);
+            return $this->redirectToRoute('champions', ['quizID' => $quizID]);
         }
     }
 

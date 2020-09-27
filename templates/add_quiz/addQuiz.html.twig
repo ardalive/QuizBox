@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create quiz{% endblock %}
+{% block title %}{{ 'Create quiz'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/quiz.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
@@ -12,22 +12,21 @@
 {% block content %}
     <div class="form_box">
         {% form_theme form 'bootstrap_4_layout.html.twig' %}
-        <h1 class="h3 mb-3 font-weight-normal">Create new quiz!</h1>
+        <h1 class="h3 mb-3 font-weight-normal">{{ 'Create new quiz!'|trans }}</h1>
         <hr>
 
         {{ form_start(form) }}
-        {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'}}) }}
-        {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'}}) }}
+        {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'|trans }}) }}
+        {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'|trans }}) }}
 
 
-        <a>Is quiz active for users?</a>
+        <a>{{ 'Is quiz active for users?'|trans }}</a>
         {{ form_row(form.isActive) }}
-
         <hr>
 
-        {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label' : 'Choose and add some questions: '}) }}
+        {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label': 'Choose and add some questions:'|trans }) }}
         <div class="createQuestion">
-            <a href="{{path('add_question')}}">You can create a new question</a>
+            <a href="{{path('add_question')}}">{{ 'You can create a new question'|trans }}</a>
         </div>
         <hr>
 

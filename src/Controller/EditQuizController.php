@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EditQuizController extends AbstractController
 {
     /**
-     * @Route("admin/quiz/edit{id}", name="edit_quiz", requirements={"id"="\d+"})
+     * @Route("/{_locale<%app.supported_locales%>}/admin/quiz/edit{id}", name="edit_quiz", requirements={"id"="\d+"})
      */
     public function index(int $id, EntityManagerInterface $entityManager, Request $request, QuizInterface $quizInterface)
     {

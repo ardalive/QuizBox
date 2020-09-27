@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}QB Edit Question{% endblock %}
+{% block title %}QB {{ 'Edit question'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/question.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
@@ -17,11 +17,11 @@
         <div class="form_box">
             {% form_theme form 'bootstrap_4_layout.html.twig' %}
             {{ form_start(form) }}
-            <h1 class="h3 mb-3 font-weight-normal">Create new question!</h1>
+            <h1 class="h3 mb-3 font-weight-normal">{{ 'Edit this question'|trans }}</h1>
             <hr>
-            {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'}}) }}
+            {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'|trans }}) }}
 
-            <h3>Answers</h3>
+            <h3>{{ 'Answers'|trans }}</h3>
             <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
                 {% for answer in form.answers %}
                     <div class="allTagForAnswer">
@@ -35,18 +35,18 @@
             {{ form_end(form) }}
 
             <div class="deleteBtn">
-                <a id="deleteBtnLink" class="deleteBtnLink" href="#" >You can delete this question</a>
+                <a id="deleteBtnLink" class="deleteBtnLink" href="#" >{{ 'You can delete this question'|trans }}</a>
             </div>
         </div>
     </div>
     <div id = "window_box" class="window_box">
         <div class="window" id = "window">
             <div class="text_container">
-                <a class="tittle_text">Are you shure to delete this question?</a>
+                <a class="tittle_text">{{ 'Are you shure to delete this question?'|trans }}</a>
             </div>
             <div class="button_container" >
-                <div style="width: 50%; margin: 0 auto"><a href="{{path('delete_question', {'id': id })}}" ><button class="btn btn-lg btn-primary">Yes</button></a></div>
-                <div style="width: 50%; margin: 0 auto"><a href="{{path('edit_question', {'id': id })}}" ><button class="btn btn-lg btn-primary red">No</button></a></div>
+                <div style="width: 50%; margin: 0 auto"><a href="{{path('delete_question', {'id': id })}}" ><button class="btn btn-lg btn-primary">{{ 'Yes'|trans }}</button></a></div>
+                <div style="width: 50%; margin: 0 auto"><a href="{{path('edit_question', {'id': id })}}" ><button class="btn btn-lg btn-primary red">{{ 'No'|trans }}</button></a></div>
             </div>
         </div>
     </div>

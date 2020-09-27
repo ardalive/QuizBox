@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}{{ 'Reset password'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/request.css') }}">
 {% endblock %}
@@ -10,14 +10,14 @@
         {% for flashError in app.flashes('reset_password_error') %}
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}
-        <h1 class="h3 mb-3 font-weight-normal">Reset your password</h1>
+        <h1 class="h3 mb-3 font-weight-normal">{{ 'Reset your password'|trans }}</h1>
         <small>
-            Enter your email address and we we will send you a <br>
-            link to reset your password.
+            {{ 'Enter your email address and we we will send you a'|trans }}<br>
+            {{ 'link to reset your password.'|trans }}
         </small>
         {{ form_start(requestForm) }}
             {{ form_row(requestForm.email, {'attr': {
-                    'placeholder':'Email',
+                    'placeholder': 'Email'|trans ,
                 }}) }}
             {{ form_row(requestForm.submit) }}
 

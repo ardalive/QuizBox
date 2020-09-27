@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}QB signup{% endblock %}
+{% block title %}QB {{ 'signUp'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
 {% endblock %}
@@ -13,28 +13,28 @@
     {% endfor %}
 
     {{ form_start(registrationForm) }}
-    <h1 class="h3 mb-3 font-weight-normal">Join us!</h1>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'Join us'|trans }}!</h1>
     {{ form_row(registrationForm.name, {'attr':
         {
-            'placeholder':'Username',
-            'data-toggle':'popover',
-            'data-content':'4-15 letters and numbers. Special symbols are not allowed.'
+            'placeholder': 'Username'|trans ,
+            'data-toggle': 'popover'|trans ,
+            'data-content': '4-15 letters and numbers. Special symbols are not allowed.'|trans
         }}) }}
-    {{ form_row(registrationForm.email, {'attr': {'placeholder': 'Email'}}) }}
+    {{ form_row(registrationForm.email, {'attr': {'placeholder': 'Email'|trans }}) }}
     {{ form_row(registrationForm.password.first, {'attr':
         {
-            'placeholder':'Password',
-            'data-toggle':'popover',
-            'data-content':'6-25 letters and numbers. Passwords must match.'
+            'placeholder': 'Password'|trans ,
+            'data-toggle': 'popover'|trans ,
+            'data-content': '6-25 letters and numbers. Passwords must match.'|trans,
         }}) }}
     {{ form_row(registrationForm.password.second, {'attr':
         {
-            'placeholder': 'Confirm password',
+            'placeholder': 'Confirm password'|trans,
         }}) }}
     {{ form_row(registrationForm.submit) }}
     <hr>
-    <h1 class="h6 mb-3 font-weight-normal">Alredy have an account?</h1>
-    <a href="{{ path('app_login') }}" class="button">Sign in</a>
+    <h1 class="h6 mb-3 font-weight-normal">{{ 'Alredy have an account'|trans }}?</h1>
+    <a href="{{ path('app_login') }}" class="button">{{ 'Sign in'|trans }}</a>
     {{ form_end(registrationForm) }}
     <script src="{{ asset('js/register.js') }}" language='javascript' type='text/javascript'></script>
     <script src="{{ asset('js/popover.js') }}" language='javascript' type='text/javascript'></script>

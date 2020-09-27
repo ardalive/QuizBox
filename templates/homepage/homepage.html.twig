@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}QB{% endblock %}
+{% block title %}QB {{ 'Home'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/homepage.css') }}">
 {% endblock %}
@@ -56,7 +56,7 @@
                 <div class="start">
                     {% if quiz.isActive == 1 %}
                         {# TODO set action path to correct route #}
-                        <form action="{{ path('play') ~ quiz.id }}">
+                        <form action="{{ path('play_quiz', {'quizID': quiz.id }) }}">
                             <button type="submit" class="btn btn-primary">Let`s GO!</button>
                         </form>
                     {% else %}

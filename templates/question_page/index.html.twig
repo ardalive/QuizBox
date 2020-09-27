@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}QB Question{% endblock %}
+{% block title %}QB {{ 'Question'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/questionTable.css">
 {% endblock %}
 
 {% block content %}
-    <h1>Table of existing questions</h1>
+    <h1>{{ 'Table of existing questions'|trans }}</h1>
     <div class="containerFilterBtn">
         <form action="" method="get">
-            <label for="filter">Search by name: </label>
+            <label for="filter">{{ 'Search by name'|trans }}: </label>
             <input name="filter" type="text">
-            <button type="submit" class="btn btn-lg btn-primary filterBtn">Filter</button>
+            <button type="submit" class="btn btn-lg btn-primary filterBtn">{{ 'Filter'|trans }}</button>
         </form>
     </div>
     <table style=" width: 100%">
         <tr >
-            <th>{{  knp_pagination_sortable(pagination, 'Questions', 'question.id') }}</th>
-            <th>Answers</th>
+            <th>{{  knp_pagination_sortable(pagination, 'Questions'|trans, 'question.id') }}</th>
+            <th>{{ 'Answers'|trans }}</th>
             <th></th>
         </tr>
         {% for oneQuestion in pagination %}
@@ -25,7 +25,7 @@
                 <td class="questionBodyCeil">{{ oneQuestion.QuestionBody }}</td>
                 <td class="answerBodyCeil">{{ oneQuestion.getAnswerBodysArr()|join(', ')}}</td>
 {#                <td>{{ oneQuestion.getQuizArr()|join(', ') }}</td>#}
-                <td class="updateBtnCeil"><a href="{{ path('edit_question', {'id': oneQuestion.id }) }}">Update</a></td>
+                <td class="updateBtnCeil"><a href="{{ path('edit_question', {'id': oneQuestion.id }) }}">{{ 'Update'|trans }}</a></td>
             </tr>
 
         {% endfor %}
@@ -34,7 +34,7 @@
         {{ knp_pagination_render(pagination) }}
     </div>
     <div>
-        <a href="{{path('add_question')}}">You can add a new question</a>
+        <a href="{{path('add_question')}}">{{ 'You can add a new question'|trans }}</a>
     </div>
 
 {% endblock %}

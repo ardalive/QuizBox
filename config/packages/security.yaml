@@ -39,9 +39,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/admin, allow_if: "is_granted('ROLE_ADMIN') and user.isVerified() and user.isActive()"}
-         - { path: ^/play, allow_if: "is_granted('ROLE_USER') and user.isVerified() and user.isActive()"}
-         - { path: ^/homepage, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-         - { path: ^/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-         - { path: ^/registration, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+         - { path: ^/%app.supported_locales%/admin, allow_if: "is_granted('ROLE_ADMIN') and user.isVerified() and user.isActive()"}
+         - { path: ^/%app.supported_locales%/play, allow_if: "is_granted('ROLE_USER') and user.isVerified() and user.isActive()"}
+         - { path: ^/%app.supported_locales%/homepage, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+         - { path: ^/%app.supported_locales%/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+         - { path: ^/%app.supported_locales%/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+         - { path: ^/%app.supported_locales%/registration, roles: IS_AUTHENTICATED_ANONYMOUSLY}
