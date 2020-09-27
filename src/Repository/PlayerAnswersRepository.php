@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\PlayerAnswers;
+use App\Entity\Quiz;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -34,6 +35,20 @@ class PlayerAnswersRepository extends ServiceEntityRepository
             ->andwhere('user.id = :user_id')
             ->setParameter('quiz_id', '%'.$filters['quiz_id'].'%')
             ->setParameter('user_id', $filters['user_id'])
+        ;
+        $query = $qb->getQuery();
+        return $query->getOneOrNullResult();
+    }
+    /**
+     * @return PlayerAnswers
+     */
+    public function findByUserAndQuiz(User $user, Quiz $quiz)
+    {
+        $qb = $this->createQueryBuilder('answers')
+            ->andWhere('answers.quizRelation = :quiz')
+            ->andwhere('answers.userRelation = :user')
+            ->setParameter('quiz', $quiz)
+            ->setParameter('user', $user)
         ;
         $query = $qb->getQuery();
         return $query->getOneOrNullResult();
