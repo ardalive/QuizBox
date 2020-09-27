@@ -453,6 +453,30 @@
         <source>You are logged as</source>
         <target>Вы вошли как</target>
       </trans-unit>
+      <trans-unit id="Mx_Cb_I1" resname="Save">
+              <source>Save</source>
+              <target>Сохранить</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I12" resname="Delete">
+              <source>Delete</source>
+              <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I123" resname="right">
+              <source>right</source>
+              <target>верно</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I1234" resname="input answer ...">
+              <source>input answer ...</source>
+              <target>введите ответ ...</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I12345" resname="yes">
+              <source>yes</source>
+              <target>да</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I123456" resname="no">
+              <source>no</source>
+              <target>нет</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
