@@ -13,7 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomepageController extends AbstractController
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/")
+     */
+    public function indexNoLocale()
+    {
+        return $this->redirectToRoute('homepage', ['_locale' => 'en']);
+    }
+
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}", name="homepage")
      */
     public function index(EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request, PlayerAnswersRepository $playerAnswersRepository)
     {
