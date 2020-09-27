@@ -14,14 +14,23 @@ use App\Repository\QuestionsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-class PlayInterface extends AbstractController
+class QuizPlayer extends AbstractController
 {
+    private $playerAnswersRepository;
+    private $answersRepository;
+    private $questionsRepository;
 
-    public function getPlayerAnswers(User $player, Quiz $quiz, \DateTime $date, PlayerAnswersRepository $playerAnswersRepository) :PlayerAnswers
+    public function __construct(AnswersRepository $answersRepository, PlayerAnswersRepository $playerAnswersRepository, QuestionsRepository $questionsRepository)
     {
-        if(!$playerAnswers = $playerAnswersRepository->findByUserAndQuiz($player, $quiz)){
+        $this->answersRepository = $answersRepository;
+        $this->playerAnswersRepository = $playerAnswersRepository;
+        $this->questionsRepository = $questionsRepository;
+    }
+    public function getPlayerAnswers(User $player, Quiz $quiz, \DateTime $date) :PlayerAnswers
+    {
+        if(!$playerAnswers = $this->playerAnswersRepository->findByUserAndQuiz($player, $quiz)){
             $this->initializePlayerAnswers($player, $quiz, $date);
-            return $playerAnswersRepository->findByUserAndQuiz($player, $quiz);
+            return $this->playerAnswersRepository->findByUserAndQuiz($player, $quiz);
         }
         else return $playerAnswers;
     }
@@ -48,7 +57,7 @@ class PlayInterface extends AbstractController
     }
     public function quizSolved(PlayerAnswers $playerAnswers):bool
     {
-        return $playerAnswers->getCorrectAnswers() === NULL;
+        return $playerAnswers->getTimeToSolve() === NULL;
     }
     public function updatePlayerAnswers(PlayerAnswers $playerAnswers):void
     {
@@ -56,27 +65,27 @@ class PlayInterface extends AbstractController
         $entityManager->persist($playerAnswers);
         $entityManager->flush();
     }
-    public function getAllCorrectAnswerIDs(AnswersRepository $answersRepository):array
+    public function getAllCorrectAnswerIDs():array
     {
         $correctAnswerIDs = [];
-        foreach ($answersRepository->findBy(['isTrue'=>1]) as $item){
+        foreach ($this->answersRepository->findBy(['isTrue'=>1]) as $item){
             array_push($correctAnswerIDs, $item->getId());
         }
         return $correctAnswerIDs;
     }
-    public function getAmountOfCorrectAnswers(PlayerAnswers $playerAnswers, AnswersRepository $answersRepository):int
+    public function getAmountOfCorrectAnswers(PlayerAnswers $playerAnswers):int
     {
         $amountOfCorrectAnswers = 0;
         foreach ($playerAnswers->getAnswers() as $answer){
-            if(array_search($answer, $this->getAllCorrectAnswerIDs($answersRepository))) {
+            if(array_search($answer, $this->getAllCorrectAnswerIDs())) {
                 $amountOfCorrectAnswers+=1;
             }
         }
         return $amountOfCorrectAnswers;
     }
-    public function getNextQuestion(array $unansweredQuestions, QuestionsRepository $questionsRepository) :Questions
+    public function getNextQuestion(array $unansweredQuestions) :Questions
     {
-        return $questionsRepository->findOneBy([
+        return $this->questionsRepository->findOneBy([
             'id' => array_values($unansweredQuestions)[0]
         ]);
     }
@@ -85,11 +94,11 @@ class PlayInterface extends AbstractController
         return array_search(array_values($unansweredQuestions)[0], $questionsIDsArray) + 1;
     }
 
-    public function finishQuiz(PlayerAnswers $playerAnswers, \DateTime $date, AnswersRepository $answersRepository)
+    public function finishQuiz(PlayerAnswers $playerAnswers, \DateTime $date)
     {
         $playerAnswers->setTimeToSolve($playerAnswers->getStartDate()->diff($date));
-        $amountOfCorrectAnswers = $this->getAmountOfCorrectAnswers($playerAnswers, $answersRepository);
-        $playerAnswers->setCorrectAnswers($amountOfCorrectAnswers);
+//        $amountOfCorrectAnswers = $this->getAmountOfCorrectAnswers($playerAnswers);
+//        $playerAnswers->setCorrectAnswers($amountOfCorrectAnswers);
         $this->updatePlayerAnswers($playerAnswers);
     }
 }

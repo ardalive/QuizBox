@@ -3,12 +3,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 
-use App\Repository\AnswersRepository;
 use App\Repository\PlayerAnswersRepository;
 use App\Repository\QuestionsRepository;
 use App\Repository\QuizRepository;
-use App\Service\CheckInterface;
-use App\Service\PlayInterface;
+use App\Service\AnswerUpdater;
+use App\Service\QuizPlayer;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -23,26 +22,28 @@ class PlayQuizController extends AbstractController
     /**
      * @Route("/check", name="check", methods={"POST"})
      */
-    public function check(Request $request, QuestionsRepository $questionsRepository, PlayerAnswersRepository $playerAnswersRepository, AnswersRepository $answersRepository, UserInterface $user, CheckInterface $check) :Response
+    public function check(Request $request, QuestionsRepository $questionsRepository, PlayerAnswersRepository $playerAnswersRepository, UserInterface $user, AnswerUpdater $updater) :Response
     {
-        $paramsArray = $check->checkParams($request->request->all());
-        $questions = $questionsRepository->findQuestionsByQuizID($paramsArray['quiz_id']);
-        $questionsIDsArray = $check->getQuestionIDsArray($questions);
+        $paramsArray = $updater->checkParams($request->request->all());
 
-        if($check->questionBelongsToQuiz($paramsArray, $questionsIDsArray)){
+        $questions = $questionsRepository->findQuestionsByQuizID($paramsArray['quiz_id']);
+        $questionsIDsArray = $updater->getQuestionIDsArray($questions);
+
+        if($updater->questionBelongsToQuiz($paramsArray, $questionsIDsArray)){
             $paramsArray['user_id'] = $user->getUser()->getId();
             $playerAnswers = $playerAnswersRepository->findByUserQuizId($paramsArray);
             $answers = $playerAnswers->getAnswers();
 
-            if($check->answeredBefore($paramsArray, $answers)){
-                $response = ['error'=>'No cheating! You have already answered this question :D'];
+            if($updater->answeredBefore($paramsArray, $answers)){
+                $response = ['error'=>'You have already answered this question'];
             }
             else{
-                $check->setAnswer($paramsArray, $playerAnswers);
-                $response = $check->answerIsCorrect($paramsArray, $answersRepository);
+                $isCorrect = $updater->answerIsCorrect($paramsArray);
+                $updater->setAnswer($paramsArray, $answers, $playerAnswers, $isCorrect);
+                $response = $isCorrect;
             }
         } else{
-            $response = ['error'=>'Question does not belongs to the quiz. Cheater!'];
+            $response = ['error'=>'Question does not belongs to the quiz'];
         }
         return new JsonResponse($response);
     }
@@ -50,28 +51,28 @@ class PlayQuizController extends AbstractController
     /**
      * @Route("/play/{quizID}", name="play_quiz")
      */
-    public function playQuiz(int $quizID, AnswersRepository $answersRepository, PlayerAnswersRepository $playerAnswersRepository, QuizRepository $quizRepository, QuestionsRepository $questionsRepository, UserInterface $user, PlayInterface $play) :Response
+    public function playQuiz(int $quizID, QuizRepository $quizRepository, QuestionsRepository $questionsRepository, UserInterface $user, QuizPlayer $quizPlayer) :Response
     {
         $date = new DateTime();
         $player = $user->getUser();
         $quiz = $quizRepository->findOneBy(['id'=>$quizID]);
         $questions = $questionsRepository->findQuestionsByQuizID($quizID);
 
-        $playerAnswers = $play->getPlayerAnswers($player, $quiz, $date, $playerAnswersRepository);
-        $questionsIDsArray = $play->getQuestionsIDs($questions);
-        $unansweredQuestions = $play->getUnansweredQuestions($questionsIDsArray, $playerAnswers);
+        $playerAnswers = $quizPlayer->getPlayerAnswers($player, $quiz, $date);
+        $questionsIDsArray = $quizPlayer->getQuestionsIDs($questions);
+        $unansweredQuestions = $quizPlayer->getUnansweredQuestions($questionsIDsArray, $playerAnswers);
 
         if(count($unansweredQuestions)>0){
-            $questionNumber = $play->getQuestionNumber($unansweredQuestions, $questionsIDsArray);
+            $questionNumber = $quizPlayer->getQuestionNumber($unansweredQuestions, $questionsIDsArray);
             return $this->render('play_quiz/play_quiz.html.twig', [
-                'question'=>$play->getNextQuestion($unansweredQuestions, $questionsRepository),
+                'question'=>$quizPlayer->getNextQuestion($unansweredQuestions),
                 'page'=> $questionNumber,
                 'amountOfQuestions' => count($questions)
             ]);
         }
         else{
-            if($play->quizSolved($playerAnswers)){
-                $play->finishQuiz($playerAnswers, $date, $answersRepository);
+            if($quizPlayer->quizSolved($playerAnswers)){
+                $quizPlayer->finishQuiz($playerAnswers, $date);
             }
             return new RedirectResponse('/champions/'.$quizID);
         }

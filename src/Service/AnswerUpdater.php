@@ -4,18 +4,21 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\PlayerAnswers;
-use App\Entity\Questions;
 use App\Repository\AnswersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CheckInterface extends AbstractController
+class AnswerUpdater extends AbstractController
 {
-    public function checkParams(array $params) :array
+    private $answersRepository;
+
+    public function __construct(AnswersRepository $answersRepository){
+        $this->answersRepository = $answersRepository;
+    }
+    public function checkParams(array $paramsArray) :array
     {
-        $pattern = '/\d+/';
         $cleanedParams = [];
-        foreach ($params as $parameter){
-            array_push($cleanedParams, (int)preg_filter($pattern, "", $parameter));
+        foreach ($paramsArray as $key => $value){
+            $cleanedParams[$key] = intval($value);
         }
         return $cleanedParams;
     }
@@ -36,11 +39,11 @@ class CheckInterface extends AbstractController
     }
     public function answeredBefore(array $paramsArray, array $answers):bool
     {
-        return array_search($paramsArray['quest_id'], array_keys($answers));
+        return (bool)array_search($paramsArray['quest_id'], array_keys($answers));
     }
-    public function answerIsCorrect(array $paramsArray, AnswersRepository $answersRepository) :bool
+    public function answerIsCorrect(array $paramsArray) :bool
     {
-        $answer = $answersRepository->findOneBy(['id'=>$paramsArray['ans_id']]);
+        $answer = $this->answersRepository->findOneBy(['id'=>$paramsArray['ans_id']]);
         return $answer->getIsTrue();
     }
     public function updatePlayerAnswer(PlayerAnswers $playerAnswers):void
@@ -49,10 +52,18 @@ class CheckInterface extends AbstractController
         $entityManager->persist($playerAnswers);
         $entityManager->flush();
     }
-    public function setAnswer(array $paramsArray, PlayerAnswers $playerAnswers):void
+    public function setAnswer(array $paramsArray, array $answers, PlayerAnswers $playerAnswers, bool $isCorrect):void
     {
         $answers[$paramsArray['quest_id']] = $paramsArray['ans_id'];
+        if($isCorrect)
+        {
+            $playerAnswers->setCorrectAnswers($this->incrementCorrectAnswers($playerAnswers));
+        }
         $playerAnswers->setAnswers($answers);
         $this->updatePlayerAnswer($playerAnswers);
+    }
+    public function incrementCorrectAnswers(PlayerAnswers $playerAnswers):int
+    {
+        return $playerAnswers->getCorrectAnswers() + 1;
     }
 }

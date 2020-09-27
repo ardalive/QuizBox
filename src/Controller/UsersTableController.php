@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Questions;
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Service\UsersTableInterface;
+use App\Service\TableOfUsers;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +19,7 @@ class UsersTableController extends AbstractController
     /**
      * @Route("/admin/users", name="users_table")
      */
-    public function usersTable(UsersTableInterface $usersTable, UserRepository $userRepository, Request $request) :Response
+    public function usersTable(TableOfUsers $usersTable, UserRepository $userRepository, Request $request) :Response
     {
         $error = $request->query->get('error', '');
         return $this->render('users_table/users_table.html.twig', [
@@ -55,7 +55,7 @@ class UsersTableController extends AbstractController
     /**
      * @Route ("/promote", name="promote")
      */
-    public function promoteById(UserRepository $userRepository, Request $request, UsersTableInterface $usersTable) :Response
+    public function promoteById(UserRepository $userRepository, Request $request, TableOfUsers $usersTable) :Response
     {
         $error = '';
         $user=$userRepository->findOneBy($request->request->all());
@@ -72,7 +72,7 @@ class UsersTableController extends AbstractController
     /**
      * @Route ("/status", name="status")
      */
-    public function switchStatus(UserRepository $userRepository, Request $request, UsersTableInterface $usersTable) :Response
+    public function switchStatus(UserRepository $userRepository, Request $request, TableOfUsers $usersTable) :Response
     {
         $response = [];
         $requestUserId = $request->request->get('user_id');

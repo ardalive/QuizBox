@@ -7,7 +7,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class UsersTableInterface extends AbstractController
+class TableOfUsers extends AbstractController
 {
     public function switchTableFilters(array $filters, UserRepository $userRepository) :array
     {
