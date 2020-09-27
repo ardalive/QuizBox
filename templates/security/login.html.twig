@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}QB login{% endblock %}
+{% block title %}QB {{ 'Login'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 {% endblock %}
@@ -7,7 +7,7 @@
 <div class="container">
     {% if not app.user %}
 <form method="post" class="form-signin">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'Please sign in'|trans }}</h1>
 
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -16,20 +16,20 @@
     <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
     <input placeholder="Password" type="password" name="password" id="inputPassword" class="form-control" required>
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-    <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary" type="submit">{{ 'Sign in'|trans }}</button>
     <br>
     <hr>
     <p>
-        <a href="{{ path('app_forgot_password_request') }}" class="button">Reset password</a>
+        <a href="{{ path('app_forgot_password_request') }}" class="button">{{ 'Reset password'|trans }}</a>
         <br>
-        New around here?
-        <a href="{{ path('app_register') }}" class="button">Sign up</a>
+        {{ 'New around here?'|trans }}
+        <a href="{{ path('app_register') }}" class="button">{{ 'Sign up'|trans }}</a>
     </p>
 
 </form>
     {% elseif app.user %}
         <div class="mb-3">
-            You are logged as {{ app.user.username }} <a href="{{ path('app_logout') }}">Logout</a>
+            {{ 'You are logged as'|trans }} {{ app.user.username }} <a href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
         </div>
     {% endif %}
 </div>

@@ -381,6 +381,78 @@
         <source>Sign in</source>
         <target>Войти</target>
       </trans-unit>
+      <trans-unit id="Bpk9NjP" resname="An email has been sent that contains">
+        <source>An email has been sent that contains</source>
+        <target>Было отправлено электронное письмо, содержащее</target>
+      </trans-unit>
+      <trans-unit id="UB6We1q" resname="a link that you can click to reset your password.">
+        <source>a link that you can click to reset your password.</source>
+        <target>ссылку для сброса пароля.</target>
+      </trans-unit>
+      <trans-unit id="0dDdsrs" resname="If you don't receive an email please">
+        <source>If you don't receive an email please</source>
+        <target>Если вы не получили письмо, пожалуйста</target>
+      </trans-unit>
+      <trans-unit id="fhtCGyp" resname="check your spam folder or">
+        <source>check your spam folder or</source>
+        <target>проверьте папку со спамом</target>
+      </trans-unit>
+      <trans-unit id="W13t7jL" resname="try again">
+        <source>try again</source>
+        <target>попробовать снова</target>
+      </trans-unit>
+      <trans-unit id="ylHOH7F" resname="Hi!">
+        <source>Hi!</source>
+        <target>Привет!</target>
+      </trans-unit>
+      <trans-unit id="vQH5j0c" resname="To reset your password, please visit the following link">
+        <source>To reset your password, please visit the following link</source>
+        <target>Чтобы сбросить пароль, перейдите по следующей ссылке</target>
+      </trans-unit>
+      <trans-unit id="7d9851I" resname="hour(s).">
+        <source>hour(s).</source>
+        <target>час(ов).</target>
+      </trans-unit>
+      <trans-unit id="rx6fjwf" resname="Reser password">
+        <source>Reser password</source>
+        <target>Сброс пароля</target>
+      </trans-unit>
+      <trans-unit id="WfpDeb4" resname="Reset your password">
+        <source>Reset your password</source>
+        <target>Сбросить ваш пароль</target>
+      </trans-unit>
+      <trans-unit id="eXQFKu." resname="Enter your email address and we we will send you a">
+        <source>Enter your email address and we we will send you a</source>
+        <target>Введите свой адрес электронной почты, и мы отправим вам</target>
+      </trans-unit>
+      <trans-unit id="o28hBFw" resname="link to reset your password.">
+        <source>link to reset your password.</source>
+        <target>ссылку для сброса пароля.</target>
+      </trans-unit>
+      <trans-unit id="4O3_s6c" resname="Reset password">
+        <source>Reset password</source>
+        <target>Сброс пароля</target>
+      </trans-unit>
+      <trans-unit id="iHpWC4J" resname="Set a new password">
+        <source>Set a new password</source>
+        <target>Установите новый пароль</target>
+      </trans-unit>
+      <trans-unit id="dDUw20Q" resname="Please sign in">
+        <source>Please sign in</source>
+        <target>Пожалуйста, войдите</target>
+      </trans-unit>
+      <trans-unit id="_4h6WP." resname="New around here?">
+        <source>New around here?</source>
+        <target>Недавно здесь?</target>
+      </trans-unit>
+      <trans-unit id="XiuOllA" resname="Sign up">
+        <source>Sign up</source>
+        <target>Зарегистрируйтесь</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I" resname="You are logged as">
+        <source>You are logged as</source>
+        <target>Вы вошли как</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
