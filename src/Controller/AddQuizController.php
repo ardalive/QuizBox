@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AddQuizController extends AbstractController
 {
     /**
-     * @Route("/admin/quiz/quizadd", name="add_quiz")
+     * @Route("/{_locale<%app.supported_locales%>}/admin/quiz/quizadd", name="add_quiz")
      */
     public function index(Request $request, EntityManagerInterface $entityManager, QuizInterface $quizInterface)
     {

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Table of users{% endblock %}
+{% block title %}QB {{ 'Users'|trans }}{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" type="text/css" href="{{ asset('css/users_table.css') }}">
 {% endblock %}
@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-        <h1 class="h3 mb-3 font-weight-normal">Table of users</h1>
+        <h1 class="h3 mb-3 font-weight-normal">{{ 'Table of users'|trans }}</h1>
                 <div class="row">
                     <div class="col-8 filters">
                         <form class="mx-4 my-2"  method="post">
@@ -23,7 +23,7 @@
                     <div class="col-4 promotion">
                         <form class="mx-4 my-2" action="{{ path('promote') }}" method="post">
                             <input placeholder="Player ID" type="text" name="id" pattern="[0-9]{0,6}" class="form-control">
-                            <button class="btn btn-primary" type="submit">Promote to Admin</button>
+                            <button class="btn btn-primary" type="submit">{{ 'Promote to Admin'|trans }}</button>
                         </form>
                     </div>
                 </div>
@@ -34,10 +34,10 @@
                     <img class="rounded float-left" src="{{ asset('sortable.png') }}" alt="">
                     ID
                 </th>
-                <th onclick="tableSort(this)" id="email-col" scope="col">Email</th>
-                <th onclick="tableSort(this)" id="name-col" scope="col">Name</th>
-                <th onclick="tableSort(this)" id="status-col" scope="col">Status</th>
-                <th onclick="tableSort(this)" id="role-col" scope="col">Role</th>
+                <th onclick="tableSort(this)" id="email-col" scope="col">{{ 'Email'|trans }}</th>
+                <th onclick="tableSort(this)" id="name-col" scope="col">{{ 'Name'|trans }}</th>
+                <th onclick="tableSort(this)" id="status-col" scope="col">{{ 'Status'|trans }}</th>
+                <th onclick="tableSort(this)" id="role-col" scope="col">{{ 'Role'|trans }}</th>
                 <th  id="action-col" scope="col"></th>
             </tr>
             </thead>
@@ -50,15 +50,15 @@
                 <td>{{ user.name }}</td>
                 <td class="user{{ user.id }}">
                     {% if user.isActive %}
-                        <span class="badge badge-primary">Active</span>
+                        <span class="badge badge-primary">{{ 'Active'|trans }}</span>
                     {% else %}
-                        <span class="badge badge-danger">Blocked</span>
+                        <span class="badge badge-danger">{{ 'Blocked'|trans }}</span>
                     {% endif %}
                 </td>
                 <td>
                     {% for role in user.roles %}
                         {% if role == 'ROLE_ADMIN' %}
-                            <span class="badge badge-dark">Admin</span>
+                            <span class="badge badge-dark">{{ 'Admin'|trans }}</span>
                         {% endif %}
                     {% endfor %}
                 </td>
@@ -76,8 +76,8 @@
             </tbody>
             {% else %}
                 <div class="alert alert-primary" role="alert">
-                    <h1 class="h3 mb-3 font-weight-normal">No matches</h1>
-                    Try to change filtering options
+                    <h1 class="h3 mb-3 font-weight-normal">{{ 'No matches'|trans }}</h1>
+                    {{ 'Try to change filtering options'|trans }}
                 </div>
             {% endif %}
             {% if error|length > 0 %}

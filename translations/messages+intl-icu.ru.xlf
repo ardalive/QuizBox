@@ -65,6 +65,50 @@
         <source>Let`s GO!</source>
         <target>Поехали! :)</target>
       </trans-unit>
+      <trans-unit id="awzJBNC" resname="Users">
+        <source>Users</source>
+        <target>Пользователи</target>
+      </trans-unit>
+      <trans-unit id="2KfQbi_" resname="Promote to Admin">
+        <source>Promote to Admin</source>
+        <target>Дать админку</target>
+      </trans-unit>
+      <trans-unit id="lpzL089" resname="Email">
+        <source>Email</source>
+        <target>Электронная почта</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="kg5BPH1" resname="Status">
+        <source>Status</source>
+        <target>Статус</target>
+      </trans-unit>
+      <trans-unit id="FHNqLrn" resname="Role">
+        <source>Role</source>
+        <target>Роль</target>
+      </trans-unit>
+      <trans-unit id="GPKglH_" resname="Blocked">
+        <source>Blocked</source>
+        <target>Заблокирован</target>
+      </trans-unit>
+      <trans-unit id="wcIksDz" resname="Admin">
+        <source>Admin</source>
+        <target>Админ</target>
+      </trans-unit>
+      <trans-unit id="LfAaA.9" resname="No matches">
+        <source>No matches</source>
+        <target>Нет совпадений</target>
+      </trans-unit>
+      <trans-unit id="ef3nwzs" resname="Try to change filtering options">
+        <source>Try to change filtering options</source>
+        <target>Попробуйте изменить параметры фильтрации</target>
+      </trans-unit>
+      <trans-unit id="NWgF6oi" resname="Table of users">
+        <source>Table of users</source>
+        <target>Таблица пользователей</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

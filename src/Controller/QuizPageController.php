@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizPageController extends AbstractController
 {
     /**
-     * @Route("/admin/quiz", name="quiz_page")
+     * @Route("/{_locale<%app.supported_locales%>}/admin/quiz", name="quiz_page")
      */
     public function index(EntityManagerInterface $entityManager,PaginatorInterface $paginator, Request $request)
     {
