@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ru" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Главная</target>
+      </trans-unit>
+      <trans-unit id="S0LGaQ6" resname="Administration">
+        <source>Administration</source>
+        <target>Администратору</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Выход</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ" resname="Register">
+        <source>Register</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="Z7o1__N" resname="Training project">
+        <source>Training project</source>
+        <target>Тренировочный проект</target>
+      </trans-unit>
+      <trans-unit id="gjoSPCC" resname="Let`s play Quiz!">
+        <source>Let`s play Quiz!</source>
+        <target>Начни играть в викторину!</target>
+      </trans-unit>
+      <trans-unit id="xkrK1lD" resname="Quiz status">
+        <source>Quiz status</source>
+        <target>Статус</target>
+      </trans-unit>
+      <trans-unit id="7LyJzTe" resname="Started">
+        <source>Started</source>
+        <target>Создана</target>
+      </trans-unit>
+      <trans-unit id="P1OHGwg" resname="Leader">
+        <source>Leader</source>
+        <target>Топ 1</target>
+      </trans-unit>
+      <trans-unit id="BpW1Y6z" resname="with">
+        <source>with</source>
+        <target>с</target>
+      </trans-unit>
+      <trans-unit id="lWyjx8." resname="correct answers">
+        <source>correct answers</source>
+        <target>правильными ответами</target>
+      </trans-unit>
+      <trans-unit id="kjQGlYm" resname="Active">
+        <source>Active</source>
+        <target>Активна</target>
+      </trans-unit>
+      <trans-unit id="wh6tBhT" resname="Closed">
+        <source>Closed</source>
+        <target>Недоступна :(</target>
+      </trans-unit>
+      <trans-unit id="oQnkHxL" resname="Let`s GO!">
+        <source>Let`s GO!</source>
+        <target>Поехали! :)</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

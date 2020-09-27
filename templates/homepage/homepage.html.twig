@@ -16,7 +16,7 @@
 {#        {% endif %}#}
 {#    {% endfor %}#}
 
-    <h1 class="font-weight-normal">Let`s play Quiz!</h1>
+    <h1 class="font-weight-normal">{{ 'Let`s play Quiz!'|trans }}</h1>
     <hr>
     <div class = "grid">
         {% for quiz in pagination %}
@@ -31,21 +31,21 @@
 
                     <div class="append">
                         <div>
-                            <small>Quiz status: </small>
+                            <small>{{ 'Quiz status'|trans }}: </small>
                             {% if quiz.isActive == 1 %}
-                                <span class="badge badge-primary">Active</span>
+                                <span class="badge badge-primary">{{ 'Active'|trans }}</span>
                             {% else %}
-                                <span class="badge badge-danger">Closed</span>
+                                <span class="badge badge-danger">{{ 'Closed'|trans }}</span>
                             {% endif %}
                             <br>
-                            <small>Started {{ quiz.dateOfCreation|date("d.m.Y") }}</small>
+                            <small>{{ 'Started'|trans }} {{ quiz.dateOfCreation|date("d.m.Y") }}</small>
                         </div>
                         <div>
                             <small>
                                 {% if quizLeaders[quiz.id]|length > 0 %}
-                                    Leader: {{ quizLeaders[quiz.id]|first.userRelation.email }}
+                                    {{ 'Leader'|trans }}: {{ quizLeaders[quiz.id]|first.userRelation.email }}
                                     <br>
-                                    with {{ quizLeaders[quiz.id]|first.correctAnswers }} correct answers
+                                    {{ 'with'|trans }} {{ quizLeaders[quiz.id]|first.correctAnswers }} {{ 'correct answers'|trans }}
                                 {% endif %}
                             </small>
                         </div>
@@ -57,11 +57,11 @@
                     {% if quiz.isActive == 1 %}
                         {# TODO set action path to correct route #}
                         <form action="{{ path('play_quiz', {'quizID': quiz.id }) }}">
-                            <button type="submit" class="btn btn-primary">Let`s GO!</button>
+                            <button type="submit" class="btn btn-primary">{{ 'Let`s GO!'|trans }}</button>
                         </form>
                     {% else %}
-                    <h5 class="font-weight-normal">
-                        Closed
+                    <h5 class="font-weight-normal" style="font-size: 14px">
+                        {{ 'Closed'|trans }}
                     </h5>
                     {% endif %}
                 </div>

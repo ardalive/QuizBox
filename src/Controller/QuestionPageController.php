@@ -12,7 +12,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionPageController extends AbstractController
 {
     /**
-     * @Route("/admin/questions", name="question_page")
+     * @Route("/admin/questions")
+     */
+    public function indexNoLocale()
+    {
+       return $this->redirectToRoute('question_page', ['_locale' => 'en']);
+    }
+
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}/admin/questions", name="question_page")
      */
     public function index(EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request)
     {
