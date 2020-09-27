@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}QB {{ 'Admin Page'|trans }}{% endblock %}
 
 {% block content %}
-    <h1>admin page</h1>
+    <h1>{{ 'admin page'|trans }}</h1>
     <hr>
     <div>
-        <a href="{{ path('quiz_page') }}">Existing quizzes</a>
+        <a href="{{ path('quiz_page') }}">{{ 'Existing quizzes'|trans }}</a>
     </div>
     <div>
-        <a href="{{ path('question_page') }}">Existing questions</a>
+        <a href="{{ path('question_page') }}">{{ 'Existing questions'|trans }}</a>
     </div>
     <div>
-        <a href="{{ path('users_table') }}">Existing users</a>
+        <a href="{{ path('users_table') }}">{{ 'Existing users'|trans }}</a>
     </div>
 {% endblock %}

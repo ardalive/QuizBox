@@ -5,15 +5,15 @@
 
         <h1 class="h3 mb-3 font-weight-normal">Check your Email</h1>
         <p>
-            An email has been sent that contains
-{#            <br>#}
-            a link that you can click to reset your password.
+            {{ 'An email has been sent that contains'|trans }}
+
+            {{ 'a link that you can click to reset your password.'|trans }}
             <br>
-            This link will expire in {{ tokenLifetime|date('g') }} hour(s).
+            {{ 'This link will expire in'|trans }} {{ tokenLifetime|date('g') }} {{ 'hour(s)'|trans }}.
             <br>
-            If you don't receive an email please
-{#            <br>#}
-            check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.
+            {{ 'If you don\'t receive an email please'|trans }}
+
+            {{ 'check your spam folder or'|trans }} <a href="{{ path('app_forgot_password_request') }}">{{ 'try again'|trans }}</a>.
         </p>
 
 {% endblock %}

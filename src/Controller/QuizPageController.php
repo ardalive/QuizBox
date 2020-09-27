@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizPageController extends AbstractController
 {
     /**
-     * @Route("/admin/quiz", name="quiz_page")
+     * @Route("/{_locale<%app.supported_locales%>}/admin/quiz", name="quiz_page")
      */
     public function index(EntityManagerInterface $entityManager,PaginatorInterface $paginator, Request $request)
     {
@@ -20,7 +20,7 @@ class QuizPageController extends AbstractController
         if($request->query->getAlnum('filter')){
             $queryBuilder->where('quiz.name LIKE :name')->setParameter('name', '%'. $request->query->getAlnum('filter') .'%');
         }
-        $query = $queryBuilder->getQuery()->getResult();
+        $query = $queryBuilder->getQuery();
 
 
         $pagination = $paginator->paginate(

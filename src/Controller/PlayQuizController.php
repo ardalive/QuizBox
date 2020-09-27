@@ -49,7 +49,7 @@ class PlayQuizController extends AbstractController
     }
 
     /**
-     * @Route("/play/{quizID}", name="play_quiz")
+     * @Route("/{_locale<%app.supported_locales%>}/play/{quizID}", name="play_quiz")
      */
     public function playQuiz(int $quizID, QuizRepository $quizRepository, QuestionsRepository $questionsRepository, UserInterface $user, QuizPlayer $quizPlayer) :Response
     {

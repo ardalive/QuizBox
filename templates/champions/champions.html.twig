@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ChampionsController!{% endblock %}
+{% block title %}QB {{ 'Champions'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/leaderboard.css') }}">
 {% endblock %}
 {% block content %}
     {% if champs|length > 0 %}
-    <h1>Quiz: {{ champs|first.quizRelation.name }}</h1>
-    <h3>Leaderboard</h3>
+    <h1>{{ 'Quiz:'|trans }} {{ champs|first.quizRelation.name }}</h1>
+    <h3>{{ 'Leaderboard'|trans }}</h3>
     <div class="leaderboard">
-        <b><div>User</div></b>
-        <b><div>Guessed</div></b>
-        <b><div>Time to solve</div></b>
+        <b><div>{{ 'User'|trans }}</div></b>
+        <b><div>{{ 'Guessed'|trans }}</div></b>
+        <b><div>{{ 'Time to solve'|trans }}</div></b>
         {% for champ in champs %}
             <div>{{ champ.userRelation.email }}</div>
             <div>{{ champ.correctAnswers }}</div>
@@ -19,6 +19,6 @@
         {% endfor %}
     </div>
     {% else %}
-    <h1>No leaders in this quiz yet</h1>
+    <h1>{{ 'No leaders in this quiz yet'|trans }}</h1>
     {% endif %}
 {% endblock %}

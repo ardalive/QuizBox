@@ -27,7 +27,7 @@
         </div>
 
         <form action="{{ nextPage }}">
-            <button class="btn btn-primary btn-block" type="submit" disabled>Next >> </button>
+            <button class="btn btn-primary btn-block" type="submit" disabled>{{ 'Next'|trans }}>> </button>
         </form>
 
         <script>
@@ -63,6 +63,6 @@
         </script>
 
     {% else %}
-        <h1>Quiz you are trying to access is closed</h1>
+        <h1>{{ 'Quiz you are trying to access is closed'|trans }}</h1>
     {% endif %}
 {% endblock %}
