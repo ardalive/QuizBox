@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create quiz{% endblock %}
+{% block title %}QB {{ 'Creating quiz'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/question.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
@@ -13,11 +13,11 @@
     <div class="form_box">
         {% form_theme form 'bootstrap_4_layout.html.twig' %}
         {{ form_start(form) }}
-        <h1 class="h3 mb-3 font-weight-normal">Create new question!</h1>
+        <h1 class="h3 mb-3 font-weight-normal">{{ 'Create new question!'|trans }}</h1>
         <hr>
-        {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'}}) }}
+        {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'|trans }}) }}
 
-        <h3>Answers</h3>
+        <h3>{{ 'Answers'|trans }}</h3>
         <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
             {% for answer in form.answers %}
                     {{ form_row(answer) }}
@@ -31,7 +31,7 @@
     </div>
 
     <div class="addQuiz">
-        <a href="{{ path('add_quiz') }}">You can create a quiz!</a>
+        <a href="{{ path('add_quiz') }}">{{ 'You can create a quiz!'|trans }}</a>
     </div>
     <script src="/js/questionAdd.js"></script>
 {% endblock %}

@@ -77,7 +77,7 @@ class PlayQuizController extends AbstractController
     }
 
     /**
-     * @Route("/play/{quizID}", name="play_quiz")
+     * @Route("/{_locale<%app.supported_locales%>}/play/{quizID}", name="play_quiz")
      */
     public function playQuiz(int $quizID, AnswersRepository $answersRepository, UserRepository $userRepository, PlayerAnswersRepository $playerAnswersRepository, QuizRepository $quizRepository, QuestionsRepository $questionsRepository, UserInterface $user) :Response
     {
@@ -147,8 +147,7 @@ class PlayQuizController extends AbstractController
                 $entityManager->persist($playerAnswers);
                 $entityManager->flush();
             }
-
-            return new RedirectResponse('/champions/'.$quizID);
+            return $this->redirectToRoute('champions', ['quizID' => $quizID]);
         }
     }
 

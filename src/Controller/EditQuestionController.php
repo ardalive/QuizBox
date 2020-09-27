@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EditQuestionController extends AbstractController
 {
     /**
-     * @Route("/admin/question/edit{id}", name="edit_question")
+     * @Route("/{_locale<%app.supported_locales%>}/admin/question/edit{id}", name="edit_question")
      */
     public function index(int $id, EntityManagerInterface $entityManager, Request $request, QuestionInterface $questionInterface)
     {

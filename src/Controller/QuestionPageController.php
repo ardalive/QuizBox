@@ -34,7 +34,7 @@ class QuestionPageController extends AbstractController
         if($request->query->getAlnum('filter')){
             $queryBuilder->where('question.QuestionBody LIKE :body')->setParameter('body', '%'. $request->query->getAlnum('filter') .'%');
         }
-        $query = $queryBuilder->getQuery()->getResult();
+        $query = $queryBuilder->getQuery();
 
 
 
