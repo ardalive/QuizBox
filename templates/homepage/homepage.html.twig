@@ -4,17 +4,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/homepage.css') }}">
 {% endblock %}
 {% block content %}
-{#            <div>{{ knp_pagination_sortable(pagination, 'Quiz name', 'b.name') }}</div>#}
-{#            <div>{{ knp_pagination_sortable(pagination, 'Date of creation', 'b.dateOfCreation') }}</div>#}
-
-{#    {{ dump(quizLeaders) }}#}
-{#    {{ dump(pagination) }}#}
-
-{#    {% for leader in quizLeaders %}#}
-{#        {% if leader|length > 0 %}#}
-{#            {{ dump(leader|first.userRelation.email) }}#}
-{#        {% endif %}#}
-{#    {% endfor %}#}
 
     <h1 class="font-weight-normal">{{ 'Let`s play Quiz!'|trans }}</h1>
     <hr>
@@ -25,9 +14,6 @@
 
                     <h5>{{ quiz.name }}</h5>
                     <p>{{ quiz.Description }}</p>
-{#                    <div class="gridin">#}
-{#                        <a href="{{ path('edit_quiz', {'id': quiz.id }) }}">Update</a>#}
-{#                    </div>#}
 
                     <div class="append">
                         <div>
@@ -55,8 +41,7 @@
 
                 <div class="start">
                     {% if quiz.isActive == 1 %}
-                        {# TODO set action path to correct route #}
-                        <form action="{{ path('play') ~ quiz.id }}">
+                        <form action="{{ path('play_quiz', {'quizID': quiz.id}) }}">
                             <button type="submit" class="btn btn-primary">{{ 'Let`s GO!'|trans }}</button>
                         </form>
                     {% else %}
@@ -75,5 +60,4 @@
         {{ knp_pagination_render(pagination) }}
     </div>
 
-{#        <a href="{{ path('add_quiz') }}"> Create a new quiz</a>#}
 {% endblock %}

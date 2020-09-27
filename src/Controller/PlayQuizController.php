@@ -147,8 +147,7 @@ class PlayQuizController extends AbstractController
                 $entityManager->persist($playerAnswers);
                 $entityManager->flush();
             }
-
-            return new RedirectResponse('/champions/'.$quizID);
+            return $this->redirectToRoute('champions', ['quizID' => $quizID]);
         }
     }
 

@@ -109,6 +109,278 @@
         <source>Table of users</source>
         <target>Таблица пользователей</target>
       </trans-unit>
+      <trans-unit id="KJr.ErB" resname="Question">
+        <source>Question</source>
+        <target>Вопросы</target>
+      </trans-unit>
+      <trans-unit id="xx4fBTc" resname="Table of existing questions">
+        <source>Table of existing questions</source>
+        <target>Таблица вопросов</target>
+      </trans-unit>
+      <trans-unit id="H2Pr_89" resname="Search by name:">
+        <source>Search by name:</source>
+        <target>Поиск по имени:</target>
+      </trans-unit>
+      <trans-unit id="Y44kn0o" resname="Filter">
+        <source>Filter</source>
+        <target>Фильтр</target>
+      </trans-unit>
+      <trans-unit id="mnIiGid" resname="Questions">
+        <source>Questions</source>
+        <target>Вопросы</target>
+      </trans-unit>
+      <trans-unit id="StCgpq5" resname="Answers">
+        <source>Answers</source>
+        <target>Ответы</target>
+      </trans-unit>
+      <trans-unit id="wcEAnT8" resname="Update">
+        <source>Update</source>
+        <target>Обновить</target>
+      </trans-unit>
+      <trans-unit id="Bg8zN89" resname="You can add a new question">
+        <source>You can add a new question</source>
+        <target>Вы можете также добавить новый вопрос</target>
+      </trans-unit>
+      <trans-unit id="A6p9wWe" resname="Quiz">
+        <source>Quiz</source>
+        <target>Викторина</target>
+      </trans-unit>
+      <trans-unit id="4tqQWjO" resname="Table of existing quizzes">
+        <source>Table of existing quizzes</source>
+        <target>Таблица викторин</target>
+      </trans-unit>
+      <trans-unit id="WnPCP6Y" resname="Filter by name:">
+        <source>Filter by name:</source>
+        <target>Фильтр по имени:</target>
+      </trans-unit>
+      <trans-unit id="jFbeuBX" resname="Quiz name">
+        <source>Quiz name</source>
+        <target>Название викторины</target>
+      </trans-unit>
+      <trans-unit id="FxJ7Wte" resname="Quiz description">
+        <source>Quiz description</source>
+        <target>Описание викторины</target>
+      </trans-unit>
+      <trans-unit id="jJ.Ng09" resname="Date of creation">
+        <source>Date of creation</source>
+        <target>Дата создания</target>
+      </trans-unit>
+      <trans-unit id="loeWEWU" resname="active">
+        <source>active</source>
+        <target>активна</target>
+      </trans-unit>
+      <trans-unit id="dfpCk0x" resname="not active">
+        <source>not active</source>
+        <target>не активна</target>
+      </trans-unit>
+      <trans-unit id="cnFM9fD" resname="Create a new quiz">
+        <source>Create a new quiz</source>
+        <target>Создать новую викторину</target>
+      </trans-unit>
+      <trans-unit id=".D5FdsN" resname="Champions">
+        <source>Champions</source>
+        <target>Лидеры</target>
+      </trans-unit>
+      <trans-unit id="hNOxlBS" resname="Quiz:">
+        <source>Quiz:</source>
+        <target>Викторина:</target>
+      </trans-unit>
+      <trans-unit id="MbRxIVh" resname="Leaderboard">
+        <source>Leaderboard</source>
+        <target>Таблица лидеров</target>
+      </trans-unit>
+      <trans-unit id="tRLZfny" resname="User">
+        <source>User</source>
+        <target>Пользователь</target>
+      </trans-unit>
+      <trans-unit id="LHYa_NN" resname="Guessed">
+        <source>Guessed</source>
+        <target>Угадано</target>
+      </trans-unit>
+      <trans-unit id="e.oxP1z" resname="Time to solve">
+        <source>Time to solve</source>
+        <target>Время решения</target>
+      </trans-unit>
+      <trans-unit id="Z1W6cv1" resname="No leaders in this quiz yet">
+        <source>No leaders in this quiz yet</source>
+        <target>В этой викторине пока нет лидеров</target>
+      </trans-unit>
+      <trans-unit id="Y.VAsuz" resname="Creating quiz">
+        <source>Creating quiz</source>
+        <target>Создание викторины</target>
+      </trans-unit>
+      <trans-unit id="HbsJjav" resname="Edit question!">
+        <source>Edit question!</source>
+        <target>Редактировать вопрос!</target>
+      </trans-unit>
+      <trans-unit id="BcQbjNX" resname="Input some question">
+        <source>Input some question</source>
+        <target>Введите какой-нибудь вопрос</target>
+      </trans-unit>
+      <trans-unit id="RbaK4eV" resname="You can create a quiz!">
+        <source>You can create a quiz!</source>
+        <target>Вы можете создать викторину!</target>
+      </trans-unit>
+      <trans-unit id="nibTd3r" resname="Edit Question">
+        <source>Edit Question</source>
+        <target>Редактирование вопроса</target>
+      </trans-unit>
+      <trans-unit id="DgQqIqC" resname="You can delete this question">
+        <source>You can delete this question</source>
+        <target>Вы можете удалить этот вопрос</target>
+      </trans-unit>
+      <trans-unit id="bNWvM4h" resname="Are you shure to delete this question?">
+        <source>Are you shure to delete this question?</source>
+        <target>Вы действительно хотите удалить вопрос?</target>
+      </trans-unit>
+      <trans-unit id="haOas0X" resname="Yes">
+        <source>Yes</source>
+        <target>Да</target>
+      </trans-unit>
+      <trans-unit id="HqRCoTS" resname="No">
+        <source>No</source>
+        <target>Нет</target>
+      </trans-unit>
+      <trans-unit id="AIuQh0B" resname="Create new question!">
+        <source>Create new question!</source>
+        <target>Создать новый вопрос!</target>
+      </trans-unit>
+      <trans-unit id="kAMqXKL" resname="Create quiz">
+        <source>Create quiz</source>
+        <target>Создание викторины</target>
+      </trans-unit>
+      <trans-unit id="K0yv6te" resname="Create new quiz!">
+        <source>Create new quiz!</source>
+        <target>Создайте новую викторину!</target>
+      </trans-unit>
+      <trans-unit id="2Wri6dY" resname="Input quiz name">
+        <source>Input quiz name</source>
+        <target>Введите название викторины</target>
+      </trans-unit>
+      <trans-unit id="gTBmYPi" resname="Input short quiz description">
+        <source>Input short quiz description</source>
+        <target>Введите краткое описание викторины</target>
+      </trans-unit>
+      <trans-unit id="zAOPm3n" resname="Is quiz active for users?">
+        <source>Is quiz active for users?</source>
+        <target>Викторина будет активна для пользователей ?</target>
+      </trans-unit>
+      <trans-unit id="2PaSWEt" resname="Choose and add some questions:">
+        <source>Choose and add some questions:</source>
+        <target>Выберите и добавьте вопросы:</target>
+      </trans-unit>
+      <trans-unit id="Dm0GYyY" resname="You can create a new question">
+        <source>You can create a new question</source>
+        <target>Вы можете создать новый вопрос</target>
+      </trans-unit>
+      <trans-unit id="aWZgqZ5" resname="Edit Quiz">
+        <source>Edit Quiz</source>
+        <target>Редактирование викторины</target>
+      </trans-unit>
+      <trans-unit id="xb3dg99" resname="You can delete this quiz">
+        <source>You can delete this quiz</source>
+        <target>Вы можете удалить викторину</target>
+      </trans-unit>
+      <trans-unit id="Oo49KYh" resname="Are you shure to delete this quiz?">
+        <source>Are you shure to delete this quiz?</source>
+        <target>Вы действительно хотите удалить викторину?</target>
+      </trans-unit>
+      <trans-unit id="MtCGaHR" resname="Admin Page">
+        <source>Admin Page</source>
+        <target>Страница Администратора</target>
+      </trans-unit>
+      <trans-unit id="u7GH9uW" resname="admin page">
+        <source>admin page</source>
+        <target>Страница администратора</target>
+      </trans-unit>
+      <trans-unit id="7ZsRrnQ" resname="Existing quizzes">
+        <source>Existing quizzes</source>
+        <target>Существующие викторины</target>
+      </trans-unit>
+      <trans-unit id="28o_muU" resname="Existing questions">
+        <source>Existing questions</source>
+        <target>Существующие вопросы</target>
+      </trans-unit>
+      <trans-unit id="6qTKq16" resname="Existing users">
+        <source>Existing users</source>
+        <target>Существующие пользователи</target>
+      </trans-unit>
+      <trans-unit id="paIYYYS" resname="out of">
+        <source>out of</source>
+        <target>из</target>
+      </trans-unit>
+      <trans-unit id="H.V6Kdf" resname="Next">
+        <source>Next</source>
+        <target>Следующий</target>
+      </trans-unit>
+      <trans-unit id="hArSJ9Q" resname="Quiz you are trying to access is closed">
+        <source>Quiz you are trying to access is closed</source>
+        <target>Викторина, к которой вы пытаетесь получить доступ, закрыта</target>
+      </trans-unit>
+      <trans-unit id="vSTb9IR" resname="Hi! Please confirm your email!">
+        <source>Hi! Please confirm your email!</source>
+        <target>Здравствуйте! Пожалуйста подтвердите свою электронную почту!</target>
+      </trans-unit>
+      <trans-unit id="Ry3Xo6w" resname="Please confirm your email address by clicking the following link:">
+        <source>Please confirm your email address by clicking the following link:</source>
+        <target>Подтвердите свой адрес электронной почты, щелкнув следующую ссылку:</target>
+      </trans-unit>
+      <trans-unit id="ITaQX9q" resname="Confirm my Email">
+        <source>Confirm my Email</source>
+        <target>Подтвердите мою электронную почту</target>
+      </trans-unit>
+      <trans-unit id="87wG9uu" resname="This link will expire in">
+        <source>This link will expire in</source>
+        <target>Эта ссылка истечет через</target>
+      </trans-unit>
+      <trans-unit id="E0Jk36v" resname="hour(s)">
+        <source>hour(s)</source>
+        <target>час(ов)</target>
+      </trans-unit>
+      <trans-unit id="F7WctIl" resname="Cheers!">
+        <source>Cheers!</source>
+        <target>Ура!</target>
+      </trans-unit>
+      <trans-unit id=".7490gp" resname="sign Up">
+        <source>sign Up</source>
+        <target>Зарегистрироватсья</target>
+      </trans-unit>
+      <trans-unit id="ivGJDiu" resname="Join us!">
+        <source>Join us!</source>
+        <target>Присоединяйся!</target>
+      </trans-unit>
+      <trans-unit id="47ienTP" resname="Username">
+        <source>Username</source>
+        <target>Имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="ei_FGkB" resname="popover">
+        <source>popover</source>
+        <target>popover</target>
+      </trans-unit>
+      <trans-unit id="P35mpjN" resname="4-15 letters and numbers. Special symbols are not allowed.">
+        <source>4-15 letters and numbers. Special symbols are not allowed.</source>
+        <target>4-15 букв или цифр. Специальные символы не поддерживаются.</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Пароль</target>
+      </trans-unit>
+      <trans-unit id="4pSwQOd" resname="6-25 letters and numbers. Passwords must match.">
+        <source>6-25 letters and numbers. Passwords must match.</source>
+        <target>6-25 символов. Пароли должны совпадать.</target>
+      </trans-unit>
+      <trans-unit id="WsJl85a" resname="Confirm password">
+        <source>Confirm password</source>
+        <target>Повторите пароль</target>
+      </trans-unit>
+      <trans-unit id="csRsCE1" resname="Alredy have an account?">
+        <source>Alredy have an account?</source>
+        <target>Уже зарегистрированы?</target>
+      </trans-unit>
+      <trans-unit id="v9QCsvb" resname="Sign in">
+        <source>Sign in</source>
+        <target>Войти</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

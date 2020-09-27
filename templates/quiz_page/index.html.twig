@@ -1,27 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}QB Quiz{% endblock %}
+{% block title %}QB {{ 'Quiz'|trans }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/quizTable.css">
 {% endblock %}
 {% block content %}
-    <h1>Table of existing quizzes</h1>
+    <h1>{{ 'Table of existing quizzes'|trans }}</h1>
 
     <div class="container">
         <div class="containerFilterBtn">
             <form action="" method="get">
-                <label for="filter">Filter by name: </label>
+                <label for="filter">{{ 'Filter by name:'|trans }} </label>
                 <input name="filter" type="text">
-                <button type="submit" class="btn btn-lg btn-primary filterBtn">Filter</button>
+                <button type="submit" class="btn btn-lg btn-primary filterBtn">{{ 'Filter'|trans }}</button>
             </form>
         </div>
         <hr>
         <table class="quizzesTable">
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Quiz name', 'quiz.name') }}</th>
-                <th>Quiz description</th>
-                <th>Status</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Date of creation', 'quiz.dateOfCreation') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Quiz name'|trans, 'quiz.name') }}</th>
+                <th>{{ 'Quiz description'|trans }}</th>
+                <th>{{ 'Status'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Date of creation'|trans, 'quiz.dateOfCreation') }}</th>
                 <th></th>
             </tr>
                 {% for oneQuiz in pagination %}
@@ -29,13 +29,13 @@
                         <td class="ceilForName">{{ oneQuiz.name }}</td>
                         <td class="ceilForDescription">{{ oneQuiz.Description }}</td>
                         {% if oneQuiz.isActive == true %}
-                            <td><a>active</a></td>
+                            <td><a>{{ 'active'|trans }}</a></td>
                         {% else %}
-                            <td><a>not active</a></td>
+                            <td><a>{{ 'not active'|trans }}</a></td>
                         {% endif %}
                         <td>{{ oneQuiz.dateOfCreation|date("m.d.Y") }}</td>
                         <td class="gridin">
-                            <a href="{{ path('edit_quiz', {'id': oneQuiz.id }) }}">Update</a>
+                            <a href="{{ path('edit_quiz', {'id': oneQuiz.id }) }}">{{ 'Update'|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -46,7 +46,7 @@
         {{ knp_pagination_render(pagination) }}
     </div>
     <div>
-        <a href="{{ path('add_quiz') }}"> Create a new quiz</a>
+        <a href="{{ path('add_quiz') }}">{{ 'Create a new quiz'|trans }}</a>
     </div>
     <script src="/js/shortenString.js"></script>
 {% endblock %}
