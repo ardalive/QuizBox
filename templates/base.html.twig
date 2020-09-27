@@ -29,13 +29,13 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-item nav-link" href="{{ path('homepage') }}">Home <span class="sr-only">(current)</span></a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-item nav-link" href="{{ path('homepage') }}">{{ 'Home'|trans }} <span class="sr-only">(current)</span></a>
+                                </li>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Administration
+                                            {{ 'Administration'|trans }}
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <a class="dropdown-item" href="{{ path('users_table') }}">Users</a>
@@ -44,6 +44,7 @@
                                         </div>
                                     </li>
                                 {% endif %}
+
                         </ul>
                         <span class="navbar-text">
                             <ul class="navbar-nav mr-auto">
@@ -51,15 +52,33 @@
                                     <li class="nav-item">
                                         <a class="nav-item nav-link">{{ app.user.username }}</a>
                                     </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="dropdown-language" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{ app.request.locale|locale_name(app.request.locale)|u.title }}
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
+                                            <a class="dropdown-item" href="{{ path('homepage', {_locale: 'en'}) }}">English</a>
+                                            <a class="dropdown-item" href="{{ path('homepage', {_locale: 'ru'}) }}">Русский</a>
+                                        </div>
+                                    </li>
                                     <li class="nav-item">
-                                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">Logout</a>
+                                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
                                     </li>
                                 {% else %}
                                     <li class="nav-item">
-                                        <a class="nav-item nav-link " href="{{ path('app_login') }}">Login</a>
+                                        <a class="nav-item nav-link " href="{{ path('app_login') }}">{{ 'Login'|trans }}</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="dropdown-language" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{ app.request.locale|locale_name(app.request.locale)|u.title }}
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
+                                            <a class="dropdown-item" href="{{ path('homepage', {_locale: 'en'}) }}">English</a>
+                                            <a class="dropdown-item" href="{{ path('homepage', {_locale: 'ru'}) }}">Русский</a>
+                                        </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-item nav-link " href="{{ path('app_register') }}">Register</a>
+                                        <a class="nav-item nav-link " href="{{ path('app_register') }}">{{ 'Register'|trans }}</a>
                                     </li>
                                 {% endif %}
                             </ul>
@@ -74,7 +93,7 @@
             <footer class="footer">
                 <div class="container">
                     <span class="text-muted">
-                        Training project <a class="" href="https://github.com/ardalive/QuizBox">QuizBox</a>
+                        {{ 'Training project'|trans }} <a class="" href="https://github.com/ardalive/QuizBox">QuizBox</a>
                     </span>
                 </div>
             </footer>
