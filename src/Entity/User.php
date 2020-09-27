@@ -126,9 +126,17 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getIdForUserInterface(): int
+    public function getUserId(): int
     {
         return (int) $this->id;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getUser(): User
+    {
+        return $this;
     }
 
     public function setPassword(string $password): self

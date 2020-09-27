@@ -1,21 +1,19 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}QB {{ questions|first.quizID|first.name }}{% endblock %}
+{% set quiz = question.quizID|first %}
+{% block title %}QB {{ quiz.name }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/play_quiz.css') }}">
 {% endblock %}
 {% block content %}
-    {% if questions|first.quizID|first.isActive %}
 
-        {% set question = questions[questionNumber-1] %}
-        {% set quiz = question.quizID|first %}
+    {% if quiz.isActive %}
         {% set nextPage = "#{path('play')}#{quiz.id}" %}
 
         <div class="alert alert-light" role="alert">
             <h3>{{ quiz.name }}</h3>
             {{ quiz.description }} <br>
             <p class="question">
-                Question {{ questionNumber }} out of {{ questions|length }}:
+                Question {{ page }} out of {{ amountOfQuestions }}:
             </p>
             <p class="response"></p>
             <hr>
@@ -46,7 +44,6 @@
                         ans_id: button.name,
                         quest_id: {{ question.id }},
                         quiz_id: {{ quiz.id }},
-                        user_id: {{ app.user.id }}
                     },
                     success: function(response){
                         button.classList.remove('btn-outline-primary');
