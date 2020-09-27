@@ -20,7 +20,7 @@ class QuizPageController extends AbstractController
         if($request->query->getAlnum('filter')){
             $queryBuilder->where('quiz.name LIKE :name')->setParameter('name', '%'. $request->query->getAlnum('filter') .'%');
         }
-        $query = $queryBuilder->getQuery()->getResult();
+        $query = $queryBuilder->getQuery();
 
 
         $pagination = $paginator->paginate(

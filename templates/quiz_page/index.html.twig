@@ -24,18 +24,18 @@
                 <th>{{ knp_pagination_sortable(pagination, 'Date of creation'|trans, 'quiz.dateOfCreation') }}</th>
                 <th></th>
             </tr>
-                {% for oneQuiz in pagination %}
+                {% for quiz in pagination %}
                     <tr>
-                        <td class="ceilForName">{{ oneQuiz.name }}</td>
-                        <td class="ceilForDescription">{{ oneQuiz.Description }}</td>
-                        {% if oneQuiz.isActive == true %}
+                        <td class="ceilForName">{{ quiz.name }}</td>
+                        <td class="ceilForDescription">{{ quiz.Description }}</td>
+                        {% if quiz.isActive == true %}
                             <td><a>{{ 'active'|trans }}</a></td>
                         {% else %}
                             <td><a>{{ 'not active'|trans }}</a></td>
                         {% endif %}
-                        <td>{{ oneQuiz.dateOfCreation|date("m.d.Y") }}</td>
+                        <td>{{ quiz.dateOfCreation|date("m.d.Y") }}</td>
                         <td class="gridin">
-                            <a href="{{ path('edit_quiz', {'id': oneQuiz.id }) }}">{{ 'Update'|trans }}</a>
+                            <a href="{{ path('edit_quiz', {'id': quiz.id }) }}">{{ 'Update'|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}
