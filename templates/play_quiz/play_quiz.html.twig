@@ -13,7 +13,7 @@
             <h3>{{ quiz.name }}</h3>
             {{ quiz.description }} <br>
             <p class="question">
-                Question {{ page }} out of {{ amountOfQuestions }}:
+                {{ 'Question'|trans }} {{ page }} {{ 'out of'|trans }} {{ amountOfQuestions }}:
             </p>
             <p class="response"></p>
             <hr>
