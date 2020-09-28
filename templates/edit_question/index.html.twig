@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}QB {{ 'Edit question'|trans }}{% endblock %}
+{% block title %}QB {{ 'Edit Question'|trans }}{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/question.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
@@ -17,9 +18,10 @@
         <div class="form_box">
             {% form_theme form 'bootstrap_4_layout.html.twig' %}
             {{ form_start(form) }}
-            <h1 class="h3 mb-3 font-weight-normal">{{ 'Edit this question'|trans }}</h1>
+
+            <h1 class="h3 mb-3 font-weight-normal">{{ 'Edit question!'|trans }}</h1>
             <hr>
-            {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'|trans }}) }}
+            {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'|trans}}) }}
 
             <h3>{{ 'Answers'|trans }}</h3>
             <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">

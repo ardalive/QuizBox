@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Questions;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Service\TableOfUsers;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,20 +19,17 @@ class UsersTableController extends AbstractController
     /**
      * @Route("/{_locale<%app.supported_locales%>}/admin/users", name="users_table")
      */
-    public function usersTable(UserRepository $userRepository, EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request) :Response
+    public function usersTable(TableOfUsers $usersTable, UserRepository $userRepository, Request $request) :Response
     {
         $error = $request->query->get('error', '');
-        if(count($request->request->all())>0){
-            if($request->request->get('id')>0){
-                $users = $userRepository->findByFilters($request->request->all());
-            }
-            else{
-                $users = $userRepository->findBySoftFilters($request->request->all());
-            }
-        }
-        else $users = $userRepository->findAll();
+        return $this->render('users_table/users_table.html.twig', [
+            'users' => $usersTable->switchTableFilters($request->request->all(), $userRepository),
+            'error' => $error,
+        ]);
 
 
+        //args
+        //EntityManagerInterface $entityManager, PaginatorInterface $paginator,
 //        $queryBuilder = $entityManager->getRepository(User::class)
 //            ->createQueryBuilder('user')
 //            ;
@@ -49,28 +47,21 @@ class UsersTableController extends AbstractController
 //            $request->query->getInt('page', 1),
 //            10
 //        );
-
-
-        return $this->render('users_table/users_table.html.twig', [
-            'users' => $users,
-            'error' => $error,
 //        return $this->render('users_table/users_table.html.twig', [
 //            'pagination' => $pagination,
-        ]);
+
     }
 
     /**
      * @Route ("/promote", name="promote")
      */
-    public function promoteById(UserRepository $userRepository, Request $request) :Response
+    public function promoteById(UserRepository $userRepository, Request $request, TableOfUsers $usersTable) :Response
     {
         $error = '';
         $user=$userRepository->findOneBy($request->request->all());
         if(isset($user)){
             $user->setRoles(['ROLE_ADMIN']);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $usersTable->updateUser($user);
         }
         else{
             $error = 'No user with id = '.$request->request->get('id').' found';
@@ -81,16 +72,15 @@ class UsersTableController extends AbstractController
     /**
      * @Route ("/status", name="status")
      */
-    public function switchStatus(UserRepository $userRepository, Request $request) :Response
+    public function switchStatus(UserRepository $userRepository, Request $request, TableOfUsers $usersTable) :Response
     {
         $response = [];
         $requestUserId = $request->request->get('user_id');
         $user=$userRepository->findOneBy(['id'=>$requestUserId]);
         if(isset($user)){
             $user->setIsActive(!$user->isActive());
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $usersTable->updateUser($user);
+
             $response['user_id'] = $requestUserId;
             $response['status'] = $user->isActive();
         }

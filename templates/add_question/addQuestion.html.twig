@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}{{ 'Create question'|trans }}{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/question.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
@@ -15,7 +17,7 @@
         {{ form_start(form) }}
         <h1 class="h3 mb-3 font-weight-normal">{{ 'Create new question!'|trans }}</h1>
         <hr>
-        {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'}}) }}
+        {{ form_row(form.QuestionBody, {'attr': {'placeholder': 'Input some question'|trans }}) }}
 
         <h3>{{ 'Answers'|trans }}</h3>
         <ul class="answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">

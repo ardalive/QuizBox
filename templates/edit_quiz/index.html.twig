@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}QB {{ 'Edit quiz'|trans }}{% endblock %}
+=======
+{% block title %}QB {{ 'Edit Quiz'|trans }}{% endblock %}
+>>>>>>> 2e4e20f66144e16959d3694380ca864f25c9455a
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/quiz.css">
     <link rel="stylesheet" type="text/css" href="/css/editQuiz.css">
@@ -11,12 +15,21 @@
     <div id="content" class="content">
         <div class="form_box">
             {% form_theme form 'bootstrap_4_layout.html.twig' %}
+<<<<<<< HEAD
             <h1 class="h3 mb-3 font-weight-normal">{{ 'Edit quiz'|trans }}</h1>
             <hr>
 
             {{ form_start(form) }}
             {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'|trans }}) }}
             {{ form_row(form.Description, {'attr': {'placeholder': 'Input quiz description'|trans }}) }}
+=======
+            <h1 class="h3 mb-3 font-weight-normal">{{ 'Edit Quiz'|trans }}</h1>
+            <hr>
+
+            {{ form_start(form) }}
+            {{ form_row(form.name, {'attr': {'placeholder': 'Input quiz name'|trans}}) }}
+            {{ form_row(form.Description, {'attr': {'placeholder': 'Input short quiz description'|trans}}) }}
+>>>>>>> 2e4e20f66144e16959d3694380ca864f25c9455a
 
 
             <a>{{ 'Is quiz active for users?'|trans }}</a>
@@ -24,7 +37,11 @@
 
             <hr>
 
+<<<<<<< HEAD
             {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label': 'Choose and add some questions: '|trans}) }}
+=======
+            {{ form_row(form.questionID, {'attr': {'class' : 'js-example-basic-multiple'}, 'label': 'Choose and add some questions:'|trans}) }}
+>>>>>>> 2e4e20f66144e16959d3694380ca864f25c9455a
             <div class="createQuestion">
                 <a href="{{path('add_question')}}">{{ 'You can create a new question'|trans }}</a>
             </div>

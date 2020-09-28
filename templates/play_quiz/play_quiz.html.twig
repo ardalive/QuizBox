@@ -1,21 +1,23 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}QB {{ questions|first.quizID|first.name }}{% endblock %}
+{% set quiz = question.quizID|first %}
+{% block title %}QB {{ quiz.name }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/play_quiz.css') }}">
 {% endblock %}
 {% block content %}
-    {% if questions|first.quizID|first.isActive %}
 
-        {% set question = questions[questionNumber-1] %}
-        {% set quiz = question.quizID|first %}
+    {% if quiz.isActive %}
         {% set nextPage = "#{path('play')}#{quiz.id}" %}
 
         <div class="alert alert-light" role="alert">
             <h3>{{ quiz.name }}</h3>
             {{ quiz.description }} <br>
             <p class="question">
+<<<<<<< HEAD
                 {{ 'Question'|trans }} {{ questionNumber }} {{ 'out of'|trans }} {{ questions|length }}:
+=======
+                {{ 'Question'|trans }} {{ page }} {{ 'out of'|trans }} {{ amountOfQuestions }}:
+>>>>>>> 2e4e20f66144e16959d3694380ca864f25c9455a
             </p>
             <p class="response"></p>
             <hr>
@@ -29,7 +31,7 @@
         </div>
 
         <form action="{{ nextPage }}">
-            <button class="btn btn-primary btn-block" type="submit" disabled>{{ 'Next'|trans }} >> </button>
+            <button class="btn btn-primary btn-block" type="submit" disabled>{{ 'Next'|trans }}>> </button>
         </form>
 
         <script>
@@ -46,7 +48,6 @@
                         ans_id: button.name,
                         quest_id: {{ question.id }},
                         quiz_id: {{ quiz.id }},
-                        user_id: {{ app.user.id }}
                     },
                     success: function(response){
                         button.classList.remove('btn-outline-primary');

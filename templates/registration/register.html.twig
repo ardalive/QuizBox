@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
+<<<<<<< HEAD
 {% block title %}QB {{ 'signUp'|trans }}{% endblock %}
+=======
+{% block title %}QB {{ 'sign Up'|trans }}{% endblock %}
+>>>>>>> 2e4e20f66144e16959d3694380ca864f25c9455a
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
 {% endblock %}
@@ -26,6 +30,7 @@
             'placeholder': 'Password'|trans ,
             'data-toggle': 'popover'|trans ,
             'data-content': '6-25 letters and numbers. Passwords must match.'|trans,
+
         }}) }}
     {{ form_row(registrationForm.password.second, {'attr':
         {
@@ -33,7 +38,9 @@
         }}) }}
     {{ form_row(registrationForm.submit) }}
     <hr>
+
     <h1 class="h6 mb-3 font-weight-normal">{{ 'Alredy have an account'|trans }}?</h1>
+
     <a href="{{ path('app_login') }}" class="button">{{ 'Sign in'|trans }}</a>
     {{ form_end(registrationForm) }}
     <script src="{{ asset('js/register.js') }}" language='javascript' type='text/javascript'></script>
