@@ -29,6 +29,8 @@ class QuizPageController extends AbstractController
             5
         );
 
+
+
         return $this->render('quiz_page/index.html.twig', [
             'pagination' => $pagination,
         ]);

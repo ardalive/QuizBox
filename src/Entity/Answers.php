@@ -21,7 +21,7 @@ class Answers
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
-     * @Assert\Length(max=100, min=2)
+     * @Assert\Length(max=100, min=1)
      */
     private $AnswerBody;
 

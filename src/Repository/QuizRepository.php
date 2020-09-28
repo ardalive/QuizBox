@@ -19,7 +19,9 @@ class QuizRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Quiz::class);
     }
-
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
 
 //    /**
 //     * @return Quiz[] Returns Quiz

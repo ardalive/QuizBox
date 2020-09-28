@@ -125,4 +125,5 @@ class PlayerAnswers
 
         return $this;
     }
+
 }
