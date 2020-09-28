@@ -35,5 +35,10 @@
     <div class="addQuiz">
         <a href="{{ path('add_quiz') }}">{{ 'You can create a quiz!'|trans }}</a>
     </div>
+    <script>
+        let $collectionHolder;
+        let $addAnswerLink = $('<a href="#" class="add_answer_link">{{ 'Add answer'|trans }}</a>');
+        let $newLinkLi = $('<li></li>').append($addAnswerLink);
+    </script>
     <script src="/js/questionAdd.js"></script>
 {% endblock %}

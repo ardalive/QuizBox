@@ -55,7 +55,7 @@
       </trans-unit>
       <trans-unit id="kjQGlYm" resname="Active">
         <source>Active</source>
-        <target>Активна</target>
+        <target>Активен</target>
       </trans-unit>
       <trans-unit id="wh6tBhT" resname="Closed">
         <source>Closed</source>
@@ -72,10 +72,6 @@
       <trans-unit id="2KfQbi_" resname="Promote to Admin">
         <source>Promote to Admin</source>
         <target>Дать админку</target>
-      </trans-unit>
-      <trans-unit id="lpzL089" resname="Email">
-        <source>Email</source>
-        <target>Электронная почта</target>
       </trans-unit>
       <trans-unit id="3NHVIj9" resname="Name">
         <source>Name</source>
@@ -454,28 +450,60 @@
         <target>Вы вошли как</target>
       </trans-unit>
       <trans-unit id="Mx_Cb_I1" resname="Save">
-              <source>Save</source>
-              <target>Сохранить</target>
+        <source>Save</source>
+        <target>Сохранить</target>
       </trans-unit>
       <trans-unit id="Mx_Cb_I12" resname="Delete">
-              <source>Delete</source>
-              <target>Удалить</target>
+        <source>Delete</source>
+        <target>Удалить</target>
       </trans-unit>
       <trans-unit id="Mx_Cb_I123" resname="right">
-              <source>right</source>
-              <target>верно</target>
+         <source>right</source>
+         <target>верно</target>
       </trans-unit>
       <trans-unit id="Mx_Cb_I1234" resname="input answer ...">
-              <source>input answer ...</source>
-              <target>введите ответ ...</target>
+          <source>input answer ...</source>
+          <target>введите ответ ...</target>
       </trans-unit>
       <trans-unit id="Mx_Cb_I12345" resname="yes">
-              <source>yes</source>
-              <target>да</target>
+          <source>yes</source>
+          <target>да</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I123456yyy" resname="no">
+         <source>no</source>
+         <target>нет</target>
       </trans-unit>
       <trans-unit id="Mx_Cb_I123456" resname="no">
-              <source>no</source>
-              <target>нет</target>
+         <source>no</source>
+         <target>нет</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I1234567" resname="Alredy have an account">
+               <source>Alredy have an account</source>
+               <target>У вас уже есть аккаунт</target>
+            </trans-unit>
+      <trans-unit id="Mx_Cb_I1234568" resname="Join us">
+               <source>Join us</source>
+               <target>Зарегистрируйтесь</target>
+            </trans-unit>
+      <trans-unit id="Mx_Cb_I1234569" resname="Add answer">
+               <source>Add answer</source>
+               <target>Добавить ответ</target>
+            </trans-unit>
+      <trans-unit id="Mx_Cb_I12345634" resname="Table of existind quizzes">
+               <source>Table of existind quizzes</source>
+               <target>Таблица созданных викторин</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I12345634fdsf" resname="Filter by name">
+               <source>Filter by name</source>
+               <target>Фильтр по имени</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I1234563478714222" resname="Edit quiz">
+                     <source>Edit quiz</source>
+                     <target>Редактирование викторины</target>
+      </trans-unit>
+      <trans-unit id="Mx_Cb_I12345634fdsfdfgfgt" resname="Choose and add some questions:">
+                     <source>Choose and add some questions:</source>
+                     <target>Выберите и добавьте вопросы:</target>
       </trans-unit>
     </body>
   </file>

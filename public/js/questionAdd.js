@@ -1,6 +1,6 @@
-let $collectionHolder;
-let $addAnswerLink = $('<a href="#" class="add_answer_link">Add a answer</a>');
-let $newLinkLi = $('<li></li>').append($addAnswerLink);
+// let $collectionHolder;
+// let $addAnswerLink = $('<a href="#" class="add_answer_link">Add a answer</a>');
+// let $newLinkLi = $('<li></li>').append($addAnswerLink);
 
 jQuery(document).ready(function() {
 

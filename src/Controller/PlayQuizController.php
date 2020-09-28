@@ -83,7 +83,7 @@ class PlayQuizController extends AbstractController
 
 
     /**
-     * @Route("/play/", name="play")
+     * @Route("/{_locale<%app.supported_locales%>}/play/", name="play")
      */
     public function index() :Response
     {
