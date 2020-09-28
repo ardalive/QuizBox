@@ -8,16 +8,19 @@
 
         {{ form_start(resetForm) }}
         <h1 class="h3 mb-3 font-weight-normal">{{ 'Set a new password'|trans }}</h1>
-            {{ form_row(resetForm.password.first, {'attr':
-                {
-                    'placeholder': 'Passwod'|trans},
-                    'data-toggle': 'popover'|trans ,
-                    'data-content': '6-25 letters and numbers. Passwords must match.'|trans,
-                }}) }}
+            {{ form_row ( resetForm.password.first,
+                {'attr':
+                    {
+                        'placeholder': 'Passwod'|trans,
+                        'data-toggle': 'popover',
+                        'data-content': '6-25 letters and numbers. Passwords must match.'|trans,
+                    }
+                }
+            )
+            }}
             {{ form_row(resetForm.password.second, {'attr':
                 {
                     'placeholder': 'Confirm password'|trans ,
-
                 }}) }}
             {{ form_row(resetForm.submit) }}
         {{ form_end(resetForm) }}

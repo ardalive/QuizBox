@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace App\Controller;
 
-use App\Repository\AnswersRepository;
 use App\Repository\PlayerAnswersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
