@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class PlayQuizController extends AbstractController
 {
     /**
-     * @Route("/check", name="check", methods={"POST"})
+     * @Route("/{_locale<%app.supported_locales%>}/play/check", name="check", methods={"POST"})
      */
 
     public function check(Request $request, QuestionsRepository $questionsRepository, PlayerAnswersRepository $playerAnswersRepository, UserInterface $user, AnswerUpdater $updater) :Response
@@ -52,7 +52,7 @@ class PlayQuizController extends AbstractController
 
 
     /**
-     * @Route("/{_locale<%app.supported_locales%>}/play/{quizID}", name="play_quiz")
+     * @Route("/{_locale<%app.supported_locales%>}/play/{quizID}", name="play_quiz", requirements={"quizID"="\d+"})
      */
     public function playQuiz(int $quizID, QuizRepository $quizRepository, QuestionsRepository $questionsRepository, UserInterface $user, QuizPlayer $quizPlayer) :Response
     {

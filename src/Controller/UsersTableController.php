@@ -53,7 +53,7 @@ class UsersTableController extends AbstractController
     }
 
     /**
-     * @Route ("/promote", name="promote")
+     * @Route ("/{_locale<%app.supported_locales%>}/admin/users/promote", name="promote")
      */
     public function promoteById(UserRepository $userRepository, Request $request, TableOfUsers $usersTable) :Response
     {
@@ -70,7 +70,7 @@ class UsersTableController extends AbstractController
     }
 
     /**
-     * @Route ("/status", name="status")
+     * @Route ("/{_locale<%app.supported_locales%>}/admin/users/status", name="status")
      */
     public function switchStatus(UserRepository $userRepository, Request $request, TableOfUsers $usersTable) :Response
     {
