@@ -2,10 +2,9 @@
 declare(strict_types=1);
 namespace App\Controller;
 
-use App\Entity\Questions;
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Service\TableOfUsers;
+use App\Service\TableOfUsersManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,49 +18,37 @@ class UsersTableController extends AbstractController
     /**
      * @Route("/{_locale<%app.supported_locales%>}/admin/users", name="users_table")
      */
-    public function usersTable(TableOfUsers $usersTable, UserRepository $userRepository, Request $request) :Response
+    public function usersTable(TableOfUsersManager $usersTable, Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginator) :Response
     {
-        $error = $request->query->get('error', '');
+        $queryBuilder = $entityManager->getRepository(User::class)
+            ->createQueryBuilder('user')
+            ;
+        $usersTable->initializeParams($request->query->all());
+        $queryBuilder = $usersTable->queryEmail($queryBuilder);
+        $queryBuilder = $usersTable->queryName($queryBuilder);
+        $queryBuilder = $usersTable->queryID($queryBuilder);
+        $query = $queryBuilder->getQuery()->getResult();
+
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            20
+        );
         return $this->render('users_table/users_table.html.twig', [
-            'users' => $usersTable->switchTableFilters($request->request->all(), $userRepository),
-            'error' => $error,
+            'pagination' => $pagination,
+            'test'=> $request->query->all()
         ]);
-
-
-        //args
-        //EntityManagerInterface $entityManager, PaginatorInterface $paginator,
-//        $queryBuilder = $entityManager->getRepository(User::class)
-//            ->createQueryBuilder('user')
-//            ;
-//        if($request->query->getAlnum('filter')){
-//            $queryBuilder
-//                ->where('question.QuestionBody LIKE :body')
-//                ->setParameter('body', '%'. $request->query->getAlnum('filter') .'%');
-//        }
-//        $query = $queryBuilder->getQuery()->getResult();
-//
-//
-//
-//        $pagination = $paginator->paginate(
-//            $query,
-//            $request->query->getInt('page', 1),
-//            10
-//        );
-//        return $this->render('users_table/users_table.html.twig', [
-//            'pagination' => $pagination,
-
     }
 
     /**
      * @Route ("/{_locale<%app.supported_locales%>}/admin/users/promote", name="promote")
      */
-    public function promoteById(UserRepository $userRepository, Request $request, TableOfUsers $usersTable) :Response
+    public function promoteById(UserRepository $userRepository, Request $request, TableOfUsersManager $usersTable) :Response
     {
         $error = '';
-        $user=$userRepository->findOneBy($request->request->all());
+        $user = $userRepository->findOneBy($request->request->all());
         if(isset($user)){
-            $user->setRoles(['ROLE_ADMIN']);
-            $usersTable->updateUser($user);
+            $usersTable->promoteUser($user);
         }
         else{
             $error = 'No user with id = '.$request->request->get('id').' found';
@@ -70,17 +57,15 @@ class UsersTableController extends AbstractController
     }
 
     /**
-     * @Route ("/{_locale<%app.supported_locales%>}/admin/users/status", name="status")
+     * @Route ("/{_locale<%app.supported_locales%>}/admin/users/status", name="status", methods={"POST"})
      */
-    public function switchStatus(UserRepository $userRepository, Request $request, TableOfUsers $usersTable) :Response
+    public function switchStatus(UserRepository $userRepository, Request $request, TableOfUsersManager $usersTable) :Response
     {
         $response = [];
         $requestUserId = $request->request->get('user_id');
-        $user=$userRepository->findOneBy(['id'=>$requestUserId]);
+        $user = $userRepository->findOneBy(['id'=>$requestUserId]);
         if(isset($user)){
-            $user->setIsActive(!$user->isActive());
-            $usersTable->updateUser($user);
-
+            $usersTable->switchStatus($user);
             $response['user_id'] = $requestUserId;
             $response['status'] = $user->isActive();
         }
