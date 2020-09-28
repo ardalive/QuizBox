@@ -26,10 +26,7 @@
             <tr >
                 <td class="questionBodyCeil">{{ oneQuestion.QuestionBody }}</td>
                 <td class="answerBodyCeil">{{ oneQuestion.getAnswerBodysArr()|join(', ')}}</td>
-<<<<<<< HEAD
-{#                <td>{{ oneQuestion.getQuizArr()|join(', ') }}</td>#}
-=======
->>>>>>> 2e4e20f66144e16959d3694380ca864f25c9455a
+
                 <td class="updateBtnCeil"><a href="{{ path('edit_question', {'id': oneQuestion.id }) }}">{{ 'Update'|trans }}</a></td>
             </tr>
 
