@@ -51,6 +51,3 @@ tr:nth-child(even) {
 thead th:hover{
     background-color: #efefef;
 }
-thead th{
-    cursor: pointer;
-}
