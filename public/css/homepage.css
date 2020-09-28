@@ -51,4 +51,11 @@
 .append{
     display: grid;
     grid-template-columns: 45% 55%;
+    padding: 0 7px;
+}
+.append .status{
+    text-align: left;
+}
+.append .leader{
+    text-align: right;
 }

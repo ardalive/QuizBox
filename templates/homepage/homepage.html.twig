@@ -16,7 +16,7 @@
                     <p>{{ quiz.Description }}</p>
 
                     <div class="append">
-                        <div>
+                        <div class="status">
                             <small>{{ 'Quiz status'|trans }}: </small>
                             {% if quiz.isActive == 1 %}
                                 <span class="badge badge-primary">{{ 'Active'|trans }}</span>
@@ -26,7 +26,7 @@
                             <br>
                             <small>{{ 'Started'|trans }} {{ quiz.dateOfCreation|date("d.m.Y") }}</small>
                         </div>
-                        <div>
+                        <div class="leader">
                             <small>
                                 {% if quizLeaders[quiz.id]|length > 0 %}
                                     {{ 'Leader'|trans }}: {{ quizLeaders[quiz.id]|first.userRelation.email }}
