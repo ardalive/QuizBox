@@ -19,14 +19,20 @@
     {{ form_row(registrationForm.name, {'attr':
         {
             'placeholder': 'Username'|trans ,
-            'data-toggle': 'popover'|trans ,
+            'data-toggle': 'popover',
             'data-content': '4-15 letters and numbers. Special symbols are not allowed.'|trans
         }}) }}
-    {{ form_row(registrationForm.email, {'attr': {'placeholder': 'Email'|trans }}) }}
+    {{ form_row(registrationForm.email, {'attr':
+        {
+            'placeholder': 'Email'|trans,
+            'data-toggle': 'popover',
+            'data-content': 'You will recieve confirmation Email. You have to respond to it before you could access our services.'|trans
+        }
+    }) }}
     {{ form_row(registrationForm.password.first, {'attr':
         {
             'placeholder': 'Password'|trans ,
-            'data-toggle': 'popover'|trans ,
+            'data-toggle': 'popover',
             'data-content': '6-25 letters and numbers. Passwords must match.'|trans,
 
         }}) }}
@@ -35,6 +41,7 @@
             'placeholder': 'Confirm password'|trans,
         }}) }}
     {{ form_row(registrationForm.submit) }}
+
     <hr>
 
     <h1 class="h6 mb-3 font-weight-normal">{{ 'Alredy have an account'|trans }}?</h1>
